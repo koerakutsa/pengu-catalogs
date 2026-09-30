@@ -37,13 +37,13 @@ def source_stream(identifier: str) -> dict | None:
     prefix, content_id, episode_id = match.groups()
     if prefix == "duoplay":
         path = f"/{content_id}" + (f"?ep={urllib.parse.quote(episode_id)}" if episode_id else "")
-        page = request(DUO_SITE + path, DUO_SITE + "/")
+        page = html.unescape(request(DUO_SITE + path, DUO_SITE + "/")).replace("\\/", "/")
         # The site embeds its playable router URL in HTML attributes / JSON.
-        pattern = r"https?:\\?/\\?/router\.euddn\.net[^\s\"'<>]+?\.m3u8(?:\?[^\s\"'<>]*)?"
+        pattern = r"https?://router\.euddn\.net[^\s\"'<>]+?\.m3u8(?:\?[^\s\"'<>]*)?"
         found = re.search(pattern, page)
         if not found:
             return None
-        url = html.unescape(found.group(0).replace("\\/", "/"))
+        url = found.group(0)
         headers = {"Referer": DUO_SITE + "/", "Origin": DUO_SITE, "User-Agent": UA}
         return {"name": "DuoPlay", "title": "DuoPlay · HLS", "url": url,
                 "behaviorHints": {"notWebReady": True, "proxyHeaders": {"request": headers}}}
