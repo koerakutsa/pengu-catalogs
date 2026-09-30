@@ -1,63 +1,27 @@
 {
   "id": "com.pengustream.catalogs",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "name": "Pengu Eesti Kataloogid",
-  "description": "Staatilised kataloogid: DuoPlay, ERR Jupiter, ERR Arhiiv, Lasteekraan. Streamid tulevad Nuvio pluginatest (pengu-nuvio-plugins).",
+  "description": "Staatilised kataloogid + meta: DuoPlay, ERR Jupiter, ERR Arhiiv, Lasteekraan. Streamid: Nuvio pluginad (DuoPlay, ERR).",
   "logo": "https://raw.githubusercontent.com/koerakutsa/pengu-catalogs/main/logo.png",
   "resources": [
-    "catalog"
-  ],
-  "types": [
-    "movie",
-    "series",
-    "other"
-  ],
-  "catalogs": [
+    "catalog",
     {
-      "type": "movie",
-      "id": "duoplay",
-      "name": "DuoPlay Filmid"
-    },
-    {
-      "type": "series",
-      "id": "duoplay",
-      "name": "DuoPlay Sarjad"
-    },
-    {
-      "type": "movie",
-      "id": "jupiter",
-      "name": "ERR Jupiter Filmid"
-    },
-    {
-      "type": "series",
-      "id": "jupiter",
-      "name": "ERR Jupiter Sarjad"
-    },
-    {
-      "type": "movie",
-      "id": "err-archive",
-      "name": "ERR Arhiiv Filmid"
-    },
-    {
-      "type": "series",
-      "id": "err-archive",
-      "name": "ERR Arhiiv Sarjad"
-    },
-    {
-      "type": "movie",
-      "id": "lasteekraan",
-      "name": "Lasteekraan Filmid"
-    },
-    {
-      "type": "series",
-      "id": "lasteekraan",
-      "name": "Lasteekraan Sarjad"
+      "name": "meta",
+      "types": ["movie", "series"],
+      "idPrefixes": ["duoplay:", "err:", "err-archive:", "lasteekraan:"]
     }
   ],
-  "idPrefixes": [
-    "duoplay:",
-    "err:",
-    "err-archive:",
-    "lasteekraan:"
-  ]
+  "types": ["movie", "series"],
+  "catalogs": [
+    {"type": "movie", "id": "duoplay", "name": "DuoPlay Filmid"},
+    {"type": "series", "id": "duoplay", "name": "DuoPlay Sarjad"},
+    {"type": "movie", "id": "jupiter", "name": "ERR Jupiter Filmid"},
+    {"type": "series", "id": "jupiter", "name": "ERR Jupiter Sarjad"},
+    {"type": "movie", "id": "err-archive", "name": "ERR Arhiiv Filmid"},
+    {"type": "series", "id": "err-archive", "name": "ERR Arhiiv Sarjad"},
+    {"type": "movie", "id": "lasteekraan", "name": "Lasteekraan Filmid"},
+    {"type": "series", "id": "lasteekraan", "name": "Lasteekraan Sarjad"}
+  ],
+  "idPrefixes": ["duoplay:", "err:", "err-archive:", "lasteekraan:"]
 }
