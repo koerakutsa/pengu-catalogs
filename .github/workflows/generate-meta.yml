@@ -13,6 +13,7 @@ permissions:
 jobs:
   generate:
     runs-on: ubuntu-latest
+    timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
 
@@ -20,7 +21,7 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Generate meta JSON files
+      - name: Generate meta JSON files (with series episodes)
         run: python scripts/generate_meta.py
 
       - name: Commit and push
@@ -31,6 +32,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No meta changes"
           else
-            git commit -m "chore: regenerate static meta from catalogs"
+            git commit -m "chore: regenerate static meta with series episodes"
             git push
           fi
