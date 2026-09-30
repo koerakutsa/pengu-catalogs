@@ -1,0 +1,48 @@
+name: Refresh Estonian catalogs and streams
+
+on:
+  schedule:
+    - cron: '25 3 * * *'
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/refresh-catalogs.yml'
+      - 'scripts/**'
+
+concurrency:
+  group: refresh-estonian-catalogs
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    if: github.event_name != 'push' || github.actor != 'github-actions[bot]'
+    runs-on: ubuntu-latest
+    timeout-minutes: 300
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Refresh available films and series
+        run: python scripts/refresh_catalogs.py
+      - name: Refresh metadata and episode lists
+        run: python scripts/generate_meta.py
+      - name: Refresh playable stream responses
+        run: python scripts/generate_streams.py
+      - name: Commit additions, changes and removals
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A catalog meta stream catalog-summary.json
+          if git diff --cached --quiet; then
+            echo 'Catalogs and streams are current'
+            exit 0
+          fi
+          git commit -m 'chore: refresh Estonian catalogs, metadata and streams'
+          git pull --rebase origin main
+          git push origin HEAD:main

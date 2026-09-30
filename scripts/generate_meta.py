@@ -5,6 +5,8 @@ from __future__ import annotations
 import json
 import re
 import time
+from concurrent.futures import ThreadPoolExecutor
+from functools import lru_cache
 import urllib.error
 import urllib.request
 from pathlib import Path
@@ -19,6 +21,7 @@ DUO_API = "https://tigu.kanal2.ee/duoplay/ee/et"
 DUO_SITE = "https://duoplay.ee"
 
 
+@lru_cache(maxsize=20000)
 def http_json(url: str, referer: str = "https://jupiter.err.ee/") -> dict | None:
     req = urllib.request.Request(
         url,
@@ -36,6 +39,7 @@ def http_json(url: str, referer: str = "https://jupiter.err.ee/") -> dict | None
         return None
 
 
+@lru_cache(maxsize=10000)
 def http_text(url: str) -> str:
     req = urllib.request.Request(
         url,
@@ -242,13 +246,9 @@ def enrich_series(meta: dict) -> dict:
         return meta
     videos: list[dict] = []
     if prefix in ("err", "err-archive", "lasteekraan"):
-        print(f"  ERR episodes {meta['id']}...")
         videos = err_videos(prefix, num)
-        time.sleep(0.06)
     elif prefix == "duoplay":
-        print(f"  DuoPlay episodes {meta['id']}...")
         videos = duoplay_videos(num)
-        time.sleep(0.08)
     if videos:
         meta["videos"] = videos
     return meta
@@ -259,23 +259,28 @@ def main() -> None:
     n_with_videos = 0
     for typ in ("movie", "series"):
         (META / typ).mkdir(parents=True, exist_ok=True)
+        expected: set[str] = set()
+        items: list[dict] = []
         for path in sorted((CAT / typ).glob("*.json")):
             data = json.loads(path.read_text(encoding="utf-8"))
-            for item in data.get("metas") or []:
-                mid = item.get("id")
-                if not mid:
-                    continue
-                meta = to_base_meta(item, typ)
-                if typ == "series":
-                    meta = enrich_series(meta)
-                    if meta.get("videos"):
-                        n_with_videos += 1
-                out = META / typ / f"{mid}.json"
-                out.write_text(
-                    json.dumps({"meta": meta}, ensure_ascii=False, separators=(",", ":")),
-                    encoding="utf-8",
-                )
-                n_files += 1
+            items.extend(to_base_meta(item, typ) for item in data.get("metas") or [] if item.get("id"))
+        if typ == "series":
+            with ThreadPoolExecutor(max_workers=8) as executor:
+                items = list(executor.map(enrich_series, items))
+        for meta in items:
+            mid = meta["id"]
+            if meta.get("videos"):
+                n_with_videos += 1
+            out = META / typ / f"{mid}.json"
+            expected.add(out.name)
+            out.write_text(
+                json.dumps({"meta": meta}, ensure_ascii=False, separators=(",", ":")),
+                encoding="utf-8",
+            )
+            n_files += 1
+        for stale in (META / typ).glob("*.json"):
+            if stale.name not in expected:
+                stale.unlink()
     print(f"Wrote {n_files} meta files ({n_with_videos} series with videos)")
 
 

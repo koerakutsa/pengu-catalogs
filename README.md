@@ -1,6 +1,9 @@
 # Pengu Eesti Kataloogid
 
-Staatiline Stremio/Nuvio **catalog-only** addon. Ei vaja Vercelit ega serverit.
+GitHubis hostitud Stremio/Nuvio addon Eesti filmidele ja sarjadele. Addon annab
+`catalog`, `meta` ja `stream` vastused. Nuvio Android TV ei käivita kohalikke
+JavaScript-pluginaid `duoplay:`, `err:` või `lasteekraan:` ID-de jaoks, seega
+annab voolingid sama addon otse.
 
 ## Install (Nuvio)
 
@@ -10,19 +13,13 @@ Staatiline Stremio/Nuvio **catalog-only** addon. Ei vaja Vercelit ega serverit.
 https://raw.githubusercontent.com/koerakutsa/pengu-catalogs/main/manifest.json
 ```
 
-või jsDelivr:
-
-```
-https://cdn.jsdelivr.net/gh/koerakutsa/pengu-catalogs@main/manifest.json
-```
+Kui addon oli juba paigaldatud, värskenda või paigalda see uuesti, et Nuvio
+loeks manifesti uue `stream` ressursi. Mobiilse Nuvio pluginad võivad jääda
+alles muude kataloogide jaoks, kuid Eesti kataloogid ei vaja neid.
 
 ## Streamid
 
-Kataloogid annavad ainult nimekirjad. Streamid tulevad **Nuvio pluginatest**:
-
-```
-https://raw.githubusercontent.com/koerakutsa/pengu-nuvio-plugins/main/manifest.json
-```
+Addon annab voolingid aadressilt `stream/{movie|series}/{id}.json`.
 
 ## Kataloogid
 
@@ -35,4 +32,11 @@ https://raw.githubusercontent.com/koerakutsa/pengu-nuvio-plugins/main/manifest.j
 
 ## Uuendamine
 
-Kataloogifailid genereeritakse API dumpist. Esimene dump: vaata `catalog-summary.json`.
+`.github/workflows/refresh-catalogs.yml` käivitub iga päev kell 03:25 UTC ja
+käsitsi GitHubi Actionsi lehel. See loeb lähte-API-de inventuuri, uuendab
+episoodide metaandmed ja voolingid ning lisab või eemaldab failid vastavalt
+saadaolevale sisule. Suure ootamatu kataloogikahanemise või voogude päringuvea
+korral töö katkeb ega avalda poolikut uuendust.
+
+DuoPlay HLS-aadressid võivad allika poolel päeva jooksul muutuda. GitHub
+Actionsi viimase töö tulemus näitab, kas päevane värskendus õnnestus.

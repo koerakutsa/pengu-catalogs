@@ -1,17 +1,4 @@
-# Catalog files
+# Kataloogid
 
-Upload full JSON dumps into these folders (replace empty placeholders):
-
-## catalog/movie/
-- duoplay.json
-- jupiter.json
-- err-archive.json
-- lasteekraan.json
-
-## catalog/series/
-- duoplay.json
-- jupiter.json
-- err-archive.json
-- lasteekraan.json
-
-Source: project `artifacts/pengu-catalogs/catalog/` or `pengu-catalogs-full.zip`.
+`scripts/refresh_catalogs.py` uuendab iga päev `movie/` ja `series/` JSON-faile
+DuoPlay ning ERR-i API-de põhjal. Failide käsitsi üleslaadimine ei ole vajalik.

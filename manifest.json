@@ -1,11 +1,16 @@
 {
   "id": "com.pengustream.catalogs",
-  "version": "1.1.0",
+  "version": "1.2.0",
   "name": "Pengu Eesti Kataloogid",
-  "description": "Staatilised kataloogid + meta: DuoPlay, ERR Jupiter, ERR Arhiiv, Lasteekraan. Streamid: Nuvio pluginad (DuoPlay, ERR).",
+  "description": "GitHubi kataloogid, meta ja vood: DuoPlay, ERR Jupiter, ERR Arhiiv, Lasteekraan.",
   "logo": "https://raw.githubusercontent.com/koerakutsa/pengu-catalogs/main/logo.png",
   "resources": [
     "catalog",
+    {
+      "name": "stream",
+      "types": ["movie", "series"],
+      "idPrefixes": ["duoplay:", "err:", "err-archive:", "lasteekraan:"]
+    },
     {
       "name": "meta",
       "types": ["movie", "series"],
