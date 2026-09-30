@@ -8,6 +8,7 @@
     "catalog/movie/err-archive.json": 2233,
     "catalog/series/err-archive.json": 1202,
     "catalog/movie/lasteekraan.json": 146,
-    "catalog/series/lasteekraan.json": 495
+    "catalog/series/lasteekraan.json": 495,
+    "catalog/other/lasteekraan-raamatud.json": 0
   }
 }

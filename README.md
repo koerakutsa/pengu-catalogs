@@ -30,7 +30,9 @@ https://raw.githubusercontent.com/koerakutsa/pengu-nuvio-plugins/main/manifest.j
 |----|------|
 | duoplay | DuoPlay filmid + sarjad |
 | jupiter | ERR Jupiter filmid + sarjad |
-| err-archive | ERR Arhiiv (sama VOD, teine id-prefix) |
+| err-archive | ERR Arhiiv (sama VOD inventuur, teine id-prefix) |
 | lasteekraan | Lasteekraan filmid + sarjad |
 
-Järjejutud / õhtujutud on Lasteekraan **sarjade** all.
+## Uuendamine
+
+Kataloogifailid genereeritakse API dumpist. Esimene dump: vaata `catalog-summary.json`.
