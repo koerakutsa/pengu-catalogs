@@ -7,6 +7,10 @@ on:
       - "catalog/**"
       - "scripts/generate_meta.py"
 
+concurrency:
+  group: generate-meta
+  cancel-in-progress: true
+
 permissions:
   contents: write
 
@@ -16,6 +20,8 @@ jobs:
     timeout-minutes: 120
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - uses: actions/setup-python@v5
         with:
@@ -31,7 +37,9 @@ jobs:
           git add meta
           if git diff --staged --quiet; then
             echo "No meta changes"
-          else
-            git commit -m "chore: regenerate static meta with series episodes"
-            git push
+            exit 0
           fi
+          git commit -m "chore: regenerate static meta with series episodes"
+          # main may have moved while generation ran (~1h)
+          git pull --rebase origin main
+          git push origin HEAD:main
