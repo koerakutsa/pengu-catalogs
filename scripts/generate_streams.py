@@ -11,8 +11,11 @@ import html
 import json
 import os
 import re
+import time
+import urllib.error
 import urllib.parse
 import urllib.request
+from functools import lru_cache
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -26,28 +29,19 @@ ID_RE = re.compile(r"^(duoplay|err|err-archive|lasteekraan):(\d+)(?::(?:ep:)?(\d
 
 def request(url: str, referer: str) -> str:
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Referer": referer, "Accept": "application/json,text/html"})
-    with urllib.request.urlopen(req, timeout=30) as response:
-        return response.read().decode("utf-8", "replace")
+    for attempt in range(3):
+        try:
+            with urllib.request.urlopen(req, timeout=30) as response:
+                return response.read().decode("utf-8", "replace")
+        except urllib.error.HTTPError as error:
+            if error.code not in (429, 500, 502, 503, 504, 520) or attempt == 2:
+                raise
+            time.sleep(1 + attempt * 2)
+    raise RuntimeError("Unreachable retry state")
 
 
-def source_stream(identifier: str) -> dict | None:
-    match = ID_RE.fullmatch(identifier)
-    if not match:
-        return None
-    prefix, content_id, episode_id = match.groups()
-    if prefix == "duoplay":
-        path = f"/{content_id}" + (f"?ep={urllib.parse.quote(episode_id)}" if episode_id else "")
-        page = html.unescape(request(DUO_SITE + path, DUO_SITE + "/")).replace("\\/", "/")
-        # The site embeds its playable router URL in HTML attributes / JSON.
-        pattern = r"https?://router\.euddn\.net[^\s\"'<>]+?\.m3u8(?:\?[^\s\"'<>]*)?"
-        found = re.search(pattern, page)
-        if not found:
-            return None
-        url = found.group(0)
-        headers = {"Referer": DUO_SITE + "/", "Origin": DUO_SITE, "User-Agent": UA}
-        return {"name": "DuoPlay", "title": "DuoPlay · HLS", "url": url,
-                "behaviorHints": {"notWebReady": True, "proxyHeaders": {"request": headers}}}
-
+@lru_cache(maxsize=100000)
+def err_stream(content_id: str) -> dict | None:
     url = ERR_API + "?" + urllib.parse.urlencode({"contentId": content_id, "rootId": 3905, "page": "web"})
     payload = json.loads(request(url, "https://jupiter.err.ee/"))
     main = (payload.get("data") or {}).get("mainContent") or {}
@@ -66,6 +60,26 @@ def source_stream(identifier: str) -> dict | None:
                 "url": playable,
                 "behaviorHints": {"notWebReady": False, "proxyHeaders": {"request": headers}}}
     return None
+
+
+def source_stream(identifier: str) -> dict | None:
+    match = ID_RE.fullmatch(identifier)
+    if not match:
+        return None
+    prefix, content_id, episode_id = match.groups()
+    if prefix != "duoplay":
+        return err_stream(content_id)
+    path = f"/{content_id}" + (f"?ep={urllib.parse.quote(episode_id)}" if episode_id else "")
+    page = html.unescape(request(DUO_SITE + path, DUO_SITE + "/")).replace("\\/", "/")
+    # The site embeds its playable router URL in HTML attributes / JSON.
+    pattern = r"https?://router\.euddn\.net[^\s\"'<>]+?\.m3u8(?:\?[^\s\"'<>]*)?"
+    found = re.search(pattern, page)
+    if not found:
+        return None
+    url = found.group(0)
+    headers = {"Referer": DUO_SITE + "/", "Origin": DUO_SITE, "User-Agent": UA}
+    return {"name": "DuoPlay", "title": "DuoPlay · HLS", "url": url,
+            "behaviorHints": {"notWebReady": True, "proxyHeaders": {"request": headers}}}
 
 
 def collect_ids() -> dict[str, set[str]]:
