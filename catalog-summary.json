@@ -1,0 +1,13 @@
+{
+  "generated_at": "2026-09-30T08:14:00Z",
+  "counts": {
+    "catalog/movie/duoplay.json": 69,
+    "catalog/series/duoplay.json": 114,
+    "catalog/movie/jupiter.json": 2233,
+    "catalog/series/jupiter.json": 1202,
+    "catalog/movie/err-archive.json": 2233,
+    "catalog/series/err-archive.json": 1202,
+    "catalog/movie/lasteekraan.json": 146,
+    "catalog/series/lasteekraan.json": 495
+  }
+}
