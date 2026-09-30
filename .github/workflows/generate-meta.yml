@@ -17,7 +17,7 @@ permissions:
 jobs:
   generate:
     runs-on: ubuntu-latest
-    timeout-minutes: 120
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
         with:
@@ -40,6 +40,5 @@ jobs:
             exit 0
           fi
           git commit -m "chore: regenerate static meta with series episodes"
-          # main may have moved while generation ran (~1h)
           git pull --rebase origin main
           git push origin HEAD:main

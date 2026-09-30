@@ -13,8 +13,9 @@ ROOT = Path(__file__).resolve().parents[1]
 CAT = ROOT / "catalog"
 META = ROOT / "meta"
 
-UA = "PenguCatalogsMeta/1.2"
+UA = "PenguCatalogsMeta/1.3"
 ERR_API = "https://services.err.ee/api/v2/vodContent/getContentPageData"
+DUO_API = "https://tigu.kanal2.ee/duoplay/ee/et"
 DUO_SITE = "https://duoplay.ee"
 
 
@@ -40,7 +41,7 @@ def http_text(url: str) -> str:
         url,
         headers={
             "Accept": "text/html",
-            "User-Agent": "Mozilla/5.0 (compatible; PenguCatalogs/1.2)",
+            "User-Agent": "Mozilla/5.0 (compatible; PenguCatalogs/1.3)",
             "Referer": DUO_SITE + "/",
         },
     )
@@ -50,6 +51,20 @@ def http_text(url: str) -> str:
     except Exception as e:
         print(f"  text fail {url}: {e}")
         return ""
+
+
+def extract_m3u(html: str) -> str:
+    marker = "router.euddn.net"
+    at = html.find(marker)
+    if at < 0:
+        return ""
+    start = html.rfind("http", 0, at)
+    if start < 0:
+        return ""
+    end = html.find(".m3u8", at)
+    if end < 0:
+        return ""
+    return html[start : end + 5]
 
 
 def to_base_meta(item: dict, typ: str) -> dict:
@@ -94,6 +109,7 @@ def err_videos(prefix: str, content_id: str) -> list[dict]:
     season_num = 0
     for s in seasons:
         season_num += 1
+        # ERR nests months under items, or puts episodes in contents
         groups = s.get("items") if s.get("items") else [s]
         ep_num = 0
         for g in groups:
@@ -118,14 +134,6 @@ def err_videos(prefix: str, content_id: str) -> list[dict]:
                 }
                 if released:
                     v["released"] = released
-                thumb = None
-                photos = c.get("photos") or c.get("photo") or {}
-                if isinstance(photos, dict):
-                    thumb = photos.get("photoUrl") or photos.get("url")
-                elif isinstance(photos, list) and photos:
-                    thumb = photos[0].get("photoUrl") if isinstance(photos[0], dict) else None
-                if thumb:
-                    v["thumbnail"] = thumb if str(thumb).startswith("http") else f"https:{thumb}"
                 videos.append(v)
     if not videos:
         main = (j.get("data") or {}).get("mainContent") or {}
@@ -138,9 +146,8 @@ def err_videos(prefix: str, content_id: str) -> list[dict]:
                     "episode": 1,
                 }
             )
-    # de-dupe by id, keep order
-    seen = set()
-    out = []
+    seen: set[str] = set()
+    out: list[dict] = []
     for v in videos:
         if v["id"] in seen:
             continue
@@ -149,40 +156,75 @@ def err_videos(prefix: str, content_id: str) -> list[dict]:
     return out
 
 
-def duoplay_has_ep(telecast_id: str, ep: int) -> bool:
-    html = http_text(f"{DUO_SITE}/{telecast_id}?ep={ep}")
-    return "router.euddn.net" in html
-
-
-def duoplay_max_ep(telecast_id: str) -> int:
-    """Exponential + binary search for last playable ?ep=N."""
-    if not duoplay_has_ep(telecast_id, 1):
-        return 0
-    hi = 1
-    while hi < 256 and duoplay_has_ep(telecast_id, hi):
-        hi *= 2
-        time.sleep(0.05)
-    lo = hi // 2
-    best = lo
-    while lo <= hi:
-        mid = (lo + hi) // 2
-        if mid == 0:
+def duoplay_unique_max(telecast_id: str, limit: int = 50) -> int:
+    """Sequential probe: stop after 3 identical m3u8 URLs in a row."""
+    last_url = ""
+    same = 0
+    last_unique = 0
+    for ep in range(1, limit + 1):
+        html = http_text(f"{DUO_SITE}/{telecast_id}?ep={ep}")
+        url = extract_m3u(html)
+        if not url:
             break
-        if duoplay_has_ep(telecast_id, mid):
-            best = mid
-            lo = mid + 1
+        if url != last_url:
+            last_unique = ep
+            last_url = url
+            same = 0
         else:
-            hi = mid - 1
-        time.sleep(0.05)
-    return best
+            same += 1
+            if same >= 3 and last_unique > 0:
+                break
+        time.sleep(0.04)
+    return last_unique or (1 if last_url else 0)
 
 
 def duoplay_videos(telecast_id: str) -> list[dict]:
-    n = duoplay_max_ep(telecast_id)
-    if n <= 0:
-        return []
-    videos = []
-    for ep in range(1, n + 1):
+    """Prefer catchup seasons list; fall back to unique-stream probe."""
+    j = http_json(f"{DUO_API}/catchup/{telecast_id}", referer=DUO_SITE + "/")
+    videos: list[dict] = []
+    seasons = (j or {}).get("seasons") or []
+    if seasons:
+        for s in seasons:
+            snum = int(s.get("number") or 0)
+            if snum <= 0:
+                snum = 1
+            ep_ord = 0
+            for e in s.get("episodes") or []:
+                eid = e.get("episode_id")
+                if eid is None:
+                    continue
+                eid = int(eid)
+                ep_ord += 1
+                # Prefer real episode_nr when sane, else ordinal within season
+                enr = e.get("episode_nr")
+                try:
+                    enr_i = int(enr) if enr is not None else ep_ord
+                except Exception:
+                    enr_i = ep_ord
+                # Cap display episode to something sensible if episode_id is global counter
+                if enr_i > 10000:
+                    enr_i = ep_ord
+                title = (
+                    e.get("display_title")
+                    or e.get("subtitle")
+                    or (f"Osa {enr_i}" if enr_i else f"Osa {eid}")
+                )
+                videos.append(
+                    {
+                        "id": f"duoplay:{telecast_id}:ep:{eid}",
+                        "title": str(title).strip() or f"Osa {eid}",
+                        "season": snum,
+                        "episode": enr_i if enr_i > 0 else ep_ord,
+                    }
+                )
+        if videos:
+            return videos
+
+    # No seasons list — probe unique streams (Angry Birds etc.)
+    max_ep = duoplay_unique_max(telecast_id, 60)
+    if max_ep <= 0:
+        max_ep = 1
+    for ep in range(1, max_ep + 1):
         videos.append(
             {
                 "id": f"duoplay:{telecast_id}:ep:{ep}",
@@ -202,15 +244,13 @@ def enrich_series(meta: dict) -> dict:
     if prefix in ("err", "err-archive", "lasteekraan"):
         print(f"  ERR episodes {meta['id']}...")
         videos = err_videos(prefix, num)
-        time.sleep(0.08)
+        time.sleep(0.06)
     elif prefix == "duoplay":
         print(f"  DuoPlay episodes {meta['id']}...")
         videos = duoplay_videos(num)
-        time.sleep(0.1)
+        time.sleep(0.08)
     if videos:
         meta["videos"] = videos
-        # help clients that expect behaviorHints
-        meta.setdefault("behaviorHints", {})
     return meta
 
 
