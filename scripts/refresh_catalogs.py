@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 import concurrent.futures
+import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -132,7 +133,16 @@ def load_lasteekraan() -> dict[str, list[dict]]:
         def available(item: dict) -> bool:
             content_id = str(item["id"]).split(":")[-1]
             query = urllib.parse.urlencode({"contentId": content_id, "rootId": 3905, "page": "web"})
-            data = (get_json(f"{ERR}/api/v2/vodContent/getContentPageData?{query}").get("data") or {})
+            try:
+                data = (get_json(f"{ERR}/api/v2/vodContent/getContentPageData?{query}").get("data") or {})
+            except urllib.error.HTTPError as error:
+                if error.code == 404:
+                    return False
+                if error.code in (403, 429):
+                    # Region restrictions and request throttling must not remove
+                    # an existing title from the public catalog.
+                    return True
+                raise
             main = data.get("mainContent") or {}
             seasons = (data.get("seasonList") or {}).get("items") or []
             return bool(main.get("medias") or seasons)
