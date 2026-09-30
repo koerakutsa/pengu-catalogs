@@ -127,7 +127,7 @@ def main() -> None:
     print(f"Resolved {resolved}/{len(tasks)} stream IDs; request errors={len(failed)}", flush=True)
     if failed:
         print("\n".join(failed[:20]))
-    if failed or resolved < max(1, int(len(tasks) * 0.5)):
+    if len(failed) > max(50, int(len(tasks) * 0.02)) or resolved < max(1, int(len(tasks) * 0.5)):
         raise RuntimeError("Stream inventory incomplete; no catalog update should be committed")
 
 

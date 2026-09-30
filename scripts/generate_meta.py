@@ -269,9 +269,14 @@ def main() -> None:
                 items = list(executor.map(enrich_series, items))
         for meta in items:
             mid = meta["id"]
+            out = META / typ / f"{mid}.json"
+            if typ == "series" and not meta.get("videos") and out.exists():
+                # A temporary source failure must not erase an existing episode list.
+                old = json.loads(out.read_text(encoding="utf-8")).get("meta") or {}
+                if old.get("videos"):
+                    meta["videos"] = old["videos"]
             if meta.get("videos"):
                 n_with_videos += 1
-            out = META / typ / f"{mid}.json"
             expected.add(out.name)
             out.write_text(
                 json.dumps({"meta": meta}, ensure_ascii=False, separators=(",", ":")),

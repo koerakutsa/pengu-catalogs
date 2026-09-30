@@ -138,11 +138,11 @@ def load_lasteekraan() -> dict[str, list[dict]]:
             except urllib.error.HTTPError as error:
                 if error.code == 404:
                     return False
-                if error.code in (403, 429):
-                    # Region restrictions and request throttling must not remove
-                    # an existing title from the public catalog.
-                    return True
-                raise
+                # 403/429/5xx responses can mean region restrictions, rate limits
+                # or a temporary upstream outage. None prove removal.
+                return True
+            except (TimeoutError, OSError):
+                return True
             main = data.get("mainContent") or {}
             seasons = (data.get("seasonList") or {}).get("items") or []
             return bool(main.get("medias") or seasons)
