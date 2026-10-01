@@ -1,15 +1,15 @@
 {
   "complete": false,
-  "existing": 36175,
-  "missing": 4648,
-  "batch_resolved": 208,
-  "batch_empty": 80,
-  "batch_errors": 3712,
+  "existing": 37662,
+  "missing": 3173,
+  "batch_resolved": 1497,
+  "batch_empty": 84,
+  "batch_errors": 2419,
   "last_key": [
     1,
-    "err-archive:1609478625",
+    "err-archive:1150694",
     "series"
   ],
   "prefer": "duoplay,err",
-  "ts": 1790845272
+  "ts": 1790847834
 }
