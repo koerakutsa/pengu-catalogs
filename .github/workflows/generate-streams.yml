@@ -1,4 +1,4 @@
-name: Generate static streams (batch resume)
+name: Generate static streams and ERR DRM links
 
 on:
   workflow_dispatch:
@@ -39,7 +39,7 @@ jobs:
         with:
           python-version: '3.12'
 
-      - name: Resolve one batch of missing streams
+      - name: Resolve playable streams and official ERR DRM links
         env:
           STREAM_BATCH_SIZE: ${{ github.event.inputs.batch_size || '4000' }}
           STREAM_WORKERS: ${{ github.event.inputs.workers || '6' }}

@@ -50,8 +50,10 @@ def err_stream(content_id: str) -> dict | None:
     )
     payload = json.loads(request(url, "https://jupiter.err.ee/"))
     main = (payload.get("data") or {}).get("mainContent") or {}
+    has_drm = False
     for media in main.get("medias") or []:
         if (media.get("restrictions") or {}).get("drm"):
+            has_drm = True
             continue
         src = media.get("src") or {}
         raw = src.get("hlsNew") or src.get("hls2") or src.get("hls") or src.get("file")
@@ -74,6 +76,20 @@ def err_stream(content_id: str) -> dict | None:
                 },
             },
         }
+    if has_drm:
+        # Nuvio TV cannot pass a Widevine license from addon JSON to its player.
+        # An externalUrl opens the official ERR page for authorized playback.
+        page = main.get("vodSiteUrl") or main.get("url") or main.get("canonicalUrl")
+        if isinstance(page, str):
+            parsed = urllib.parse.urlparse(page)
+            if parsed.scheme == "https" and parsed.hostname and (
+                parsed.hostname == "err.ee" or parsed.hostname.endswith(".err.ee")
+            ):
+                return {
+                    "name": "ERR",
+                    "title": str(main.get("heading") or "ERR") + " · ava ERR-is (DRM)",
+                    "externalUrl": page,
+                }
     return None
 
 
@@ -153,7 +169,7 @@ def existing_streams() -> tuple[set[tuple[str, str]], dict[str, dict]]:
             try:
                 payload = json.loads(path.read_text(encoding="utf-8"))
                 streams = payload.get("streams") or []
-                if not streams or not isinstance(streams[0].get("url"), str):
+                if not streams or not isinstance(streams[0].get("url") or streams[0].get("externalUrl"), str):
                     continue
                 out.add((typ, identifier))
                 match = ID_RE.fullmatch(identifier)
@@ -260,6 +276,7 @@ def main() -> None:
     (STREAM / "series").mkdir(parents=True, exist_ok=True)
 
     resolved = 0
+    external = 0
     empty = 0
     failed: list[str] = []
     t0 = time.time()
@@ -276,6 +293,8 @@ def main() -> None:
                     encoding="utf-8",
                 )
                 resolved += 1
+                if stream.get("externalUrl"):
+                    external += 1
             else:
                 empty += 1
                 if os.environ.get("STREAM_MARK_EMPTY", "0") == "1":
@@ -287,7 +306,7 @@ def main() -> None:
     elapsed = time.time() - t0
     still_missing = total_missing - resolved
     print(
-        f"Batch done resolved={resolved} empty={empty} errors={len(failed)} "
+        f"Batch done resolved={resolved} external_links={external} empty={empty} errors={len(failed)} "
         f"in {elapsed:.1f}s rate={resolved / max(elapsed, 0.1):.1f}/s "
         f"remaining≈{still_missing}",
         flush=True,
@@ -303,6 +322,7 @@ def main() -> None:
                 "existing": len(have) + resolved,
                 "missing": max(0, still_missing),
                 "batch_resolved": resolved,
+                "batch_external": external,
                 "batch_empty": empty,
                 "batch_errors": len(failed),
                 "last_key": list(sort_key(tasks[-1])),
