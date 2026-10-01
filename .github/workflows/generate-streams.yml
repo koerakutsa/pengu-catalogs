@@ -16,7 +16,7 @@ on:
         required: false
         default: 'duoplay,err'
   schedule:
-    - cron: '15 */2 * * *'
+    - cron: '15 5 * * *'
 
 concurrency:
   group: pengu-repository-updates
