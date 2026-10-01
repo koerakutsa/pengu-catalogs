@@ -11,6 +11,8 @@ import urllib.error
 import urllib.request
 from pathlib import Path
 
+from metadata_fields import description, duo_fields, err_episode_thumbnail, err_fields, image_url
+
 ROOT = Path(__file__).resolve().parents[1]
 CAT = ROOT / "catalog"
 META = ROOT / "meta"
@@ -103,13 +105,16 @@ def parse_prefix_id(full_id: str) -> tuple[str, str]:
     return m.group(1).lower(), m.group(2)
 
 
-def err_videos(prefix: str, content_id: str) -> list[dict]:
+def err_videos(prefix: str, content_id: str, meta: dict) -> list[dict]:
     url = f"{ERR_API}?contentId={content_id}&rootId=3905&page=web"
     j = http_json(url)
     if not j:
         return []
     videos: list[dict] = []
-    seasons = ((j.get("data") or {}).get("seasonList") or {}).get("items") or []
+    data = j.get("data") or {}
+    main = data.get("mainContent") or {}
+    meta.update(err_fields(main))
+    seasons = (data.get("seasonList") or {}).get("items") or []
     season_num = 0
     for s in seasons:
         season_num += 1
@@ -136,20 +141,29 @@ def err_videos(prefix: str, content_id: str) -> list[dict]:
                     "season": sid,
                     "episode": eid,
                 }
+                thumbnail = err_episode_thumbnail(c) or meta.get("background") or meta.get("poster")
+                if thumbnail:
+                    v["thumbnail"] = thumbnail
+                overview = description(c.get("lead") or c.get("body") or c.get("subHeading"))
+                if overview:
+                    v["overview"] = overview
                 if released:
                     v["released"] = released
                 videos.append(v)
     if not videos:
-        main = (j.get("data") or {}).get("mainContent") or {}
         if main.get("medias") or main.get("heading"):
-            videos.append(
-                {
+            video = {
                     "id": f"{prefix}:{content_id}",
                     "title": main.get("heading") or "Episode 1",
                     "season": 1,
                     "episode": 1,
                 }
-            )
+            thumbnail = err_episode_thumbnail(main) or meta.get("background") or meta.get("poster")
+            if thumbnail:
+                video["thumbnail"] = thumbnail
+            if meta.get("description"):
+                video["overview"] = meta["description"]
+            videos.append(video)
     seen: set[str] = set()
     out: list[dict] = []
     for v in videos:
@@ -182,9 +196,14 @@ def duoplay_unique_max(telecast_id: str, limit: int = 50) -> int:
     return last_unique or (1 if last_url else 0)
 
 
-def duoplay_videos(telecast_id: str) -> list[dict]:
+def duoplay_videos(telecast_id: str, meta: dict) -> list[dict]:
     """Prefer catchup seasons list; fall back to unique-stream probe."""
     j = http_json(f"{DUO_API}/catchup/{telecast_id}", referer=DUO_SITE + "/")
+    live_fields = duo_fields(j or {})
+    for key, value in live_fields.items():
+        if key == "description" or not meta.get(key):
+            meta[key] = value
+    fallback_thumbnail = live_fields.get("background") or meta.get("background") or meta.get("poster")
     videos: list[dict] = []
     seasons = (j or {}).get("seasons") or []
     if seasons:
@@ -213,14 +232,19 @@ def duoplay_videos(telecast_id: str) -> list[dict]:
                     or e.get("subtitle")
                     or (f"Osa {enr_i}" if enr_i else f"Osa {eid}")
                 )
-                videos.append(
-                    {
+                video = {
                         "id": f"duoplay:{telecast_id}:ep:{eid}",
                         "title": str(title).strip() or f"Osa {eid}",
                         "season": snum,
                         "episode": enr_i if enr_i > 0 else ep_ord,
                     }
-                )
+                thumbnail = image_url(e.get("image"), ("1200x630", "original")) or fallback_thumbnail
+                if thumbnail:
+                    video["thumbnail"] = thumbnail
+                overview = description(e.get("synopsis"))
+                if overview:
+                    video["overview"] = overview
+                videos.append(video)
         if videos:
             return videos
 
@@ -229,14 +253,15 @@ def duoplay_videos(telecast_id: str) -> list[dict]:
     if max_ep <= 0:
         max_ep = 1
     for ep in range(1, max_ep + 1):
-        videos.append(
-            {
+        video = {
                 "id": f"duoplay:{telecast_id}:ep:{ep}",
                 "title": f"Osa {ep}",
                 "season": 1,
                 "episode": ep,
             }
-        )
+        if fallback_thumbnail:
+            video["thumbnail"] = fallback_thumbnail
+        videos.append(video)
     return videos
 
 
@@ -246,9 +271,9 @@ def enrich_series(meta: dict) -> dict:
         return meta
     videos: list[dict] = []
     if prefix in ("err", "err-archive", "lasteekraan"):
-        videos = err_videos(prefix, num)
+        videos = err_videos(prefix, num, meta)
     elif prefix == "duoplay":
-        videos = duoplay_videos(num)
+        videos = duoplay_videos(num, meta)
     if videos:
         meta["videos"] = videos
     return meta
@@ -270,11 +295,21 @@ def main() -> None:
         for meta in items:
             mid = meta["id"]
             out = META / typ / f"{mid}.json"
-            if typ == "series" and not meta.get("videos") and out.exists():
-                # A temporary source failure must not erase an existing episode list.
-                old = json.loads(out.read_text(encoding="utf-8")).get("meta") or {}
-                if old.get("videos"):
+            old = json.loads(out.read_text(encoding="utf-8")).get("meta") or {} if out.exists() else {}
+            for key in ("poster", "background", "description"):
+                if not meta.get(key) and old.get(key):
+                    meta[key] = old[key]
+            if typ == "series":
+                if not meta.get("videos") and old.get("videos"):
+                    # A temporary source failure must not erase existing episodes.
                     meta["videos"] = old["videos"]
+                elif meta.get("videos") and old.get("videos"):
+                    old_videos = {v.get("id"): v for v in old["videos"]}
+                    for video in meta["videos"]:
+                        previous = old_videos.get(video["id"], {})
+                        for key in ("thumbnail", "overview"):
+                            if not video.get(key) and previous.get(key):
+                                video[key] = previous[key]
             if meta.get("videos"):
                 n_with_videos += 1
             expected.add(out.name)

@@ -9,6 +9,8 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
+from metadata_fields import duo_fields, err_fields
+
 ROOT = Path(__file__).resolve().parents[1]
 CATALOG = ROOT / "catalog"
 ERR = "https://services.err.ee"
@@ -53,25 +55,12 @@ def err_pages(kind: str) -> list[dict]:
     raise ValueError(f"ERR {kind} page limit reached")
 
 
-def photo(item: dict, key: str) -> str | None:
-    photos = item.get(key) or []
-    if isinstance(photos, list) and photos:
-        first = photos[0]
-        return first.get("photoUrlOriginal") or first.get("photoUrlBase")
-    return None
-
-
 def err_meta(item: dict, typ: str, prefix: str) -> dict:
-    poster = photo(item, "verticalPhotos") or photo(item, "photos")
-    backdrop = photo(item, "horizontalPhotos") or photo(item, "photos") or poster
     meta = {"id": f"{prefix}:{item['id']}", "type": typ,
             "name": str(item.get("heading") or item.get("name") or "ERR").strip()}
-    if poster:
-        meta["poster"] = poster
-    if backdrop:
-        meta["background"] = backdrop
-    if item.get("lead"):
-        meta["description"] = str(item["lead"])
+    meta.update(err_fields(item))
+    if not meta.get("background") and meta.get("poster"):
+        meta["background"] = meta["poster"]
     category = item.get("primaryCategory") or {}
     if category.get("name"):
         meta["genres"] = [category["name"]]
@@ -79,13 +68,9 @@ def err_meta(item: dict, typ: str, prefix: str) -> dict:
 
 
 def duo_meta(item: dict, typ: str) -> dict:
-    poster = item.get("image") or (item.get("images") or {}).get("510x774")
-    backdrop = (item.get("images") or {}).get("1440x645") or poster
     meta = {"id": f"duoplay:{item['id']}", "type": typ,
             "name": str(item.get("title") or "DuoPlay").strip()}
-    for key, value in (("poster", poster), ("background", backdrop)):
-        if value:
-            meta[key] = "https:" + value if str(value).startswith("//") else value
+    meta.update(duo_fields(item))
     return meta
 
 
@@ -157,6 +142,12 @@ def load_lasteekraan() -> dict[str, list[dict]]:
 def write_catalog(typ: str, source: str, metas: list[dict]) -> int:
     path = CATALOG / typ / f"{source}.json"
     previous = json.loads(path.read_text(encoding="utf-8"))["metas"] if path.exists() else []
+    old_by_id = {item["id"]: item for item in previous if item.get("id")}
+    for item in metas:
+        old = old_by_id.get(item["id"], {})
+        for key in ("poster", "background", "description"):
+            if not item.get(key) and old.get(key):
+                item[key] = old[key]
     # A temporary API truncation must not wipe most of the published catalog.
     if len(metas) < max(1, int(len(previous) * 0.65)):
         raise ValueError(f"{source}/{typ} shrank from {len(previous)} to {len(metas)}")
