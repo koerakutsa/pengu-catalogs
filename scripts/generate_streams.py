@@ -6,6 +6,7 @@ Batch + resume: only missing IDs, STREAM_BATCH_SIZE per run, no hard fail.
 from __future__ import annotations
 
 import concurrent.futures
+from bisect import bisect_right
 import html
 import json
 import os
@@ -14,6 +15,7 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
+from functools import lru_cache
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -23,12 +25,12 @@ STATE = ROOT / "stream-state.json"
 
 ERR_API = "https://services.err.ee/api/v2/vodContent/getContentPageData"
 DUO_SITE = "https://duoplay.ee"
-UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
+UA = "Mozilla/5.0 (compatible; PenguCatalogs/2.0)"
 ID_RE = re.compile(r"^(duoplay|err|err-archive|lasteekraan):(\d+)(?::(?:ep:)?(\d+))?$", re.I)
 M3U_RE = re.compile(r"https?://router\.euddn\.net[^\s\"'<>]+?\.m3u8(?:\?[^\s\"'<>]*)?")
 
 
-def request(url: str, referer: str, timeout: int = 12) -> str:
+def request(url: str, referer: str, timeout: int = 20) -> str:
     req = urllib.request.Request(
         url,
         headers={
@@ -41,6 +43,7 @@ def request(url: str, referer: str, timeout: int = 12) -> str:
         return response.read().decode("utf-8", "replace")
 
 
+@lru_cache(maxsize=50000)
 def err_stream(content_id: str) -> dict | None:
     url = ERR_API + "?" + urllib.parse.urlencode(
         {"contentId": content_id, "rootId": 3905, "page": "web"}
@@ -55,7 +58,7 @@ def err_stream(content_id: str) -> dict | None:
         if not isinstance(raw, str) or not raw:
             continue
         playable = ("https:" + raw) if raw.startswith("//") else raw
-        if not playable.startswith("http"):
+        if not playable.startswith("https://"):
             continue
         return {
             "name": "ERR",
@@ -104,7 +107,7 @@ def source_stream(identifier: str) -> dict | None:
     if not match:
         return None
     prefix, content_id, episode_id = match.groups()
-    if prefix == "duoplay":
+    if prefix.lower() == "duoplay":
         return duo_stream(content_id, episode_id)
     return err_stream(content_id)
 
@@ -134,15 +137,41 @@ def collect_ids() -> dict[str, set[str]]:
     return ids
 
 
-def existing_streams() -> set[str]:
-    out: set[str] = set()
+def existing_streams() -> tuple[set[tuple[str, str]], dict[str, dict]]:
+    """Normalize old files to the known-good response and reuse ERR aliases."""
+    out: set[tuple[str, str]] = set()
+    err_by_content: dict[str, dict] = {}
     for typ in ("movie", "series"):
         folder = STREAM / typ
         if not folder.exists():
             continue
         for path in folder.glob("*.json"):
-            out.add(path.name[: -len(".json")])
-    return out
+            identifier = path.stem
+            try:
+                payload = json.loads(path.read_text(encoding="utf-8"))
+                streams = payload.get("streams") or []
+                if not streams or not isinstance(streams[0].get("url"), str):
+                    continue
+                stream = streams[0]
+                changed = False
+                if identifier.startswith("duoplay:"):
+                    headers = stream.setdefault("behaviorHints", {}).setdefault("proxyHeaders", {}).setdefault("request", {})
+                    expected = {"Referer": DUO_SITE + "/", "Origin": DUO_SITE, "User-Agent": UA}
+                    if headers != expected:
+                        stream["behaviorHints"]["proxyHeaders"]["request"] = expected
+                        changed = True
+                elif stream["url"].startswith("http://vod.err.ee/"):
+                    stream["url"] = "https://" + stream["url"][7:]
+                    changed = True
+                if changed:
+                    path.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+                out.add((typ, identifier))
+                match = ID_RE.fullmatch(identifier)
+                if match and match.group(1).lower() != "duoplay":
+                    err_by_content.setdefault(match.group(2), payload)
+            except (OSError, ValueError, TypeError, AttributeError):
+                continue
+    return out, err_by_content
 
 
 def render_one(task: tuple[str, str]) -> tuple[str, str, dict | None, str | None]:
@@ -154,38 +183,69 @@ def render_one(task: tuple[str, str]) -> tuple[str, str, dict | None, str | None
 
 
 def main() -> None:
-    batch = int(os.environ.get("STREAM_BATCH_SIZE", "6000"))
-    workers = int(os.environ.get("STREAM_WORKERS", "40"))
-    prefer = os.environ.get("STREAM_PREFER", "err,duoplay")
+    batch = max(1, int(os.environ.get("STREAM_BATCH_SIZE", "4000")))
+    workers = min(12, max(1, int(os.environ.get("STREAM_WORKERS", "6"))))
+    prefer = os.environ.get("STREAM_PREFER", "duoplay,err")
+    priorities = [part.strip() for part in prefer.split(",") if part.strip()]
 
     ids = collect_ids()
-    have = existing_streams()
+    wanted = {(typ, identifier) for typ, values in ids.items() for identifier in values}
+    if not wanted:
+        raise ValueError("No catalog stream IDs found")
+    have, err_by_content = existing_streams()
+    # A content ID is shared by Jupiter, ERR Arhiiv and sometimes Lasteekraan.
+    # Copy the already resolved response instead of querying ERR once per alias.
+    reused = 0
+    for typ, identifier in sorted(wanted - have):
+        match = ID_RE.fullmatch(identifier)
+        if not match or match.group(1).lower() == "duoplay":
+            continue
+        payload = err_by_content.get(match.group(2))
+        if payload is None:
+            continue
+        target = STREAM / typ / f"{identifier}.json"
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+        have.add((typ, identifier))
+        reused += 1
+    for typ, identifier in have - wanted:
+        (STREAM / typ / f"{identifier}.json").unlink(missing_ok=True)
+    have &= wanted
     all_tasks: list[tuple[str, str]] = []
     for typ, values in ids.items():
         for identifier in values:
-            if identifier not in have:
+            if (typ, identifier) not in have:
                 all_tasks.append((typ, identifier))
 
-    def sort_key(item: tuple[str, str]) -> tuple[int, str]:
+    def sort_key(item: tuple[str, str]) -> tuple[int, str, str]:
         typ, ident = item
-        pref = prefer.split(",")
         rank = 99
-        for i, p in enumerate(pref):
-            p = p.strip()
+        for i, p in enumerate(priorities):
             if ident.startswith(p) or (
                 p == "err" and ident.startswith(("err:", "err-archive:", "lasteekraan:"))
             ):
                 rank = i
                 break
-        return (rank, ident)
+        return (rank, ident, typ)
 
     all_tasks.sort(key=sort_key)
     total_missing = len(all_tasks)
-    tasks = all_tasks[:batch]
+    previous = {}
+    if STATE.exists():
+        try:
+            previous = json.loads(STATE.read_text(encoding="utf-8"))
+        except (OSError, ValueError):
+            pass
+    last_key = previous.get("last_key") if previous.get("prefer") == prefer else None
+    keys = [sort_key(task) for task in all_tasks]
+    start = bisect_right(keys, tuple(last_key)) if isinstance(last_key, list) and len(last_key) == 3 else 0
+    if start >= total_missing:
+        start = 0
+    tasks = (all_tasks[start:] + all_tasks[:start])[:batch]
     print(
         f"Stream IDs total targets={sum(len(v) for v in ids.values())} "
-        f"existing={len(have)} missing={total_missing} "
-        f"this_batch={len(tasks)} workers={workers}",
+        f"existing={len(have)} aliases_reused={reused} missing={total_missing} "
+        f"this_batch={len(tasks)} workers={workers} offset={start}",
         flush=True,
     )
     if not tasks:
@@ -196,6 +256,7 @@ def main() -> None:
                     "complete": True,
                     "existing": len(have),
                     "missing": 0,
+                    "prefer": prefer,
                     "ts": int(time.time()),
                 },
                 indent=2,
@@ -254,6 +315,8 @@ def main() -> None:
                 "batch_resolved": resolved,
                 "batch_empty": empty,
                 "batch_errors": len(failed),
+                "last_key": list(sort_key(tasks[-1])),
+                "prefer": prefer,
                 "ts": int(time.time()),
             },
             indent=2,

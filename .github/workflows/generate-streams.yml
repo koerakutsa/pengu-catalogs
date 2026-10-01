@@ -6,15 +6,15 @@ on:
       batch_size:
         description: 'How many missing stream IDs to resolve this run'
         required: false
-        default: '8000'
+        default: '4000'
       workers:
         description: 'Parallel workers'
         required: false
-        default: '48'
+        default: '6'
       prefer:
-        description: 'Priority order (err,duoplay)'
+        description: 'Priority order (duoplay,err)'
         required: false
-        default: 'err,duoplay'
+        default: 'duoplay,err'
   schedule:
     - cron: '15 */2 * * *'
 
@@ -40,24 +40,31 @@ jobs:
 
       - name: Resolve one batch of missing streams
         env:
-          STREAM_BATCH_SIZE: ${{ github.event.inputs.batch_size || '8000' }}
-          STREAM_WORKERS: ${{ github.event.inputs.workers || '48' }}
-          STREAM_PREFER: ${{ github.event.inputs.prefer || 'err,duoplay' }}
+          STREAM_BATCH_SIZE: ${{ github.event.inputs.batch_size || '4000' }}
+          STREAM_WORKERS: ${{ github.event.inputs.workers || '6' }}
+          STREAM_PREFER: ${{ github.event.inputs.prefer || 'duoplay,err' }}
         run: python scripts/generate_streams.py
 
       - name: Commit progress
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add stream stream-state.json || true
+          git add -A -- stream stream-state.json
           if git diff --staged --quiet; then
             echo "No stream changes"
             exit 0
           fi
           COUNT=$(find stream -name '*.json' 2>/dev/null | wc -l | tr -d ' ')
           git commit -m "chore: stream batch progress (${COUNT} files)"
-          git pull --rebase origin main || true
-          git push origin HEAD:main
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep 2
+          done
+          exit 1
 
       - name: Summary
         run: |
