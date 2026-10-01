@@ -14,7 +14,7 @@ https://raw.githubusercontent.com/koerakutsa/pengu-catalogs/main/manifest.json
 ```
 
 Kui addon oli juba paigaldatud, värskenda või paigalda see uuesti, et Nuvio
-loeks manifesti uue `stream` ressursi. Mobiilse Nuvio pluginad võivad jääda
+loeks manifesti uued `stream` ja otsingu kataloogid. Mobiilse Nuvio pluginad võivad jääda
 alles muude kataloogide jaoks, kuid Eesti kataloogid ei vaja neid.
 
 ## Streamid
@@ -35,6 +35,16 @@ voovalikuta. Olemasolevaid mängitavaid voofaile uuendused ei kustuta.
 | err-archive | ERR Arhiiv (sama VOD inventuur, teine id-prefix) |
 | lasteekraan | Lasteekraan filmid + sarjad |
 
+## Otsing
+
+Addoni otsingukataloogid ilmuvad ainult Nuvio otsingus. Kirjuta pealkirja
+**neli esimest tähte või numbrit järjest**, jättes pealkirjas olevad tühikud
+ja kirjavahemärgid vahele. Näiteks „Katie” annab nelja märgiga `kati`.
+Tavaline väiketähtedega, esisuurtähega ja suurtähtedega kirjapilt on indeksis.
+ERR Arhiivi samad pealkirjad on otsingus Jupiteri kirjena, et vältida duplikaate.
+GitHubi staatiline addon ei vasta teistele otsingupikkustele; Nuvio võib nende
+puhul näidata päringuviga. Otsing ei kasuta Vercelit ega muud serverit.
+
 ## Uuendamine
 
 `.github/workflows/refresh-catalogs.yml` käivitub iga päev kell 03:25 UTC ja
@@ -45,6 +55,11 @@ suure ootamatu kahanemise korral töö katkeb ega avalda poolikut kataloogi.
 `.github/workflows/generate-streams.yml` käivitub iga päev kell 05:15 UTC ja
 ka käsitsi. See lisab ainult puuduvad otse mängitavad vood ja ERR-i ametlikud
 DRM-lehe lingid. Päringuvead ei kustuta juba avaldatud vastuseid.
+
+`.github/workflows/generate-search-index.yml` käivitub iga päev kell 04:45 UTC
+ja käsitsi. See uuendab kuni 2000 neljamärgilist otsingufaili korraga ning
+jätkab järgmisel korral pooleli jäänud muudatustest. Kadunud pealkirjade
+otsingufailid eemaldatakse siis, kui neid enam ükski kirje ei kasuta.
 
 DuoPlay HLS-aadressid võivad allika poolel muutuda. GitHub Actionsi viimase
 töö tulemus näitab, kas päevane värskendus õnnestus.

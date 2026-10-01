@@ -1,0 +1,61 @@
+name: Generate four-letter Nuvio search index
+
+on:
+  workflow_dispatch:
+    inputs:
+      batch_size:
+        description: 'Maximum number of search files to update in this run'
+        required: false
+        default: '2000'
+  schedule:
+    - cron: '45 4 * * *'
+  push:
+    paths:
+      - '.github/workflows/generate-search-index.yml'
+      - 'scripts/generate_search_index.py'
+      - 'manifest.json'
+
+concurrency:
+  group: pengu-repository-updates
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  search-index:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Update one batch of search files
+        env:
+          SEARCH_BATCH_SIZE: ${{ github.event.inputs.batch_size || '2000' }}
+        run: python scripts/generate_search_index.py
+      - name: Publish search progress
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add -A -- catalog/movie/eesti-otsing catalog/series/eesti-otsing search-index-state.json
+          if git diff --staged --quiet; then
+            echo 'Search index is current'
+            exit 0
+          fi
+          git commit -m 'chore: update four-letter Nuvio search index'
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep 2
+          done
+          exit 1
+      - name: Summary
+        run: cat search-index-state.json
