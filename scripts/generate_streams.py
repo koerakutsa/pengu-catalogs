@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
-"""Publish Stremio stream responses for custom IDs used by Nuvio Android TV.
+"""Publish static Stremio stream JSON for Nuvio Android TV (custom IDs).
 
-Nuvio TV does not invoke local JS plugins for duoplay:/err:/lasteekraan:
-IDs. These JSON files make the GitHub-hosted catalog addon a stream addon too.
+Batch + resume: only missing IDs, STREAM_BATCH_SIZE per run, no hard fail.
 """
 from __future__ import annotations
 
@@ -15,34 +14,37 @@ import time
 import urllib.error
 import urllib.parse
 import urllib.request
-from functools import lru_cache
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 META = ROOT / "meta"
 STREAM = ROOT / "stream"
+STATE = ROOT / "stream-state.json"
+
 ERR_API = "https://services.err.ee/api/v2/vodContent/getContentPageData"
 DUO_SITE = "https://duoplay.ee"
-UA = "Mozilla/5.0 (compatible; PenguCatalogs/2.0)"
+UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36"
 ID_RE = re.compile(r"^(duoplay|err|err-archive|lasteekraan):(\d+)(?::(?:ep:)?(\d+))?$", re.I)
+M3U_RE = re.compile(r"https?://router\.euddn\.net[^\s\"'<>]+?\.m3u8(?:\?[^\s\"'<>]*)?")
 
 
-def request(url: str, referer: str) -> str:
-    req = urllib.request.Request(url, headers={"User-Agent": UA, "Referer": referer, "Accept": "application/json,text/html"})
-    for attempt in range(3):
-        try:
-            with urllib.request.urlopen(req, timeout=30) as response:
-                return response.read().decode("utf-8", "replace")
-        except urllib.error.HTTPError as error:
-            if error.code not in (429, 500, 502, 503, 504, 520) or attempt == 2:
-                raise
-            time.sleep(1 + attempt * 2)
-    raise RuntimeError("Unreachable retry state")
+def request(url: str, referer: str, timeout: int = 12) -> str:
+    req = urllib.request.Request(
+        url,
+        headers={
+            "User-Agent": UA,
+            "Referer": referer,
+            "Accept": "application/json,text/html,*/*",
+        },
+    )
+    with urllib.request.urlopen(req, timeout=timeout) as response:
+        return response.read().decode("utf-8", "replace")
 
 
-@lru_cache(maxsize=100000)
 def err_stream(content_id: str) -> dict | None:
-    url = ERR_API + "?" + urllib.parse.urlencode({"contentId": content_id, "rootId": 3905, "page": "web"})
+    url = ERR_API + "?" + urllib.parse.urlencode(
+        {"contentId": content_id, "rootId": 3905, "page": "web"}
+    )
     payload = json.loads(request(url, "https://jupiter.err.ee/"))
     main = (payload.get("data") or {}).get("mainContent") or {}
     for media in main.get("medias") or []:
@@ -52,14 +54,49 @@ def err_stream(content_id: str) -> dict | None:
         raw = src.get("hlsNew") or src.get("hls2") or src.get("hls") or src.get("file")
         if not isinstance(raw, str) or not raw:
             continue
-        playable = "https:" + raw if raw.startswith("//") else raw
-        if not playable.startswith("https://"):
+        playable = ("https:" + raw) if raw.startswith("//") else raw
+        if not playable.startswith("http"):
             continue
-        headers = {"Referer": "https://jupiter.err.ee/", "Origin": "https://jupiter.err.ee"}
-        return {"name": "ERR", "title": str(main.get("heading") or "ERR") + " · HLS",
-                "url": playable,
-                "behaviorHints": {"notWebReady": False, "proxyHeaders": {"request": headers}}}
+        return {
+            "name": "ERR",
+            "title": str(main.get("heading") or "ERR") + " · HLS",
+            "url": playable,
+            "behaviorHints": {
+                "notWebReady": False,
+                "proxyHeaders": {
+                    "request": {
+                        "Referer": "https://jupiter.err.ee/",
+                        "Origin": "https://jupiter.err.ee",
+                    }
+                },
+            },
+        }
     return None
+
+
+def duo_stream(content_id: str, episode_id: str | None) -> dict | None:
+    path = f"/{content_id}"
+    if episode_id:
+        path += f"?ep={urllib.parse.quote(episode_id)}"
+    page = html.unescape(request(DUO_SITE + path, DUO_SITE + "/")).replace("\\/", "/")
+    found = M3U_RE.search(page)
+    if not found:
+        return None
+    return {
+        "name": "DuoPlay",
+        "title": "DuoPlay · HLS",
+        "url": found.group(0),
+        "behaviorHints": {
+            "notWebReady": True,
+            "proxyHeaders": {
+                "request": {
+                    "Referer": DUO_SITE + "/",
+                    "Origin": DUO_SITE,
+                    "User-Agent": UA,
+                }
+            },
+        },
+    }
 
 
 def source_stream(identifier: str) -> dict | None:
@@ -67,37 +104,45 @@ def source_stream(identifier: str) -> dict | None:
     if not match:
         return None
     prefix, content_id, episode_id = match.groups()
-    if prefix != "duoplay":
-        return err_stream(content_id)
-    path = f"/{content_id}" + (f"?ep={urllib.parse.quote(episode_id)}" if episode_id else "")
-    page = html.unescape(request(DUO_SITE + path, DUO_SITE + "/")).replace("\\/", "/")
-    # The site embeds its playable router URL in HTML attributes / JSON.
-    pattern = r"https?://router\.euddn\.net[^\s\"'<>]+?\.m3u8(?:\?[^\s\"'<>]*)?"
-    found = re.search(pattern, page)
-    if not found:
-        return None
-    url = found.group(0)
-    headers = {"Referer": DUO_SITE + "/", "Origin": DUO_SITE, "User-Agent": UA}
-    return {"name": "DuoPlay", "title": "DuoPlay · HLS", "url": url,
-            "behaviorHints": {"notWebReady": True, "proxyHeaders": {"request": headers}}}
+    if prefix == "duoplay":
+        return duo_stream(content_id, episode_id)
+    return err_stream(content_id)
 
 
 def collect_ids() -> dict[str, set[str]]:
-    ids = {"movie": set(), "series": set()}
+    ids: dict[str, set[str]] = {"movie": set(), "series": set()}
     for typ in ids:
-        for path in (META / typ).glob("*.json"):
+        folder = META / typ
+        if not folder.exists():
+            continue
+        for path in folder.glob("*.json"):
             if path.name.startswith("."):
                 continue
-            payload = json.loads(path.read_text(encoding="utf-8"))
+            try:
+                payload = json.loads(path.read_text(encoding="utf-8"))
+            except Exception:
+                continue
             meta = payload.get("meta") or {}
-            if ID_RE.fullmatch(str(meta.get("id") or "")):
-                ids[typ].add(meta["id"])
+            mid = str(meta.get("id") or "")
+            if ID_RE.fullmatch(mid):
+                ids[typ].add(mid)
             if typ == "series":
                 for video in meta.get("videos") or []:
                     identifier = str(video.get("id") or "")
                     if ID_RE.fullmatch(identifier):
                         ids[typ].add(identifier)
     return ids
+
+
+def existing_streams() -> set[str]:
+    out: set[str] = set()
+    for typ in ("movie", "series"):
+        folder = STREAM / typ
+        if not folder.exists():
+            continue
+        for path in folder.glob("*.json"):
+            out.add(path.name[: -len(".json")])
+    return out
 
 
 def render_one(task: tuple[str, str]) -> tuple[str, str, dict | None, str | None]:
@@ -109,40 +154,114 @@ def render_one(task: tuple[str, str]) -> tuple[str, str, dict | None, str | None
 
 
 def main() -> None:
+    batch = int(os.environ.get("STREAM_BATCH_SIZE", "6000"))
+    workers = int(os.environ.get("STREAM_WORKERS", "40"))
+    prefer = os.environ.get("STREAM_PREFER", "err,duoplay")
+
     ids = collect_ids()
-    tasks = [(typ, identifier) for typ, values in ids.items() for identifier in sorted(values)]
+    have = existing_streams()
+    all_tasks: list[tuple[str, str]] = []
+    for typ, values in ids.items():
+        for identifier in values:
+            if identifier not in have:
+                all_tasks.append((typ, identifier))
+
+    def sort_key(item: tuple[str, str]) -> tuple[int, str]:
+        typ, ident = item
+        pref = prefer.split(",")
+        rank = 99
+        for i, p in enumerate(pref):
+            p = p.strip()
+            if ident.startswith(p) or (
+                p == "err" and ident.startswith(("err:", "err-archive:", "lasteekraan:"))
+            ):
+                rank = i
+                break
+        return (rank, ident)
+
+    all_tasks.sort(key=sort_key)
+    total_missing = len(all_tasks)
+    tasks = all_tasks[:batch]
+    print(
+        f"Stream IDs total targets={sum(len(v) for v in ids.values())} "
+        f"existing={len(have)} missing={total_missing} "
+        f"this_batch={len(tasks)} workers={workers}",
+        flush=True,
+    )
     if not tasks:
-        raise ValueError("No catalog IDs found")
-    print(f"Resolving {len(tasks)} unique movie/series/episode IDs", flush=True)
-    expected: dict[str, set[str]] = {typ: set() for typ in ids}
-    failed: list[str] = []
+        print("Nothing missing — streams complete", flush=True)
+        STATE.write_text(
+            json.dumps(
+                {
+                    "complete": True,
+                    "existing": len(have),
+                    "missing": 0,
+                    "ts": int(time.time()),
+                },
+                indent=2,
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+        return
+
+    (STREAM / "movie").mkdir(parents=True, exist_ok=True)
+    (STREAM / "series").mkdir(parents=True, exist_ok=True)
+
     resolved = 0
-    workers = min(24, max(1, int(os.environ.get("STREAM_WORKERS", "16"))))
+    empty = 0
+    failed: list[str] = []
+    t0 = time.time()
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
         for typ, identifier, stream, error in executor.map(render_one, tasks):
             target = STREAM / typ / f"{identifier}.json"
             if error:
                 failed.append(f"{identifier}: {error}")
-                if target.exists():
-                    expected[typ].add(target.name)
                 continue
             if stream:
-                target.parent.mkdir(parents=True, exist_ok=True)
-                target.write_text(json.dumps({"streams": [stream]}, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
-                expected[typ].add(target.name)
+                target.write_text(
+                    json.dumps({"streams": [stream]}, ensure_ascii=False, separators=(",", ":"))
+                    + "\n",
+                    encoding="utf-8",
+                )
                 resolved += 1
-            elif target.exists():
-                # Keep the prior response if the source is temporarily empty.
-                expected[typ].add(target.name)
-    for typ in ids:
-        for path in (STREAM / typ).glob("*.json"):
-            if path.name not in expected[typ]:
-                path.unlink()
-    print(f"Resolved {resolved}/{len(tasks)} stream IDs; request errors={len(failed)}", flush=True)
+            else:
+                empty += 1
+                if os.environ.get("STREAM_MARK_EMPTY", "0") == "1":
+                    target.write_text(
+                        json.dumps({"streams": []}, separators=(",", ":")) + "\n",
+                        encoding="utf-8",
+                    )
+
+    elapsed = time.time() - t0
+    still_missing = total_missing - resolved
+    print(
+        f"Batch done resolved={resolved} empty={empty} errors={len(failed)} "
+        f"in {elapsed:.1f}s rate={resolved / max(elapsed, 0.1):.1f}/s "
+        f"remaining≈{still_missing}",
+        flush=True,
+    )
     if failed:
-        print("\n".join(failed[:20]))
-    if len(failed) > max(50, int(len(tasks) * 0.02)) or resolved < max(1, int(len(tasks) * 0.5)):
-        raise RuntimeError("Stream inventory incomplete; no catalog update should be committed")
+        print("Sample errors:", flush=True)
+        print("\n".join(failed[:15]), flush=True)
+
+    STATE.write_text(
+        json.dumps(
+            {
+                "complete": still_missing <= 0 and empty == 0,
+                "existing": len(have) + resolved,
+                "missing": max(0, still_missing),
+                "batch_resolved": resolved,
+                "batch_empty": empty,
+                "batch_errors": len(failed),
+                "ts": int(time.time()),
+            },
+            indent=2,
+        )
+        + "\n",
+        encoding="utf-8",
+    )
+    print("OK (partial progress is fine; re-run to continue)", flush=True)
 
 
 if __name__ == "__main__":
