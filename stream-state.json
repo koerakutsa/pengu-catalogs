@@ -2,14 +2,14 @@
   "complete": false,
   "existing": 38650,
   "missing": 2185,
-  "batch_resolved": 988,
-  "batch_empty": 2178,
-  "batch_errors": 7,
+  "batch_resolved": 0,
+  "batch_empty": 344,
+  "batch_errors": 1841,
   "last_key": [
     1,
     "err-archive:1150694",
     "series"
   ],
   "prefer": "duoplay,err",
-  "ts": 1790848129
+  "ts": 1790848502
 }
