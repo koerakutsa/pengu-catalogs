@@ -1,9 +1,9 @@
 {
   "complete": false,
-  "existing": 569,
-  "missing": 40255,
-  "batch_resolved": 277,
-  "batch_empty": 23,
-  "batch_errors": 7700,
-  "ts": 1790815878
+  "existing": 660,
+  "missing": 40164,
+  "batch_resolved": 91,
+  "batch_empty": 13,
+  "batch_errors": 11896,
+  "ts": 1790816488
 }
