@@ -127,10 +127,13 @@ def collect_ids() -> dict[str, set[str]]:
                 continue
             meta = payload.get("meta") or {}
             mid = str(meta.get("id") or "")
-            if ID_RE.fullmatch(mid):
+            videos = meta.get("videos") or []
+            # Series with episodes are played through their video IDs. Their
+            # parent ID often has no media and must not count as a missing stream.
+            if ID_RE.fullmatch(mid) and (typ != "series" or not videos):
                 ids[typ].add(mid)
             if typ == "series":
-                for video in meta.get("videos") or []:
+                for video in videos:
                     identifier = str(video.get("id") or "")
                     if ID_RE.fullmatch(identifier):
                         ids[typ].add(identifier)
