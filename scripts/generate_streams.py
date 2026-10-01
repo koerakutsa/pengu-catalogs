@@ -138,7 +138,7 @@ def collect_ids() -> dict[str, set[str]]:
 
 
 def existing_streams() -> tuple[set[tuple[str, str]], dict[str, dict]]:
-    """Normalize old files to the known-good response and reuse ERR aliases."""
+    """Keep published streams untouched and reuse ERR aliases."""
     out: set[tuple[str, str]] = set()
     err_by_content: dict[str, dict] = {}
     for typ in ("movie", "series"):
@@ -152,19 +152,6 @@ def existing_streams() -> tuple[set[tuple[str, str]], dict[str, dict]]:
                 streams = payload.get("streams") or []
                 if not streams or not isinstance(streams[0].get("url"), str):
                     continue
-                stream = streams[0]
-                changed = False
-                if identifier.startswith("duoplay:"):
-                    headers = stream.setdefault("behaviorHints", {}).setdefault("proxyHeaders", {}).setdefault("request", {})
-                    expected = {"Referer": DUO_SITE + "/", "Origin": DUO_SITE, "User-Agent": UA}
-                    if headers != expected:
-                        stream["behaviorHints"]["proxyHeaders"]["request"] = expected
-                        changed = True
-                elif stream["url"].startswith("http://vod.err.ee/"):
-                    stream["url"] = "https://" + stream["url"][7:]
-                    changed = True
-                if changed:
-                    path.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
                 out.add((typ, identifier))
                 match = ID_RE.fullmatch(identifier)
                 if match and match.group(1).lower() != "duoplay":
@@ -208,8 +195,8 @@ def main() -> None:
         target.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
         have.add((typ, identifier))
         reused += 1
-    for typ, identifier in have - wanted:
-        (STREAM / typ / f"{identifier}.json").unlink(missing_ok=True)
+    # Removed catalog entries disappear from catalog/meta, while previously
+    # published playable links remain available by their direct stream IDs.
     have &= wanted
     all_tasks: list[tuple[str, str]] = []
     for typ, values in ids.items():
