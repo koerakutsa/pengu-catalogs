@@ -20,6 +20,11 @@ alles muude kataloogide jaoks, kuid Eesti kataloogid ei vaja neid.
 ## Streamid
 
 Addon annab voolingid aadressilt `stream/{movie|series}/{id}.json`.
+ERR-i DRM-kaitsega kirjetele annab addon valiku **„ava ERR-is (DRM)”**.
+Nuvio Android TV avab selle ERR-i ametlikul lehel välises brauseris; see ei ole
+Nuvio mängijas esitatav voog. Vaatamine sõltub ERR-i õigustest, asukohast ja
+seadme brauseri toest. Kirjed, millele ERR ei anna üldse meediat, võivad jääda
+voovalikuta. Olemasolevaid mängitavaid voofaile uuendused ei kustuta.
 
 ## Kataloogid
 
@@ -34,9 +39,12 @@ Addon annab voolingid aadressilt `stream/{movie|series}/{id}.json`.
 
 `.github/workflows/refresh-catalogs.yml` käivitub iga päev kell 03:25 UTC ja
 käsitsi GitHubi Actionsi lehel. See loeb lähte-API-de inventuuri, uuendab
-episoodide metaandmed ja voolingid ning lisab või eemaldab failid vastavalt
-saadaolevale sisule. Suure ootamatu kataloogikahanemise või voogude päringuvea
-korral töö katkeb ega avalda poolikut uuendust.
+katalooge ja episoodide metaandmeid. Kataloogist kadunud kirjed eemaldatakse;
+suure ootamatu kahanemise korral töö katkeb ega avalda poolikut kataloogi.
 
-DuoPlay HLS-aadressid võivad allika poolel päeva jooksul muutuda. GitHub
-Actionsi viimase töö tulemus näitab, kas päevane värskendus õnnestus.
+`.github/workflows/generate-streams.yml` käivitub iga päev kell 05:15 UTC ja
+ka käsitsi. See lisab ainult puuduvad otse mängitavad vood ja ERR-i ametlikud
+DRM-lehe lingid. Päringuvead ei kustuta juba avaldatud vastuseid.
+
+DuoPlay HLS-aadressid võivad allika poolel muutuda. GitHub Actionsi viimase
+töö tulemus näitab, kas päevane värskendus õnnestus.
