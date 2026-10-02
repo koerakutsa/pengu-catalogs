@@ -1,11 +1,11 @@
 {
   "last": [
     "series",
-    "duoplay:10142"
+    "duoplay:10683"
   ],
   "missing": 4148,
-  "resolved": 0,
-  "empty": 1,
-  "errors": 0,
-  "ts": 1790948476
+  "resolved": 126,
+  "empty": 166,
+  "errors": 8,
+  "ts": 1790949643
 }
