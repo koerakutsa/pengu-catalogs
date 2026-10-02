@@ -7,6 +7,7 @@ Some TV players advertise the HLS track but cannot render those chunks.
 from __future__ import annotations
 
 import concurrent.futures
+from bisect import bisect_right
 import gzip
 import json
 import os
@@ -138,7 +139,10 @@ def main() -> None:
             if target.is_file():
                 continue
             wanted.append((typ, path.stem))
-    wanted.sort(key=lambda item: (item != ("movie", "duoplay:10647"), item[0] != "movie", item[1]))
+    def sort_key(item: tuple[str, str]) -> tuple[bool, bool, str]:
+        return (item != ("movie", "duoplay:10647"), item[0] != "movie", item[1])
+
+    wanted.sort(key=sort_key)
     previous = {}
     if STATE.exists():
         try:
@@ -146,7 +150,8 @@ def main() -> None:
         except (OSError, ValueError):
             pass
     last = previous.get("last")
-    start = next((i + 1 for i, item in enumerate(wanted) if list(item) == last), 0)
+    keys = [sort_key(item) for item in wanted]
+    start = bisect_right(keys, sort_key(tuple(last))) if isinstance(last, list) and len(last) == 2 else 0
     if start >= len(wanted):
         start = 0
     tasks = (wanted[start:] + wanted[:start])[:batch]
