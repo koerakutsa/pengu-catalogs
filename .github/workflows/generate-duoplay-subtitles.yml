@@ -6,7 +6,7 @@ on:
       batch_size:
         description: 'DuoPlay streams to inspect this run'
         required: false
-        default: '100'
+        default: '300'
   schedule:
     - cron: '45 6 * * *'
 
@@ -31,7 +31,7 @@ jobs:
           python-version: '3.12'
       - name: Build plain WebVTT tracks from DuoPlay HLS subtitles
         env:
-          SUBTITLE_BATCH_SIZE: ${{ github.event.inputs.batch_size || '100' }}
+          SUBTITLE_BATCH_SIZE: ${{ github.event.inputs.batch_size || '300' }}
         run: python scripts/generate_duoplay_subtitles.py
       - name: Commit progress
         run: |

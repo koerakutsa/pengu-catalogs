@@ -130,7 +130,7 @@ def resolve(task: tuple[str, str]) -> tuple[str, str, str | None, str | None]:
 
 
 def main() -> None:
-    batch = max(1, int(os.environ.get("SUBTITLE_BATCH_SIZE", "100")))
+    batch = max(1, int(os.environ.get("SUBTITLE_BATCH_SIZE", "300")))
     workers = min(6, max(1, int(os.environ.get("SUBTITLE_WORKERS", "3"))))
     wanted = []
     for typ in ("movie", "series"):
