@@ -33,11 +33,13 @@ jobs:
         env:
           SUBTITLE_BATCH_SIZE: ${{ github.event.inputs.batch_size || '300' }}
         run: python scripts/generate_duoplay_subtitles.py
+      - name: Add TV compatible HLS subtitle variants
+        run: python scripts/generate_duoplay_hls_subtitles.py
       - name: Commit progress
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A -- subtitles stream subtitle-state.json
+          git add -A -- subtitles playlists stream subtitle-state.json
           if git diff --staged --quiet; then
             echo "No subtitle changes"
             exit 0
