@@ -1,0 +1,8 @@
+#EXTM3U
+#EXT-X-VERSION:3
+#EXT-X-PLAYLIST-TYPE:VOD
+#EXT-X-TARGETDURATION:2565
+#EXT-X-MEDIA-SEQUENCE:0
+#EXTINF:2565.000,
+https://raw.githubusercontent.com/koerakutsa/pengu-catalogs/main/subtitles/series/duoplay%3A10743.vtt
+#EXT-X-ENDLIST
