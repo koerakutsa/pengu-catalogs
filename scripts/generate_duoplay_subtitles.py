@@ -8,6 +8,7 @@ from __future__ import annotations
 
 import concurrent.futures
 from bisect import bisect_right
+from datetime import datetime, timedelta, timezone
 import gzip
 import json
 import os
@@ -158,6 +159,21 @@ def changed_streams(old_revision: str | None, revision: str | None) -> set[tuple
     return changed
 
 
+def recent_streams(revision: str | None) -> set[tuple[str, str]]:
+    """Seed the priority queue once for streams added before revision tracking."""
+    if not revision:
+        return set()
+    cutoff = (datetime.now(timezone.utc) - timedelta(days=1)).isoformat()
+    try:
+        baseline = subprocess.check_output(
+            ["git", "rev-list", "-1", "--before=" + cutoff, revision],
+            cwd=ROOT, text=True, stderr=subprocess.DEVNULL,
+        ).strip()
+    except (OSError, subprocess.CalledProcessError):
+        return set()
+    return changed_streams(baseline, revision)
+
+
 def select_tasks(wanted: list[tuple[str, str]], previous: dict,
                  changed: set[tuple[str, str]], batch: int) -> tuple[list[tuple[str, str]], list, set[tuple[str, str]]]:
     def sort_key(item: tuple[str, str]) -> tuple[bool, bool, str]:
@@ -207,6 +223,8 @@ def main() -> None:
             pass
     revision = stream_revision()
     changed = changed_streams(previous.get("stream_head"), revision)
+    if previous.get("priority_version") != 2:
+        changed |= recent_streams(revision)
     tasks, next_last, urgent = select_tasks(wanted, previous, changed, batch)
     print(f"DuoPlay subtitles missing={len(wanted)} new_streams={len(changed)} "
           f"urgent={len(urgent)} batch={len(tasks)} workers={workers}", flush=True)
@@ -237,6 +255,7 @@ def main() -> None:
             resolved += 1
     remaining_urgent = (urgent - set(tasks)) | (urgent & failed)
     STATE.write_text(json.dumps({"last": next_last, "stream_head": revision,
+                                 "priority_version": 2,
                                  "urgent": [list(item) for item in sorted(remaining_urgent)],
                                  "missing": len(wanted),
                                  "resolved": resolved, "empty": empty, "errors": errors,
