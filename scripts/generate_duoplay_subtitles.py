@@ -12,6 +12,7 @@ import gzip
 import json
 import os
 import re
+import subprocess
 import time
 import urllib.error
 import urllib.parse
@@ -129,6 +130,65 @@ def resolve(task: tuple[str, str]) -> tuple[str, str, str | None, str | None]:
         return typ, identifier, None, str(exc)
 
 
+def stream_revision() -> str | None:
+    try:
+        return subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+    except (OSError, subprocess.CalledProcessError):
+        return None
+
+
+def changed_streams(old_revision: str | None, revision: str | None) -> set[tuple[str, str]]:
+    if not old_revision or not revision:
+        return set()
+    try:
+        paths = subprocess.check_output(
+            ["git", "diff", "--name-only", "--diff-filter=AM", old_revision, revision,
+             "--", "stream/movie", "stream/series"],
+            cwd=ROOT, text=True, stderr=subprocess.DEVNULL,
+        )
+    except (OSError, subprocess.CalledProcessError):
+        return set()
+    changed = set()
+    for name in paths.splitlines():
+        parts = Path(name).parts
+        if len(parts) == 3 and parts[0] == "stream" and parts[1] in ("movie", "series"):
+            identifier = Path(parts[2]).stem
+            if identifier.startswith("duoplay:"):
+                changed.add((parts[1], identifier))
+    return changed
+
+
+def select_tasks(wanted: list[tuple[str, str]], previous: dict,
+                 changed: set[tuple[str, str]], batch: int) -> tuple[list[tuple[str, str]], list, set[tuple[str, str]]]:
+    def sort_key(item: tuple[str, str]) -> tuple[bool, bool, str]:
+        return (item != ("movie", "duoplay:10647"), item[0] != "movie", item[1])
+
+    wanted.sort(key=sort_key)
+    wanted_set = set(wanted)
+    urgent = {tuple(item) for item in previous.get("urgent", []) if isinstance(item, list) and len(item) == 2}
+    urgent = (urgent | changed) & wanted_set
+    last = previous.get("last")
+    keys = [sort_key(item) for item in wanted]
+    start = bisect_right(keys, sort_key(tuple(last))) if isinstance(last, list) and len(last) == 2 else 0
+    if start >= len(wanted):
+        start = 0
+    ordered = sorted(urgent, key=sort_key) + [item for item in wanted if item[0] == "movie"]
+    regular = wanted[start:] + wanted[:start]
+    tasks = []
+    seen = set()
+    next_last = last
+    for item in ordered + regular:
+        if item in seen:
+            continue
+        seen.add(item)
+        tasks.append(item)
+        if item not in urgent and item[0] != "movie":
+            next_last = list(item)
+        if len(tasks) >= batch:
+            break
+    return tasks, next_last, urgent
+
+
 def main() -> None:
     batch = max(1, int(os.environ.get("SUBTITLE_BATCH_SIZE", "300")))
     workers = min(6, max(1, int(os.environ.get("SUBTITLE_WORKERS", "3"))))
@@ -139,28 +199,24 @@ def main() -> None:
             if target.is_file():
                 continue
             wanted.append((typ, path.stem))
-    def sort_key(item: tuple[str, str]) -> tuple[bool, bool, str]:
-        return (item != ("movie", "duoplay:10647"), item[0] != "movie", item[1])
-
-    wanted.sort(key=sort_key)
     previous = {}
     if STATE.exists():
         try:
             previous = json.loads(STATE.read_text(encoding="utf-8"))
         except (OSError, ValueError):
             pass
-    last = previous.get("last")
-    keys = [sort_key(item) for item in wanted]
-    start = bisect_right(keys, sort_key(tuple(last))) if isinstance(last, list) and len(last) == 2 else 0
-    if start >= len(wanted):
-        start = 0
-    tasks = (wanted[start:] + wanted[:start])[:batch]
-    print(f"DuoPlay subtitles missing={len(wanted)} batch={len(tasks)} workers={workers}", flush=True)
+    revision = stream_revision()
+    changed = changed_streams(previous.get("stream_head"), revision)
+    tasks, next_last, urgent = select_tasks(wanted, previous, changed, batch)
+    print(f"DuoPlay subtitles missing={len(wanted)} new_streams={len(changed)} "
+          f"urgent={len(urgent)} batch={len(tasks)} workers={workers}", flush=True)
     resolved = empty = errors = 0
+    failed = set()
     with concurrent.futures.ThreadPoolExecutor(max_workers=workers) as executor:
         for typ, identifier, vtt, error in executor.map(resolve, tasks):
             if error:
                 errors += 1
+                failed.add((typ, identifier))
                 print(f"{identifier}: {error}", flush=True)
                 continue
             if not vtt:
@@ -179,7 +235,10 @@ def main() -> None:
                     stream["subtitles"] = subtitles
             stream_path.write_text(json.dumps(payload, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
             resolved += 1
-    STATE.write_text(json.dumps({"last": list(tasks[-1]) if tasks else None, "missing": len(wanted),
+    remaining_urgent = (urgent - set(tasks)) | (urgent & failed)
+    STATE.write_text(json.dumps({"last": next_last, "stream_head": revision,
+                                 "urgent": [list(item) for item in sorted(remaining_urgent)],
+                                 "missing": len(wanted),
                                  "resolved": resolved, "empty": empty, "errors": errors,
                                  "ts": int(time.time())}, indent=2) + "\n", encoding="utf-8")
     print(f"Batch done resolved={resolved} empty={empty} errors={errors}", flush=True)
