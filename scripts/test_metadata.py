@@ -44,6 +44,15 @@ class MetadataTests(unittest.TestCase):
         self.assertEqual(videos[0]["thumbnail"], "https://img/episode.jpg")
         self.assertEqual(videos[0]["overview"], "Osa kirjeldus")
 
+    def test_duoplay_landing_page_only_uses_parent_video_id(self):
+        meta = {"id": "duoplay:6531", "type": "series", "name": "Kodustiil"}
+        with patch.object(generate_meta, "http_json", return_value={"title": "Kodustiil"}), \
+             patch.object(generate_meta, "duoplay_unique_max", return_value=0), \
+             patch.object(generate_meta, "http_text", return_value='https://router.euddn.net/example/playlist.m3u8'):
+            videos = generate_meta.duoplay_videos("6531", meta)
+        self.assertEqual(videos[0]["id"], "duoplay:6531")
+        self.assertEqual(videos[0]["title"], "Kodustiil")
+
     def test_existing_metadata_survives_missing_source_fields(self):
         with tempfile.TemporaryDirectory() as folder:
             root = Path(folder)

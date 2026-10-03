@@ -39,6 +39,9 @@ jobs:
         with:
           python-version: '3.12'
 
+      - name: Check DuoPlay stream mapping
+        run: python -m unittest discover -s scripts -p 'test_streams.py'
+
       - name: Resolve playable streams and official ERR DRM links
         env:
           STREAM_BATCH_SIZE: ${{ github.event.inputs.batch_size || '4000' }}

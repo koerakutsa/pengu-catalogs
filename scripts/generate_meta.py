@@ -248,10 +248,21 @@ def duoplay_videos(telecast_id: str, meta: dict) -> list[dict]:
         if videos:
             return videos
 
-    # No seasons list — probe unique streams (Angry Birds etc.)
+    # No seasons list — probe unique streams (Angry Birds etc.). Some shows
+    # expose only a playable landing page; ?ep=1 is invalid for those.
     max_ep = duoplay_unique_max(telecast_id, 60)
     if max_ep <= 0:
-        max_ep = 1
+        if not extract_m3u(http_text(f"{DUO_SITE}/{telecast_id}")):
+            return []
+        video = {
+            "id": f"duoplay:{telecast_id}",
+            "title": str((j or {}).get("subtitle") or meta.get("name") or "Osa 1"),
+            "season": 1,
+            "episode": 1,
+        }
+        if fallback_thumbnail:
+            video["thumbnail"] = fallback_thumbnail
+        return [video]
     for ep in range(1, max_ep + 1):
         video = {
                 "id": f"duoplay:{telecast_id}:ep:{ep}",

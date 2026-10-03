@@ -25,6 +25,7 @@ STATE = ROOT / "stream-state.json"
 
 ERR_API = "https://services.err.ee/api/v2/vodContent/getContentPageData"
 DUO_SITE = "https://duoplay.ee"
+DUO_API = "https://tigu.kanal2.ee/duoplay/ee/et"
 UA = "Mozilla/5.0 (compatible; PenguCatalogs/2.0)"
 ID_RE = re.compile(r"^(duoplay|err|err-archive|lasteekraan):(\d+)(?::(?:ep:)?(\d+))?$", re.I)
 M3U_RE = re.compile(r"https?://router\.euddn\.net[^\s\"'<>]+?\.m3u8(?:\?[^\s\"'<>]*)?")
@@ -99,6 +100,16 @@ def duo_stream(content_id: str, episode_id: str | None) -> dict | None:
         path += f"?ep={urllib.parse.quote(episode_id)}"
     page = html.unescape(request(DUO_SITE + path, DUO_SITE + "/")).replace("\\/", "/")
     found = M3U_RE.search(page)
+    if not found and episode_id == "1":
+        # Older metadata may still point to a synthetic first episode. Only
+        # use the landing page when DuoPlay has no real episode list.
+        try:
+            detail = json.loads(request(f"{DUO_API}/catchup/{content_id}", DUO_SITE + "/"))
+            if isinstance(detail, dict) and not detail.get("seasons"):
+                page = html.unescape(request(f"{DUO_SITE}/{content_id}", DUO_SITE + "/")).replace("\\/", "/")
+                found = M3U_RE.search(page)
+        except (OSError, ValueError):
+            pass
     if not found:
         return None
     return {
