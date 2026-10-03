@@ -49,6 +49,9 @@ jobs:
           STREAM_PREFER: ${{ github.event.inputs.prefer || 'duoplay,err' }}
         run: python scripts/generate_streams.py
 
+      - name: Remove rejected DuoPlay CDN headers and obsolete TV variants
+        run: python scripts/normalize_duoplay_streams.py
+
       - name: Commit progress
         run: |
           git config user.name "github-actions[bot]"

@@ -2,6 +2,7 @@ import unittest
 from unittest.mock import patch
 
 import generate_streams
+from normalize_duoplay_streams import normalize
 
 
 class DuoStreamTests(unittest.TestCase):
@@ -20,6 +21,7 @@ class DuoStreamTests(unittest.TestCase):
         with patch.object(generate_streams, 'request', side_effect=fake_request):
             stream = generate_streams.duo_stream('6531', '1')
         self.assertEqual(stream['url'], manifest)
+        self.assertNotIn('Origin', stream['behaviorHints']['proxyHeaders']['request'])
 
     def test_real_episode_list_does_not_fall_back_to_wrong_episode(self):
         def fake_request(url, referer, timeout=20):
@@ -31,6 +33,21 @@ class DuoStreamTests(unittest.TestCase):
 
         with patch.object(generate_streams, 'request', side_effect=fake_request):
             self.assertIsNone(generate_streams.duo_stream('6531', '1'))
+
+    def test_normalizer_preserves_subtitles_and_removes_broken_variant(self):
+        payload = {'streams': [
+            {'url': 'https://router.euddn.net/playlist.m3u8',
+             'subtitles': [{'id': 'duoplay-et', 'url': 'https://example.org/sub.vtt'}],
+             'behaviorHints': {'proxyHeaders': {'request': {
+                 'Origin': 'https://duoplay.ee', 'Referer': 'https://duoplay.ee/'}}}},
+            {'url': 'https://raw.githubusercontent.com/koerakutsa/pengu-catalogs/main/playlists/movie/duoplay%3A11812.m3u8'},
+        ]}
+        result, changed = normalize(payload)
+        self.assertTrue(changed)
+        self.assertEqual(len(result['streams']), 1)
+        self.assertEqual(result['streams'][0]['subtitles'][0]['id'], 'duoplay-et')
+        self.assertEqual(result['streams'][0]['behaviorHints']['proxyHeaders']['request'],
+                         {'Referer': 'https://duoplay.ee/'})
 
 
 if __name__ == '__main__':

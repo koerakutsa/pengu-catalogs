@@ -121,7 +121,6 @@ def duo_stream(content_id: str, episode_id: str | None) -> dict | None:
             "proxyHeaders": {
                 "request": {
                     "Referer": DUO_SITE + "/",
-                    "Origin": DUO_SITE,
                     "User-Agent": UA,
                 }
             },
