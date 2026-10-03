@@ -2,15 +2,15 @@
   "complete": false,
   "existing": 37571,
   "missing": 406,
-  "batch_resolved": 77,
-  "batch_external": 4,
-  "batch_empty": 399,
-  "batch_errors": 7,
+  "batch_resolved": 0,
+  "batch_external": 0,
+  "batch_empty": 50,
+  "batch_errors": 356,
   "last_key": [
     1,
     "err-archive:1061699",
     "series"
   ],
   "prefer": "duoplay,err",
-  "ts": 1791023242
+  "ts": 1791055052
 }
