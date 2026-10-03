@@ -1,9 +1,9 @@
 {
-  "complete": false,
-  "wanted": 6219,
-  "pending": 1472,
-  "batch_written": 1997,
-  "batch_removed": 3,
-  "last_key": "catalog/series/eesti-otsing/search=Maal.json",
-  "ts": 1790937881
+  "complete": true,
+  "wanted": 6209,
+  "pending": 0,
+  "batch_written": 1532,
+  "batch_removed": 25,
+  "last_key": "catalog/series/eesti-otsing/search=šoti.json",
+  "ts": 1791021845
 }
