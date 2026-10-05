@@ -253,11 +253,14 @@ def main() -> None:
         tasks = [forced]
     else:
         urgent = recent_ids(state.get("stream_head")) & set(pending)
+        retry = [item for item in state.get("retry_ids", []) if item in pending]
         last = int(state.get("last_id") or 0)
         regular = [item for item in pending if int(item) > last] + [item for item in pending if int(item) <= last]
-        tasks = list(dict.fromkeys(sorted(urgent, key=int, reverse=True) + regular))[:batch]
+        tasks = list(dict.fromkeys(retry[:max(1, batch // 5)] +
+                                   sorted(urgent, key=int, reverse=True) + regular))[:batch]
     print(f"ERR subtitle candidates={len(pending)} selected={len(tasks)}", flush=True)
     resolved = empty = errors = 0
+    failed = []
     for content_id in tasks:
         try:
             if normalize(content_id, groups[content_id]):
@@ -266,14 +269,18 @@ def main() -> None:
                 empty += 1
         except (OSError, ValueError, KeyError, TypeError) as exc:
             errors += 1
+            failed.append(content_id)
             print(f"{content_id}: {exc}", flush=True)
     if not forced:
         state["last_id"] = tasks[-1] if tasks else state.get("last_id")
         state["stream_head"] = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=ROOT, text=True).strip()
+        state["retry_ids"] = list(dict.fromkeys([item for item in retry if item not in tasks] + failed))[:1000]
         STATE.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
     print(f"ERR subtitle results resolved={resolved} skipped={empty} errors={errors}", flush=True)
     if forced and not resolved:
         raise RuntimeError("Requested ERR subtitle track was not published")
+    if tasks and errors == len(tasks):
+        raise RuntimeError("Every ERR subtitle lookup failed; keeping previous progress")
 
 
 if __name__ == "__main__":
