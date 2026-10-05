@@ -30,6 +30,12 @@ jobs:
         with:
           fetch-depth: 0
           ref: main
+          # The search index has case-only filenames that collide on macOS.
+          sparse-checkout: |
+            scripts
+            stream
+            subtitles/err
+            err-subtitle-state.json
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
@@ -53,6 +59,9 @@ jobs:
           fi
           git commit -m "chore: publish aligned ERR subtitles"
           for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
             git fetch origin main
             git rebase origin/main
             if git push origin HEAD:main; then
