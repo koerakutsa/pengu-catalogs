@@ -232,6 +232,9 @@ def main() -> None:
     if forced:
         if forced not in groups:
             raise ValueError("Requested ERR content ID has no stream file")
+        if forced not in pending:
+            print(f"ERR content {forced} already normalized", flush=True)
+            return
         tasks = [forced]
     else:
         urgent = recent_ids(state.get("stream_head")) & set(pending)
