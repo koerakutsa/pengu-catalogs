@@ -11,6 +11,7 @@ import json
 import os
 import re
 import subprocess
+import urllib.error
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -31,8 +32,11 @@ def fetch_text(url: str) -> str:
     if not (host == "err.ee" or host.endswith(".err.ee")):
         raise ValueError("Unexpected ERR media host")
     req = urllib.request.Request(url, headers={"User-Agent": UA, "Referer": "https://jupiter.err.ee/"})
-    with urllib.request.urlopen(req, timeout=25) as response:
-        return response.read().decode("utf-8-sig")
+    try:
+        with urllib.request.urlopen(req, timeout=25) as response:
+            return response.read().decode("utf-8-sig")
+    except urllib.error.HTTPError as exc:
+        raise ValueError(f"ERR {host}{urllib.parse.urlsplit(url).path} HTTP {exc.code}") from exc
 
 
 def absolute(url: str) -> str:
