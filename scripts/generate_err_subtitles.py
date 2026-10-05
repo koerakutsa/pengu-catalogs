@@ -126,6 +126,21 @@ def subtitle_offset(master_url: str, language: str, original_vtt: str) -> int:
     raise ValueError("Could not align HLS subtitles with original WebVTT")
 
 
+def profile_offset(master_url: str) -> int:
+    """ERR's measured HLS packaging profiles use fixed subtitle lead-ins.
+
+GitHub runners cannot fetch vod.err.ee HLS (403). We measured eight PGEST
+titles at +8 seconds and ten plain-master titles at zero seconds locally.
+Unknown profiles stay untouched so a wrong offset is never published.
+"""
+    path = urllib.parse.urlsplit(master_url).path
+    if path.endswith("/PGEST/master.m3u8"):
+        return 8000
+    if path.endswith("/v/master.m3u8"):
+        return 0
+    raise ValueError("Unverified ERR HLS timing profile")
+
+
 def stream_paths() -> dict[str, list[Path]]:
     result: dict[str, list[Path]] = {}
     for typ in ("movie", "series"):
@@ -179,11 +194,11 @@ def normalize(content_id: str, paths: list[Path]) -> bool:
     no_sub = absolute(src.get("hlsNoSub") or "")
     tracks = [track for track in media.get("subtitles") or []
               if track.get("src") and str(track.get("srclang") or "").upper()]
-    if not no_sub or not tracks or "TYPE=SUBTITLES" in fetch_text(no_sub):
+    if not no_sub or "/nosub/" not in urllib.parse.urlsplit(no_sub).path or not tracks:
         return False
     primary = next((track for track in tracks if str(track["srclang"]).upper() == "ET"), tracks[0])
     original = fetch_text(primary["src"])
-    offset = subtitle_offset(current_url, str(primary["srclang"]), original)
+    offset = profile_offset(current_url)
     files = []
     subtitles = []
     for track in tracks:

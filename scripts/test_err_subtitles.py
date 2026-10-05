@@ -38,6 +38,12 @@ Atlandi ookean
         with patch.object(err, 'fetch_text', side_effect=fake_fetch):
             self.assertEqual(err.subtitle_offset('https://vod.err.ee/master.m3u8', 'ET', original), 8000)
 
+    def test_only_measured_err_profiles_are_published(self):
+        self.assertEqual(err.profile_offset('https://vod.err.ee/hls/x/2/v/PGEST/master.m3u8'), 8000)
+        self.assertEqual(err.profile_offset('https://vod.err.ee/hls/x/2/v/master.m3u8'), 0)
+        with self.assertRaises(ValueError):
+            err.profile_offset('https://vod.err.ee/hls/x/2/v/OTHER/master.m3u8')
+
 
 if __name__ == '__main__':
     unittest.main()

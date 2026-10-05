@@ -22,7 +22,8 @@ permissions:
 
 jobs:
   subtitles:
-    runs-on: ubuntu-latest
+    # Ubuntu runners receive 403 from ERR; macOS can read its API and VTT files.
+    runs-on: macos-latest
     timeout-minutes: 110
     steps:
       - uses: actions/checkout@v4
