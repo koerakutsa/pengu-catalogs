@@ -5,11 +5,12 @@ on:
 
 jobs:
   probe:
-    strategy:
-      matrix:
-        os: [windows-latest, macos-latest]
-    runs-on: ${{ matrix.os }}
+    runs-on: macos-latest
     steps:
+      - uses: actions/checkout@v4
+      - name: Check colon-named stream file
+        shell: bash
+        run: test -f 'stream/movie/err:1610141924.json'
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
