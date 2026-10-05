@@ -5,9 +5,16 @@ on:
 
 jobs:
   probe:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [windows-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
     steps:
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
       - name: Check ERR response codes from GitHub runner
+        shell: bash
         run: |
           python - <<'PY'
           import urllib.request, urllib.error
