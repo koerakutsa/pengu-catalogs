@@ -1,0 +1,62 @@
+name: Normalize ERR subtitles for Android TV
+
+on:
+  workflow_dispatch:
+    inputs:
+      content_id:
+        description: 'One ERR content ID to repair immediately (optional)'
+        required: false
+      batch_size:
+        description: 'Maximum distinct ERR titles to inspect'
+        required: false
+        default: '50'
+  schedule:
+    - cron: '20 7 * * *'
+
+concurrency:
+  group: pengu-repository-updates
+  cancel-in-progress: false
+
+permissions:
+  contents: write
+
+jobs:
+  subtitles:
+    runs-on: ubuntu-latest
+    timeout-minutes: 110
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Check ERR subtitle conversion
+        run: python -m unittest discover -s scripts -p 'test_err_subtitles.py'
+      - name: Publish one aligned WebVTT track per ERR language
+        env:
+          ERR_SUBTITLE_CONTENT_ID: ${{ github.event.inputs.content_id || '' }}
+          ERR_SUBTITLE_BATCH_SIZE: ${{ github.event.inputs.batch_size || '50' }}
+        run: python scripts/generate_err_subtitles.py
+      - name: Commit progress
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A -- stream
+          if [ -d subtitles/err ]; then git add -A -- subtitles/err; fi
+          if [ -f err-subtitle-state.json ]; then git add -- err-subtitle-state.json; fi
+          if git diff --staged --quiet; then
+            echo "No ERR subtitle changes"
+            exit 0
+          fi
+          git commit -m "chore: publish aligned ERR subtitles"
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git rebase origin/main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep 2
+          done
+          exit 1
