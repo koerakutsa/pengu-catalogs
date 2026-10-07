@@ -1,18 +1,21 @@
 name: Generate DuoPlay subtitles
 
 on:
+  workflow_call:
+    inputs:
+      batch_size:
+        type: string
+        default: '300'
   workflow_dispatch:
     inputs:
       batch_size:
         description: 'DuoPlay streams to inspect this run'
         required: false
         default: '300'
-  schedule:
-    - cron: '45 6 * * *'
-
 concurrency:
   group: pengu-repository-updates
   cancel-in-progress: false
+  queue: max
 
 permissions:
   contents: write
@@ -31,7 +34,7 @@ jobs:
           python-version: '3.12'
       - name: Build plain WebVTT tracks from DuoPlay HLS subtitles
         env:
-          SUBTITLE_BATCH_SIZE: ${{ github.event.inputs.batch_size || '300' }}
+          SUBTITLE_BATCH_SIZE: ${{ inputs.batch_size }}
         run: python scripts/generate_duoplay_subtitles.py
       - name: Commit progress
         run: |

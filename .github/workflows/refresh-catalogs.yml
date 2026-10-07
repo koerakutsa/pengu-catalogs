@@ -1,8 +1,11 @@
 name: Refresh Estonian catalogs and streams
 
 on:
-  schedule:
-    - cron: '25 3 * * *'
+  workflow_call:
+    inputs:
+      metadata_limit:
+        type: number
+        default: 350
   workflow_dispatch:
     inputs:
       metadata_limit:
@@ -10,24 +13,16 @@ on:
         required: false
         default: 350
         type: number
-  push:
-    paths:
-      - '.github/workflows/refresh-catalogs.yml'
-      - 'scripts/refresh_catalogs.py'
-      - 'scripts/generate_meta.py'
-      - 'scripts/metadata_fields.py'
-      - 'scripts/enrich_catalog_metadata.py'
-
 concurrency:
   group: pengu-repository-updates
   cancel-in-progress: false
+  queue: max
 
 permissions:
   contents: write
 
 jobs:
   refresh:
-    if: github.event_name != 'push' || github.actor != 'github-actions[bot]'
     runs-on: ubuntu-latest
     timeout-minutes: 180
     steps:
@@ -46,7 +41,7 @@ jobs:
         run: python scripts/generate_meta.py
       - name: Fill missing artwork and descriptions
         env:
-          METADATA_LIMIT: ${{ inputs.metadata_limit || '350' }}
+          METADATA_LIMIT: ${{ inputs.metadata_limit }}
         run: python scripts/enrich_catalog_metadata.py --limit "$METADATA_LIMIT"
       - name: Commit catalog + meta
         run: |

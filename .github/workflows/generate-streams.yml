@@ -1,6 +1,17 @@
 name: Generate static streams and ERR DRM links
 
 on:
+  workflow_call:
+    inputs:
+      batch_size:
+        type: string
+        default: '4000'
+      workers:
+        type: string
+        default: '6'
+      prefer:
+        type: string
+        default: 'duoplay,err'
   workflow_dispatch:
     inputs:
       batch_size:
@@ -15,12 +26,10 @@ on:
         description: 'Priority order (duoplay,err)'
         required: false
         default: 'duoplay,err'
-  schedule:
-    - cron: '15 5 * * *'
-
 concurrency:
   group: pengu-repository-updates
   cancel-in-progress: false
+  queue: max
 
 permissions:
   contents: write
@@ -44,9 +53,9 @@ jobs:
 
       - name: Resolve playable streams and official ERR DRM links
         env:
-          STREAM_BATCH_SIZE: ${{ github.event.inputs.batch_size || '4000' }}
-          STREAM_WORKERS: ${{ github.event.inputs.workers || '6' }}
-          STREAM_PREFER: ${{ github.event.inputs.prefer || 'duoplay,err' }}
+          STREAM_BATCH_SIZE: ${{ inputs.batch_size }}
+          STREAM_WORKERS: ${{ inputs.workers }}
+          STREAM_PREFER: ${{ inputs.prefer }}
         run: python scripts/generate_streams.py
 
       - name: Remove rejected DuoPlay CDN headers and obsolete TV variants

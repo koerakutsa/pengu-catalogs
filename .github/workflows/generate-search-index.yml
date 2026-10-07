@@ -1,23 +1,21 @@
 name: Generate four-letter Nuvio search index
 
 on:
+  workflow_call:
+    inputs:
+      batch_size:
+        type: string
+        default: '2000'
   workflow_dispatch:
     inputs:
       batch_size:
         description: 'Maximum number of search files to update in this run'
         required: false
         default: '2000'
-  schedule:
-    - cron: '45 4 * * *'
-  push:
-    paths:
-      - '.github/workflows/generate-search-index.yml'
-      - 'scripts/generate_search_index.py'
-      - 'manifest.json'
-
 concurrency:
   group: pengu-repository-updates
   cancel-in-progress: false
+  queue: max
 
 permissions:
   contents: write
@@ -36,7 +34,7 @@ jobs:
           python-version: '3.12'
       - name: Update one batch of search files
         env:
-          SEARCH_BATCH_SIZE: ${{ github.event.inputs.batch_size || '2000' }}
+          SEARCH_BATCH_SIZE: ${{ inputs.batch_size }}
         run: python scripts/generate_search_index.py
       - name: Publish search progress
         run: |

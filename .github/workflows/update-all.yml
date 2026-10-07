@@ -1,0 +1,45 @@
+name: Update all Estonian catalogs and streams
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+      timezone: Europe/Tallinn
+    - cron: '0 11 * * *'
+      timezone: Europe/Tallinn
+    - cron: '0 15 * * *'
+      timezone: Europe/Tallinn
+  workflow_dispatch:
+
+# Keep whole cycles in order even if one exceeds the next scheduled start.
+concurrency:
+  group: pengu-full-cycle
+  cancel-in-progress: false
+  queue: max
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    name: 1. Refresh catalogs and metadata
+    uses: ./.github/workflows/refresh-catalogs.yml
+
+  search_index:
+    name: 2. Update search index
+    needs: refresh
+    uses: ./.github/workflows/generate-search-index.yml
+
+  streams:
+    name: 3. Generate streams
+    needs: search_index
+    uses: ./.github/workflows/generate-streams.yml
+
+  duoplay_subtitles:
+    name: 4. Generate DuoPlay subtitles
+    needs: streams
+    uses: ./.github/workflows/generate-duoplay-subtitles.yml
+
+  err_subtitles:
+    name: 5. Normalize ERR subtitles
+    needs: duoplay_subtitles
+    uses: ./.github/workflows/generate-err-subtitles.yml
