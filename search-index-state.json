@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6218,
+  "wanted": 6209,
   "pending": 0,
-  "batch_written": 0,
-  "batch_removed": 0,
-  "last_key": null,
-  "ts": 1791372110
+  "batch_written": 75,
+  "batch_removed": 21,
+  "last_key": "catalog/series/eesti-otsing/search=õhtu.json",
+  "ts": 1791384701
 }
