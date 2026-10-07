@@ -24,22 +24,28 @@ jobs:
     name: 1. Refresh catalogs and metadata
     uses: ./.github/workflows/refresh-catalogs.yml
 
+  # Later stages use the latest committed data even if an earlier stage fails.
+  # The overall run still reports the failed stage.
   search_index:
     name: 2. Update search index
     needs: refresh
+    if: ${{ !cancelled() }}
     uses: ./.github/workflows/generate-search-index.yml
 
   streams:
     name: 3. Generate streams
     needs: search_index
+    if: ${{ !cancelled() }}
     uses: ./.github/workflows/generate-streams.yml
 
   duoplay_subtitles:
     name: 4. Generate DuoPlay subtitles
     needs: streams
+    if: ${{ !cancelled() }}
     uses: ./.github/workflows/generate-duoplay-subtitles.yml
 
   err_subtitles:
     name: 5. Normalize ERR subtitles
     needs: duoplay_subtitles
+    if: ${{ !cancelled() }}
     uses: ./.github/workflows/generate-err-subtitles.yml
