@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6173,
+  "wanted": 6176,
   "pending": 0,
-  "batch_written": 36,
-  "batch_removed": 24,
-  "last_key": "catalog/series/eesti-otsing/search=heao.json",
-  "ts": 1791472818
+  "batch_written": 9,
+  "batch_removed": 0,
+  "last_key": "catalog/series/eesti-otsing/search=õpet.json",
+  "ts": 1791484920
 }
