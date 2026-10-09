@@ -4,13 +4,13 @@
   "missing": 353,
   "batch_resolved": 0,
   "batch_external": 0,
-  "batch_empty": 346,
-  "batch_errors": 7,
+  "batch_empty": 0,
+  "batch_errors": 353,
   "last_key": [
     1,
     "err-archive:1229758",
     "movie"
   ],
   "prefer": "duoplay,err",
-  "ts": 1791539936
+  "ts": 1791558110
 }
