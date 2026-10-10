@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6185,
+  "wanted": 6188,
   "pending": 0,
   "batch_written": 12,
-  "batch_removed": 0,
-  "last_key": "catalog/series/eesti-otsing/search=tart.json",
-  "ts": 1791642062
+  "batch_removed": 3,
+  "last_key": "catalog/series/eesti-otsing/search=esma.json",
+  "ts": 1791652318
 }
