@@ -2,8 +2,8 @@
   "complete": true,
   "wanted": 6196,
   "pending": 0,
-  "batch_written": 6,
-  "batch_removed": 3,
-  "last_key": "catalog/series/eesti-otsing/search=somm.json",
-  "ts": 1791729950
+  "batch_written": 0,
+  "batch_removed": 0,
+  "last_key": null,
+  "ts": 1791739913
 }
