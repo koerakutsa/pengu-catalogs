@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6196,
+  "wanted": 6193,
   "pending": 0,
-  "batch_written": 0,
-  "batch_removed": 0,
-  "last_key": null,
-  "ts": 1791799795
+  "batch_written": 111,
+  "batch_removed": 30,
+  "last_key": "catalog/series/eesti-otsing/search=õnne.json",
+  "ts": 1791826253
 }
