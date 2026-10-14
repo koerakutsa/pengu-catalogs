@@ -2,8 +2,8 @@
   "complete": true,
   "wanted": 6213,
   "pending": 0,
-  "batch_written": 6,
-  "batch_removed": 3,
-  "last_key": "catalog/series/eesti-otsing/search=surn.json",
-  "ts": 1791984250
+  "batch_written": 3,
+  "batch_removed": 0,
+  "last_key": "catalog/series/eesti-otsing/search=suve.json",
+  "ts": 1791996747
 }
