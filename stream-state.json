@@ -2,15 +2,15 @@
   "complete": false,
   "existing": 37456,
   "missing": 351,
-  "batch_resolved": 47,
-  "batch_external": 2,
-  "batch_empty": 149,
-  "batch_errors": 202,
+  "batch_resolved": 0,
+  "batch_external": 0,
+  "batch_empty": 346,
+  "batch_errors": 5,
   "last_key": [
     1,
     "err-archive:1229758",
     "movie"
   ],
   "prefer": "duoplay,err",
-  "ts": 1792082363
+  "ts": 1792137185
 }
