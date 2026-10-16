@@ -2,8 +2,8 @@
   "complete": true,
   "wanted": 6200,
   "pending": 0,
-  "batch_written": 108,
-  "batch_removed": 24,
-  "last_key": "catalog/series/eesti-otsing/search=õhtu.json",
-  "ts": 1792156033
+  "batch_written": 3,
+  "batch_removed": 0,
+  "last_key": "catalog/movie/eesti-otsing/search=tony.json",
+  "ts": 1792167891
 }
