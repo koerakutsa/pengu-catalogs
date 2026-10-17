@@ -3,7 +3,7 @@
   "wanted": 6203,
   "pending": 0,
   "batch_written": 3,
-  "batch_removed": 3,
-  "last_key": "catalog/series/eesti-otsing/search=peia.json",
-  "ts": 1792238628
+  "batch_removed": 0,
+  "last_key": "catalog/movie/eesti-otsing/search=vuss.json",
+  "ts": 1792250318
 }
