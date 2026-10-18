@@ -3,7 +3,7 @@
     "series",
     "duoplay:11663:ep:15"
   ],
-  "stream_head": "9ff503ce1b3cd6e29e7289fcf5db18df231c9855",
+  "stream_head": "a8100f964fc387f6a674c3992578e2af8e043fa4",
   "priority_version": 2,
   "urgent": [
     [
@@ -1100,50 +1100,6 @@
     ],
     [
       "series",
-      "duoplay:8602:ep:41"
-    ],
-    [
-      "series",
-      "duoplay:8602:ep:42"
-    ],
-    [
-      "series",
-      "duoplay:8602:ep:43"
-    ],
-    [
-      "series",
-      "duoplay:8602:ep:44"
-    ],
-    [
-      "series",
-      "duoplay:8602:ep:45"
-    ],
-    [
-      "series",
-      "duoplay:8602:ep:5"
-    ],
-    [
-      "series",
-      "duoplay:8602:ep:6"
-    ],
-    [
-      "series",
-      "duoplay:8602:ep:7"
-    ],
-    [
-      "series",
-      "duoplay:8602:ep:8"
-    ],
-    [
-      "series",
-      "duoplay:8602:ep:9"
-    ],
-    [
-      "series",
-      "duoplay:8655"
-    ],
-    [
-      "series",
       "duoplay:8655:ep:439"
     ],
     [
@@ -1189,14 +1145,6 @@
     [
       "series",
       "duoplay:8655:ep:450"
-    ],
-    [
-      "series",
-      "duoplay:8655:ep:451"
-    ],
-    [
-      "series",
-      "duoplay:8655:ep:452"
     ],
     [
       "series",
@@ -1777,6 +1725,10 @@
     [
       "series",
       "duoplay:9042:ep:18"
+    ],
+    [
+      "series",
+      "duoplay:9042:ep:19"
     ],
     [
       "series",
@@ -2892,6 +2844,10 @@
     ],
     [
       "series",
+      "duoplay:9458:ep:39"
+    ],
+    [
+      "series",
       "duoplay:9458:ep:4"
     ],
     [
@@ -3505,6 +3461,14 @@
     [
       "series",
       "duoplay:9641:ep:97"
+    ],
+    [
+      "series",
+      "duoplay:9641:ep:98"
+    ],
+    [
+      "series",
+      "duoplay:9641:ep:99"
     ],
     [
       "series",
@@ -4483,9 +4447,9 @@
       "duoplay:9983:ep:6"
     ]
   ],
-  "missing": 4647,
-  "resolved": 3,
-  "empty": 24,
-  "errors": 273,
-  "ts": 1792309948
+  "missing": 4650,
+  "resolved": 0,
+  "empty": 15,
+  "errors": 285,
+  "ts": 1792326835
 }
