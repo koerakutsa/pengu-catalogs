@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6203,
+  "wanted": 6227,
   "pending": 0,
-  "batch_written": 3,
-  "batch_removed": 0,
-  "last_key": "catalog/movie/eesti-otsing/search=vuss.json",
-  "ts": 1792250318
+  "batch_written": 69,
+  "batch_removed": 6,
+  "last_key": "catalog/series/eesti-otsing/search=öökü.json",
+  "ts": 1792309715
 }
