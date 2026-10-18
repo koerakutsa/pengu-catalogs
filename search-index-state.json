@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6227,
+  "wanted": 6228,
   "pending": 0,
-  "batch_written": 69,
-  "batch_removed": 6,
-  "last_key": "catalog/series/eesti-otsing/search=öökü.json",
-  "ts": 1792309715
+  "batch_written": 16,
+  "batch_removed": 3,
+  "last_key": "catalog/series/eesti-otsing/search=xxvi.json",
+  "ts": 1792326671
 }
