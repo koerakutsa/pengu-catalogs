@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6237,
+  "wanted": 6240,
   "pending": 0,
-  "batch_written": 15,
-  "batch_removed": 0,
-  "last_key": "catalog/movie/eesti-otsing/search=vaba.json",
-  "ts": 1792337958
+  "batch_written": 87,
+  "batch_removed": 18,
+  "last_key": "catalog/series/eesti-otsing/search=õhtu.json",
+  "ts": 1792398566
 }
