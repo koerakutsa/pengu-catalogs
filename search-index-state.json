@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6292,
+  "wanted": 6304,
   "pending": 0,
-  "batch_written": 36,
-  "batch_removed": 15,
-  "last_key": "catalog/series/eesti-otsing/search=vall.json",
-  "ts": 1792484006
+  "batch_written": 33,
+  "batch_removed": 0,
+  "last_key": "catalog/movie/eesti-otsing/search=ööül.json",
+  "ts": 1792502805
 }
