@@ -3,7 +3,7 @@
     "series",
     "duoplay:11663:ep:15"
   ],
-  "stream_head": "3028043bc5d35322865a9f58975e1b9ea312dce3",
+  "stream_head": "28c8ddc934497de0d53cf815bc5e7928fb3a0b8a",
   "priority_version": 2,
   "urgent": [
     [
@@ -84,27 +84,11 @@
     ],
     [
       "series",
-      "duoplay:10842:ep:65"
-    ],
-    [
-      "series",
       "duoplay:10842:ep:66"
     ],
     [
       "series",
       "duoplay:10842:ep:67"
-    ],
-    [
-      "series",
-      "duoplay:10842:ep:68"
-    ],
-    [
-      "series",
-      "duoplay:10842:ep:69"
-    ],
-    [
-      "series",
-      "duoplay:10842:ep:70"
     ],
     [
       "series",
@@ -1064,14 +1048,6 @@
     ],
     [
       "series",
-      "duoplay:8598:ep:20"
-    ],
-    [
-      "series",
-      "duoplay:8602:ep:19"
-    ],
-    [
-      "series",
       "duoplay:8602:ep:20"
     ],
     [
@@ -1121,62 +1097,6 @@
     [
       "series",
       "duoplay:8655:ep:450"
-    ],
-    [
-      "series",
-      "duoplay:8655:ep:468"
-    ],
-    [
-      "series",
-      "duoplay:8835:ep:24"
-    ],
-    [
-      "series",
-      "duoplay:8835:ep:25"
-    ],
-    [
-      "series",
-      "duoplay:8835:ep:26"
-    ],
-    [
-      "series",
-      "duoplay:8835:ep:27"
-    ],
-    [
-      "series",
-      "duoplay:8835:ep:28"
-    ],
-    [
-      "series",
-      "duoplay:8835:ep:3"
-    ],
-    [
-      "series",
-      "duoplay:8835:ep:4"
-    ],
-    [
-      "series",
-      "duoplay:8835:ep:5"
-    ],
-    [
-      "series",
-      "duoplay:8835:ep:6"
-    ],
-    [
-      "series",
-      "duoplay:8835:ep:7"
-    ],
-    [
-      "series",
-      "duoplay:8835:ep:8"
-    ],
-    [
-      "series",
-      "duoplay:8835:ep:9"
-    ],
-    [
-      "series",
-      "duoplay:8904"
     ],
     [
       "series",
@@ -1541,6 +1461,10 @@
     [
       "series",
       "duoplay:9042:ep:21"
+    ],
+    [
+      "series",
+      "duoplay:9042:ep:22"
     ],
     [
       "series",
@@ -2697,6 +2621,10 @@
     [
       "series",
       "duoplay:9458:ep:41"
+    ],
+    [
+      "series",
+      "duoplay:9458:ep:42"
     ],
     [
       "series",
@@ -4244,6 +4172,14 @@
     ],
     [
       "series",
+      "duoplay:9890:ep:1"
+    ],
+    [
+      "series",
+      "duoplay:9890:ep:2"
+    ],
+    [
+      "series",
       "duoplay:9911"
     ],
     [
@@ -4351,9 +4287,9 @@
       "duoplay:9983:ep:6"
     ]
   ],
-  "missing": 4788,
-  "resolved": 14,
-  "empty": 27,
-  "errors": 259,
-  "ts": 1792571019
+  "missing": 4785,
+  "resolved": 1,
+  "empty": 26,
+  "errors": 273,
+  "ts": 1792589814
 }
