@@ -3,7 +3,7 @@
     "series",
     "duoplay:11663:ep:15"
   ],
-  "stream_head": "75fe11b6740b6845bd8235c38093a82be4bf71cc",
+  "stream_head": "3028043bc5d35322865a9f58975e1b9ea312dce3",
   "priority_version": 2,
   "urgent": [
     [
@@ -201,10 +201,6 @@
     [
       "series",
       "duoplay:11713:ep:5"
-    ],
-    [
-      "series",
-      "duoplay:11713:ep:50"
     ],
     [
       "series",
@@ -1040,10 +1036,6 @@
     ],
     [
       "series",
-      "duoplay:8545:ep:9"
-    ],
-    [
-      "series",
       "duoplay:8553:ep:10"
     ],
     [
@@ -1069,6 +1061,10 @@
     [
       "series",
       "duoplay:8553:ep:9"
+    ],
+    [
+      "series",
+      "duoplay:8598:ep:20"
     ],
     [
       "series",
@@ -1128,6 +1124,10 @@
     ],
     [
       "series",
+      "duoplay:8655:ep:468"
+    ],
+    [
+      "series",
       "duoplay:8835:ep:24"
     ],
     [
@@ -1141,6 +1141,10 @@
     [
       "series",
       "duoplay:8835:ep:27"
+    ],
+    [
+      "series",
+      "duoplay:8835:ep:28"
     ],
     [
       "series",
@@ -2128,6 +2132,10 @@
     ],
     [
       "series",
+      "duoplay:9322:ep:70"
+    ],
+    [
+      "series",
       "duoplay:9327"
     ],
     [
@@ -2269,6 +2277,10 @@
     [
       "series",
       "duoplay:9383:ep:30"
+    ],
+    [
+      "series",
+      "duoplay:9383:ep:31"
     ],
     [
       "series",
@@ -3428,6 +3440,10 @@
     ],
     [
       "series",
+      "duoplay:9644:ep:527"
+    ],
+    [
+      "series",
       "duoplay:9652"
     ],
     [
@@ -3769,6 +3785,10 @@
     [
       "series",
       "duoplay:9685:ep:288"
+    ],
+    [
+      "series",
+      "duoplay:9685:ep:289"
     ],
     [
       "series",
@@ -4220,6 +4240,10 @@
     ],
     [
       "series",
+      "duoplay:9890"
+    ],
+    [
+      "series",
       "duoplay:9911"
     ],
     [
@@ -4327,9 +4351,9 @@
       "duoplay:9983:ep:6"
     ]
   ],
-  "missing": 4741,
-  "resolved": 0,
-  "empty": 20,
-  "errors": 280,
-  "ts": 1792514284
+  "missing": 4788,
+  "resolved": 14,
+  "empty": 27,
+  "errors": 259,
+  "ts": 1792571019
 }
