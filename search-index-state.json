@@ -2,8 +2,8 @@
   "complete": true,
   "wanted": 6299,
   "pending": 0,
-  "batch_written": 51,
-  "batch_removed": 6,
-  "last_key": "catalog/series/eesti-otsing/search=sõsa.json",
-  "ts": 1792676069
+  "batch_written": 12,
+  "batch_removed": 0,
+  "last_key": "catalog/series/eesti-otsing/search=süda.json",
+  "ts": 1792688154
 }
