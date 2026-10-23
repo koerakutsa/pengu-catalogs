@@ -3,7 +3,7 @@
     "series",
     "duoplay:11663:ep:15"
   ],
-  "stream_head": "a97009b90903afa0aa5be2059889b96b53f457d7",
+  "stream_head": "ae559ca0affd706bbacc5a920479ab93fd223221",
   "priority_version": 2,
   "urgent": [
     [
@@ -1008,70 +1008,6 @@
     ],
     [
       "series",
-      "duoplay:9245:ep:59"
-    ],
-    [
-      "series",
-      "duoplay:9245:ep:60"
-    ],
-    [
-      "series",
-      "duoplay:9245:ep:61"
-    ],
-    [
-      "series",
-      "duoplay:9245:ep:62"
-    ],
-    [
-      "series",
-      "duoplay:9245:ep:63"
-    ],
-    [
-      "series",
-      "duoplay:9245:ep:64"
-    ],
-    [
-      "series",
-      "duoplay:9245:ep:65"
-    ],
-    [
-      "series",
-      "duoplay:9245:ep:66"
-    ],
-    [
-      "series",
-      "duoplay:9245:ep:67"
-    ],
-    [
-      "series",
-      "duoplay:9245:ep:68"
-    ],
-    [
-      "series",
-      "duoplay:9245:ep:69"
-    ],
-    [
-      "series",
-      "duoplay:9245:ep:70"
-    ],
-    [
-      "series",
-      "duoplay:9293"
-    ],
-    [
-      "series",
-      "duoplay:9293:ep:12"
-    ],
-    [
-      "series",
-      "duoplay:9293:ep:13"
-    ],
-    [
-      "series",
-      "duoplay:9322"
-    ],
-    [
-      "series",
       "duoplay:9322:ep:140"
     ],
     [
@@ -1157,54 +1093,6 @@
     [
       "series",
       "duoplay:9322:ep:161"
-    ],
-    [
-      "series",
-      "duoplay:9322:ep:59"
-    ],
-    [
-      "series",
-      "duoplay:9322:ep:60"
-    ],
-    [
-      "series",
-      "duoplay:9322:ep:61"
-    ],
-    [
-      "series",
-      "duoplay:9322:ep:62"
-    ],
-    [
-      "series",
-      "duoplay:9322:ep:63"
-    ],
-    [
-      "series",
-      "duoplay:9322:ep:64"
-    ],
-    [
-      "series",
-      "duoplay:9322:ep:65"
-    ],
-    [
-      "series",
-      "duoplay:9322:ep:66"
-    ],
-    [
-      "series",
-      "duoplay:9322:ep:67"
-    ],
-    [
-      "series",
-      "duoplay:9322:ep:68"
-    ],
-    [
-      "series",
-      "duoplay:9322:ep:69"
-    ],
-    [
-      "series",
-      "duoplay:9322:ep:70"
     ],
     [
       "series",
@@ -3477,7 +3365,7 @@
   ],
   "missing": 4875,
   "resolved": 0,
-  "empty": 50,
-  "errors": 250,
-  "ts": 1792761067
+  "empty": 28,
+  "errors": 272,
+  "ts": 1792774089
 }
