@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6311,
+  "wanted": 6323,
   "pending": 0,
-  "batch_written": 3,
+  "batch_written": 21,
   "batch_removed": 0,
-  "last_key": "catalog/movie/eesti-otsing/search=kati.json",
-  "ts": 1792935537
+  "last_key": "catalog/series/eesti-otsing/search=tere.json",
+  "ts": 1792947809
 }
