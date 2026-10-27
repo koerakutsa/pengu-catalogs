@@ -2,8 +2,8 @@
   "complete": true,
   "wanted": 6355,
   "pending": 0,
-  "batch_written": 44,
-  "batch_removed": 12,
-  "last_key": "catalog/series/eesti-otsing/search=käig.json",
-  "ts": 1793093940
+  "batch_written": 33,
+  "batch_removed": 0,
+  "last_key": "catalog/series/eesti-otsing/search=teat.json",
+  "ts": 1793114118
 }
