@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6355,
+  "wanted": 6358,
   "pending": 0,
-  "batch_written": 33,
-  "batch_removed": 0,
-  "last_key": "catalog/series/eesti-otsing/search=teat.json",
-  "ts": 1793114118
+  "batch_written": 30,
+  "batch_removed": 6,
+  "last_key": "catalog/series/eesti-otsing/search=ülep.json",
+  "ts": 1793126412
 }
