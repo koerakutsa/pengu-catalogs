@@ -3,7 +3,7 @@
     "series",
     "duoplay:11663:ep:15"
   ],
-  "stream_head": "40338d2eb4fae82a72d57fe67c7b5326bb0ac400",
+  "stream_head": "f6d1a7720aa66245b7b3b48cb0461706d3ac5865",
   "priority_version": 2,
   "urgent": [
     [
@@ -1133,30 +1133,6 @@
     [
       "series",
       "duoplay:9383:ep:9"
-    ],
-    [
-      "series",
-      "duoplay:9439:ep:29"
-    ],
-    [
-      "series",
-      "duoplay:9439:ep:30"
-    ],
-    [
-      "series",
-      "duoplay:9439:ep:31"
-    ],
-    [
-      "series",
-      "duoplay:9447"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:24"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:25"
     ],
     [
       "series",
@@ -3239,9 +3215,9 @@
       "duoplay:9983:ep:6"
     ]
   ],
-  "missing": 5084,
+  "missing": 5094,
   "resolved": 2,
   "empty": 16,
   "errors": 282,
-  "ts": 1793202753
+  "ts": 1793213395
 }
