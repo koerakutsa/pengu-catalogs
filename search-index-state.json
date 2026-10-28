@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6358,
+  "wanted": 6370,
   "pending": 0,
-  "batch_written": 30,
+  "batch_written": 48,
   "batch_removed": 6,
   "last_key": "catalog/series/eesti-otsing/search=ülep.json",
-  "ts": 1793126412
+  "ts": 1793182945
 }
