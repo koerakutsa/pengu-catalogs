@@ -3,7 +3,7 @@
     "series",
     "duoplay:11663:ep:15"
   ],
-  "stream_head": "bc39a0cdce81ae6ce735e0a8fb2cdd89ed8264e6",
+  "stream_head": "23f65e0e41a11e61ed7256cff73af1ecb95ee889",
   "priority_version": 2,
   "urgent": [
     [
@@ -349,18 +349,6 @@
     [
       "series",
       "duoplay:5512:ep:85"
-    ],
-    [
-      "series",
-      "duoplay:5667:ep:16"
-    ],
-    [
-      "series",
-      "duoplay:5667:ep:17"
-    ],
-    [
-      "series",
-      "duoplay:5667:ep:20"
     ],
     [
       "series",
@@ -1113,98 +1101,6 @@
     [
       "series",
       "duoplay:9383:ep:9"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:28"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:29"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:30"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:31"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:32"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:33"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:34"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:35"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:36"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:37"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:38"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:39"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:40"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:41"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:42"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:43"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:44"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:45"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:46"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:47"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:48"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:49"
-    ],
-    [
-      "series",
-      "duoplay:9447:ep:50"
     ],
     [
       "series",
@@ -3195,9 +3091,9 @@
       "duoplay:9983:ep:6"
     ]
   ],
-  "missing": 5135,
-  "resolved": 2,
-  "empty": 21,
-  "errors": 277,
-  "ts": 1793289749
+  "missing": 5133,
+  "resolved": 0,
+  "empty": 26,
+  "errors": 274,
+  "ts": 1793300152
 }
