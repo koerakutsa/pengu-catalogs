@@ -3,12 +3,32 @@
     "series",
     "duoplay:11663:ep:15"
   ],
-  "stream_head": "5e9fbb4b990ede6d7e08b15913fa0ffdbc235c6a",
+  "stream_head": "8eff765e427421cd4d043dc80542a396ba3f4b0b",
   "priority_version": 2,
   "urgent": [
     [
       "series",
+      "duoplay:10048:ep:1"
+    ],
+    [
+      "series",
+      "duoplay:10048:ep:10"
+    ],
+    [
+      "series",
+      "duoplay:10048:ep:11"
+    ],
+    [
+      "series",
+      "duoplay:10048:ep:2"
+    ],
+    [
+      "series",
       "duoplay:10048:ep:3"
+    ],
+    [
+      "series",
+      "duoplay:10048:ep:9"
     ],
     [
       "series",
@@ -133,6 +153,74 @@
     [
       "series",
       "duoplay:11713:ep:8"
+    ],
+    [
+      "series",
+      "duoplay:11835:ep:1"
+    ],
+    [
+      "series",
+      "duoplay:11835:ep:13"
+    ],
+    [
+      "series",
+      "duoplay:11835:ep:14"
+    ],
+    [
+      "series",
+      "duoplay:11835:ep:15"
+    ],
+    [
+      "series",
+      "duoplay:11835:ep:16"
+    ],
+    [
+      "series",
+      "duoplay:11835:ep:17"
+    ],
+    [
+      "series",
+      "duoplay:11835:ep:18"
+    ],
+    [
+      "series",
+      "duoplay:11835:ep:19"
+    ],
+    [
+      "series",
+      "duoplay:11835:ep:2"
+    ],
+    [
+      "series",
+      "duoplay:11835:ep:20"
+    ],
+    [
+      "series",
+      "duoplay:11835:ep:21"
+    ],
+    [
+      "series",
+      "duoplay:11835:ep:3"
+    ],
+    [
+      "series",
+      "duoplay:11835:ep:4"
+    ],
+    [
+      "series",
+      "duoplay:11835:ep:5"
+    ],
+    [
+      "series",
+      "duoplay:11835:ep:6"
+    ],
+    [
+      "series",
+      "duoplay:11835:ep:7"
+    ],
+    [
+      "series",
+      "duoplay:11835:ep:8"
     ],
     [
       "series",
@@ -372,7 +460,51 @@
     ],
     [
       "series",
+      "duoplay:6059:ep:1"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:10"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:11"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:12"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:13"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:14"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:15"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:16"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:17"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:18"
+    ],
+    [
+      "series",
       "duoplay:6059:ep:19"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:2"
     ],
     [
       "series",
@@ -397,6 +529,66 @@
     [
       "series",
       "duoplay:6059:ep:25"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:3"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:30"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:31"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:32"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:33"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:34"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:35"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:36"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:37"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:4"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:5"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:6"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:7"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:8"
+    ],
+    [
+      "series",
+      "duoplay:6059:ep:9"
     ],
     [
       "series",
@@ -708,10 +900,6 @@
     ],
     [
       "series",
-      "duoplay:8553:ep:55"
-    ],
-    [
-      "series",
       "duoplay:8553:ep:56"
     ],
     [
@@ -977,6 +1165,10 @@
     [
       "series",
       "duoplay:9322:ep:161"
+    ],
+    [
+      "series",
+      "duoplay:9322:ep:80"
     ],
     [
       "series",
@@ -2952,6 +3144,10 @@
     ],
     [
       "series",
+      "duoplay:9890:ep:8"
+    ],
+    [
+      "series",
       "duoplay:9911"
     ],
     [
@@ -3059,9 +3255,9 @@
       "duoplay:9983:ep:6"
     ]
   ],
-  "missing": 5163,
-  "resolved": 0,
-  "empty": 10,
-  "errors": 290,
-  "ts": 1793374820
+  "missing": 5233,
+  "resolved": 4,
+  "empty": 17,
+  "errors": 279,
+  "ts": 1793385407
 }
