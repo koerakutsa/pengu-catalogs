@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6375,
+  "wanted": 6369,
   "pending": 0,
-  "batch_written": 0,
-  "batch_removed": 0,
-  "last_key": null,
-  "ts": 1793374582
+  "batch_written": 16,
+  "batch_removed": 6,
+  "last_key": "catalog/series/eesti-otsing/search=arüh.json",
+  "ts": 1793385163
 }
