@@ -2,8 +2,8 @@
   "complete": true,
   "wanted": 6348,
   "pending": 0,
-  "batch_written": 52,
-  "batch_removed": 33,
-  "last_key": "catalog/series/eesti-otsing/search=ülev.json",
-  "ts": 1793441666
+  "batch_written": 0,
+  "batch_removed": 0,
+  "last_key": null,
+  "ts": 1793459163
 }
