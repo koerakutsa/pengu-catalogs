@@ -2,8 +2,8 @@
   "complete": true,
   "wanted": 6319,
   "pending": 0,
-  "batch_written": 9,
-  "batch_removed": 3,
-  "last_key": "catalog/series/eesti-otsing/search=matc.json",
-  "ts": 1793548458
+  "batch_written": 0,
+  "batch_removed": 0,
+  "last_key": null,
+  "ts": 1793557168
 }
