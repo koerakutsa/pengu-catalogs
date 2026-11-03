@@ -1,9 +1,9 @@
 {
   "complete": false,
-  "existing": 36948,
+  "existing": 36752,
   "missing": 348,
-  "batch_resolved": 517,
-  "batch_external": 75,
+  "batch_resolved": 25,
+  "batch_external": 0,
   "batch_empty": 341,
   "batch_errors": 7,
   "last_key": [
@@ -12,5 +12,5 @@
     "movie"
   ],
   "prefer": "duoplay,err",
-  "ts": 1793706036
+  "ts": 1793725028
 }
