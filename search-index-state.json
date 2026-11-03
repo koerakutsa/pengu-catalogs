@@ -2,8 +2,8 @@
   "complete": true,
   "wanted": 6279,
   "pending": 0,
-  "batch_written": 127,
-  "batch_removed": 49,
-  "last_key": "catalog/series/eesti-otsing/search=üksl.json",
-  "ts": 1793705934
+  "batch_written": 30,
+  "batch_removed": 9,
+  "last_key": "catalog/series/eesti-otsing/search=vali.json",
+  "ts": 1793724953
 }
