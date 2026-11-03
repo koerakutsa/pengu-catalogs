@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6328,
+  "wanted": 6279,
   "pending": 0,
-  "batch_written": 9,
-  "batch_removed": 6,
-  "last_key": "catalog/movie/eesti-otsing/search=vaik.json",
-  "ts": 1793657894
+  "batch_written": 127,
+  "batch_removed": 49,
+  "last_key": "catalog/series/eesti-otsing/search=üksl.json",
+  "ts": 1793705934
 }
