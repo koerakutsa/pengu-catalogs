@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6279,
+  "wanted": 6273,
   "pending": 0,
-  "batch_written": 30,
-  "batch_removed": 9,
-  "last_key": "catalog/series/eesti-otsing/search=vali.json",
-  "ts": 1793724953
+  "batch_written": 12,
+  "batch_removed": 6,
+  "last_key": "catalog/series/eesti-otsing/search=õhtu.json",
+  "ts": 1793736244
 }
