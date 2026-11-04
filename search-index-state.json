@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6283,
+  "wanted": 6280,
   "pending": 0,
-  "batch_written": 15,
-  "batch_removed": 0,
-  "last_key": "catalog/series/eesti-otsing/search=vara.json",
-  "ts": 1793811504
+  "batch_written": 9,
+  "batch_removed": 3,
+  "last_key": "catalog/series/eesti-otsing/search=õhtu.json",
+  "ts": 1793823816
 }
