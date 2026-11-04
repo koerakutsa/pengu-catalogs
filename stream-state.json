@@ -1,16 +1,16 @@
 {
   "complete": false,
-  "existing": 36744,
+  "existing": 36728,
   "missing": 348,
-  "batch_resolved": 11,
+  "batch_resolved": 33,
   "batch_external": 0,
-  "batch_empty": 341,
-  "batch_errors": 7,
+  "batch_empty": 138,
+  "batch_errors": 210,
   "last_key": [
     1,
     "err-archive:1229758",
     "movie"
   ],
   "prefer": "duoplay,err",
-  "ts": 1793736338
+  "ts": 1793793217
 }
