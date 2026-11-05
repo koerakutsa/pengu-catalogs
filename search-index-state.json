@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6240,
+  "wanted": 6234,
   "pending": 0,
-  "batch_written": 46,
-  "batch_removed": 37,
-  "last_key": "catalog/series/eesti-otsing/search=omad.json",
-  "ts": 1793898793
+  "batch_written": 12,
+  "batch_removed": 6,
+  "last_key": "catalog/series/eesti-otsing/search=õhtu.json",
+  "ts": 1793910850
 }
