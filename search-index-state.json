@@ -2,8 +2,8 @@
   "complete": true,
   "wanted": 6231,
   "pending": 0,
-  "batch_written": 45,
-  "batch_removed": 12,
-  "last_key": "catalog/series/eesti-otsing/search=vigi.json",
-  "ts": 1793983287
+  "batch_written": 15,
+  "batch_removed": 3,
+  "last_key": "catalog/series/eesti-otsing/search=õhtu.json",
+  "ts": 1793995082
 }
