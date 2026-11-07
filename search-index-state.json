@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6228,
+  "wanted": 6234,
   "pending": 0,
-  "batch_written": 27,
-  "batch_removed": 6,
+  "batch_written": 15,
+  "batch_removed": 0,
   "last_key": "catalog/series/eesti-otsing/search=vali.json",
-  "ts": 1794048963
+  "ts": 1794065501
 }
