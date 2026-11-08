@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6262,
+  "wanted": 6258,
   "pending": 0,
-  "batch_written": 0,
-  "batch_removed": 0,
-  "last_key": null,
-  "ts": 1794152990
+  "batch_written": 48,
+  "batch_removed": 7,
+  "last_key": "catalog/series/eesti-otsing/search=xxvi.json",
+  "ts": 1794162030
 }
