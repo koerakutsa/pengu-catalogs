@@ -2,8 +2,8 @@
   "complete": true,
   "wanted": 6238,
   "pending": 0,
-  "batch_written": 27,
-  "batch_removed": 12,
-  "last_key": "catalog/series/eesti-otsing/search=väge.json",
-  "ts": 1794397451
+  "batch_written": 9,
+  "batch_removed": 3,
+  "last_key": "catalog/series/eesti-otsing/search=raud.json",
+  "ts": 1794416370
 }
