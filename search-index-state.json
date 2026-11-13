@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6203,
+  "wanted": 6206,
   "pending": 0,
-  "batch_written": 14,
-  "batch_removed": 3,
-  "last_key": "catalog/series/eesti-otsing/search=päri.json",
-  "ts": 1794589320
+  "batch_written": 9,
+  "batch_removed": 0,
+  "last_key": "catalog/series/eesti-otsing/search=õhtu.json",
+  "ts": 1794601660
 }
