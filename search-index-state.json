@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6195,
+  "wanted": 6203,
   "pending": 0,
-  "batch_written": 51,
-  "batch_removed": 24,
-  "last_key": "catalog/series/eesti-otsing/search=vood.json",
-  "ts": 1794570797
+  "batch_written": 14,
+  "batch_removed": 3,
+  "last_key": "catalog/series/eesti-otsing/search=päri.json",
+  "ts": 1794589320
 }
