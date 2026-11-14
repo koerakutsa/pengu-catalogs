@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6206,
+  "wanted": 6212,
   "pending": 0,
-  "batch_written": 30,
-  "batch_removed": 9,
-  "last_key": "catalog/series/eesti-otsing/search=vapr.json",
-  "ts": 1794670772
+  "batch_written": 15,
+  "batch_removed": 3,
+  "last_key": "catalog/series/eesti-otsing/search=puls.json",
+  "ts": 1794681907
 }
