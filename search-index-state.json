@@ -2,8 +2,8 @@
   "complete": true,
   "wanted": 6206,
   "pending": 0,
-  "batch_written": 0,
-  "batch_removed": 0,
-  "last_key": null,
-  "ts": 1794654688
+  "batch_written": 30,
+  "batch_removed": 9,
+  "last_key": "catalog/series/eesti-otsing/search=vapr.json",
+  "ts": 1794670772
 }
