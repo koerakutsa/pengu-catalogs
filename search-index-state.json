@@ -2,8 +2,8 @@
   "complete": true,
   "wanted": 6226,
   "pending": 0,
-  "batch_written": 33,
-  "batch_removed": 12,
+  "batch_written": 18,
+  "batch_removed": 3,
   "last_key": "catalog/series/eesti-otsing/search=tule.json",
-  "ts": 1794919640
+  "ts": 1794939367
 }
