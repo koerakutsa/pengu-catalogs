@@ -3,7 +3,7 @@
   "wanted": 6226,
   "pending": 0,
   "batch_written": 18,
-  "batch_removed": 3,
-  "last_key": "catalog/series/eesti-otsing/search=tule.json",
-  "ts": 1794939367
+  "batch_removed": 0,
+  "last_key": "catalog/series/eesti-otsing/search=õnne.json",
+  "ts": 1794951544
 }
