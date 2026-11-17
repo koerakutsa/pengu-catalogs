@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6229,
+  "wanted": 6226,
   "pending": 0,
-  "batch_written": 6,
-  "batch_removed": 6,
-  "last_key": "catalog/series/eesti-otsing/search=mint.json",
-  "ts": 1794869397
+  "batch_written": 33,
+  "batch_removed": 12,
+  "last_key": "catalog/series/eesti-otsing/search=tule.json",
+  "ts": 1794919640
 }
