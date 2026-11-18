@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6226,
+  "wanted": 6238,
   "pending": 0,
-  "batch_written": 18,
+  "batch_written": 45,
   "batch_removed": 0,
-  "last_key": "catalog/series/eesti-otsing/search=õnne.json",
-  "ts": 1794951544
+  "last_key": "catalog/series/eesti-otsing/search=vapp.json",
+  "ts": 1795005630
 }
