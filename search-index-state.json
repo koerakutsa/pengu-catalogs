@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6242,
+  "wanted": 6221,
   "pending": 0,
-  "batch_written": 33,
-  "batch_removed": 3,
-  "last_key": "catalog/series/eesti-otsing/search=vigi.json",
-  "ts": 1795091497
+  "batch_written": 29,
+  "batch_removed": 21,
+  "last_key": "catalog/series/eesti-otsing/search=õnne.json",
+  "ts": 1795111350
 }
