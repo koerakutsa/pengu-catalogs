@@ -1,14 +1,14 @@
 {
   "last": [
     "series",
-    "duoplay:1890:ep:11"
+    "duoplay:1951:ep:17"
   ],
-  "stream_head": "a39dc17db0e086eff1e1598d52c7069e9477ce77",
+  "stream_head": "d70f56c2529b12900a865ca97f7920d8e5dffbc5",
   "priority_version": 2,
   "urgent": [],
-  "missing": 5931,
-  "resolved": 4,
-  "empty": 296,
+  "missing": 5946,
+  "resolved": 3,
+  "empty": 297,
   "errors": 0,
-  "ts": 1795036753
+  "ts": 1795091785
 }
