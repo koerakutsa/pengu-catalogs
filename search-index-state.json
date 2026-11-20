@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6227,
+  "wanted": 6224,
   "pending": 0,
-  "batch_written": 5,
-  "batch_removed": 0,
-  "last_key": "catalog/series/eesti-otsing/search=8mme.json",
-  "ts": 1795196343
+  "batch_written": 21,
+  "batch_removed": 12,
+  "last_key": "catalog/series/eesti-otsing/search=õpet.json",
+  "ts": 1795208514
 }
