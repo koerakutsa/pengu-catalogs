@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6227,
+  "wanted": 6230,
   "pending": 0,
-  "batch_written": 36,
-  "batch_removed": 12,
-  "last_key": "catalog/series/eesti-otsing/search=supe.json",
-  "ts": 1795262807
+  "batch_written": 9,
+  "batch_removed": 0,
+  "last_key": "catalog/series/eesti-otsing/search=veek.json",
+  "ts": 1795279276
 }
