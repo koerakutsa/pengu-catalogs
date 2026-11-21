@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6230,
+  "wanted": 6236,
   "pending": 0,
-  "batch_written": 9,
-  "batch_removed": 0,
-  "last_key": "catalog/series/eesti-otsing/search=veek.json",
-  "ts": 1795279276
+  "batch_written": 15,
+  "batch_removed": 3,
+  "last_key": "catalog/series/eesti-otsing/search=õhtu.json",
+  "ts": 1795291350
 }
