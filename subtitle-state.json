@@ -1,14 +1,14 @@
 {
   "last": [
     "series",
-    "duoplay:516:ep:6"
+    "duoplay:6059:ep:3"
   ],
-  "stream_head": "031fef2de679069e5dd561cbd59a1b3dd55c1c58",
+  "stream_head": "abf9086a05af19a4a485085c77599b0fda7fd89b",
   "priority_version": 2,
   "urgent": [],
-  "missing": 6020,
-  "resolved": 6,
-  "empty": 294,
+  "missing": 6024,
+  "resolved": 0,
+  "empty": 300,
   "errors": 0,
-  "ts": 1795263025
+  "ts": 1795279448
 }
