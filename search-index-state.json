@@ -1,9 +1,9 @@
 {
   "complete": true,
-  "wanted": 6236,
+  "wanted": 6229,
   "pending": 0,
-  "batch_written": 15,
-  "batch_removed": 3,
-  "last_key": "catalog/series/eesti-otsing/search=õhtu.json",
-  "ts": 1795291350
+  "batch_written": 48,
+  "batch_removed": 22,
+  "last_key": "catalog/series/eesti-otsing/search=raud.json",
+  "ts": 1795349948
 }
