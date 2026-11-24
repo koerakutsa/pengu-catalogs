@@ -1,14 +1,14 @@
 {
   "last": [
     "series",
-    "duoplay:8024:ep:47"
+    "duoplay:8191:ep:24"
   ],
-  "stream_head": "c683256c8a0729ee38881a2938d83bf3967ba81c",
+  "stream_head": "4e5036e6c0ad7de258de1f7dc796e56fdcf1f5c9",
   "priority_version": 2,
   "urgent": [],
   "missing": 6052,
-  "resolved": 0,
-  "empty": 300,
+  "resolved": 9,
+  "empty": 291,
   "errors": 0,
-  "ts": 1795467518
+  "ts": 1795481136
 }
