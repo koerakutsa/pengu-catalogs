@@ -1,0 +1,2081 @@
+WEBVTT
+
+1
+00:00:01.000 --> 00:00:03.000
+Järgnevale saatele
+kuvatakse automaatsubtiitrid.
+
+2
+00:00:03.100 --> 00:00:05.100
+Teksti automaatsel tuvastamisel
+võib esineda ebatäpsusi.
+
+3
+00:00:05.200 --> 00:00:10.440
+elektroonika alal ei kujutanud ma
+küll varem ette, et, et see tegevus,
+
+4
+00:00:10.619 --> 00:00:14.450
+uurimistegevus ja arendus läheb,
+läheb inimese
+
+5
+00:00:14.550 --> 00:00:17.030
+sisse või, või
+ka inimese südame juurde
+
+6
+00:00:17.130 --> 00:00:19.555
+või südame sisse.
+
+7
+00:00:51.640 --> 00:00:54.420
+Kunagi jõuab teadus nii kaugele,
+et kõik inimese rikki läinud
+
+8
+00:00:54.520 --> 00:00:58.380
+ja haigeks jäänud organid suudetakse
+kas asendada või taas tööle panna.
+
+9
+00:00:58.480 --> 00:01:01.080
+Tänapäeval tundub see veel ulme
+valda kuuluvana,
+
+10
+00:01:01.180 --> 00:01:04.290
+kuid siiski enam mitte päriselt.
+Kui teil süda jukerdama hakkab,
+
+11
+00:01:04.390 --> 00:01:07.969
+aitab see väike seade südamerütmur,
+selle konstrueerisid viiekümnendatel
+
+12
+00:01:08.069 --> 00:01:10.969
+aastatel rootslased,
+kuid Eesti teadlased on nüüd välja
+
+13
+00:01:11.069 --> 00:01:12.870
+mõelnud originaalse lahenduse, mis.
+
+14
+00:01:12.970 --> 00:01:16.440
+Aitab seda seadet veelgi parandada
+ja see põhineb impedantsil.
+
+15
+00:01:16.540 --> 00:01:18.900
+Mis see on
+ja milliseid kasutusviise seal veel
+
+16
+00:01:19.000 --> 00:01:21.900
+on, selles tänases saates räägimegi?
+
+17
+00:01:24.670 --> 00:01:27.120
+Jah, tõepoolest,
+siin laboris saavad,
+
+18
+00:01:27.220 --> 00:01:33.400
+need saavad kokku nii meditsiin,
+elektroonika kui infotehnoloogia
+
+19
+00:01:33.860 --> 00:01:39.740
+ja neid kõiki kolme valdkonda seob
+elektriline impedants.
+
+20
+00:01:41.020 --> 00:01:46.480
+Me oleme võtnud oma tegevuse sihiks
+kasutada elektrilist impedantsi
+
+21
+00:01:46.480 --> 00:01:49.660
+ümbritseva maailma omaduste
+tundmaõppimiseks.
+
+22
+00:01:50.260 --> 00:01:54.970
+Ta on nagu töövahend ja ühtlasi ta
+ka seostab meid siis arstidega,
+
+23
+00:01:55.060 --> 00:01:59.510
+inseneridega, biotehnoloogidega ja
+kes teab veel,
+
+24
+00:01:59.870 --> 00:02:03.320
+missuguste alade esindajatega
+tulevikus.
+
+25
+00:02:03.420 --> 00:02:07.290
+Kõigepealt, mis on impedants,
+lahtiseletatult elektriline
+
+26
+00:02:07.290 --> 00:02:10.620
+impedants on aine, materjali,
+struktuuri, takistus
+
+27
+00:02:10.740 --> 00:02:13.039
+või vastupanu vahelduvale
+elektrivoolule.
+
+28
+00:02:13.139 --> 00:02:17.400
+Kuna ainete takistustegur on erinev,
+näitab impedantsi mõõtmine mõõdetava
+
+29
+00:02:17.400 --> 00:02:20.750
+materjali seisundit, kvaliteeti
+või ehtsust.
+
+30
+00:02:20.850 --> 00:02:23.120
+Kindlasti kõik on näinud niisuguseid
+vahvaid multifilme, domineeri,
+
+31
+00:02:23.220 --> 00:02:25.670
+multifilme ja selliseid.
+
+32
+00:02:25.770 --> 00:02:27.740
+Noh, või, või pole näinud
+või kõrvalt vaadanud,
+
+33
+00:02:27.840 --> 00:02:30.830
+aga seal on alati selline näide, et
+kus aiavoolikuga nii-öelda kassi
+
+34
+00:02:30.930 --> 00:02:33.590
+ja iir siis nii-öelda hullavad.
+Ja tõepoolest on alati seal on
+
+35
+00:02:33.690 --> 00:02:35.420
+selline episood,
+kus keeratakse nii-öelda kas
+
+36
+00:02:35.520 --> 00:02:37.100
+siis hiir
+või kass keerab seal kraani lahti
+
+37
+00:02:37.200 --> 00:02:40.640
+ja vedelik hakkab torusse minema.
+Ja seal on alati selline nii-öelda
+
+38
+00:02:40.740 --> 00:02:43.220
+nagu kujutada ette selline vedeliku
+voolamine nagu selline veepall
+
+39
+00:02:43.320 --> 00:02:45.490
+jookseks mööda toru
+ja nüüd ongi see impedants
+
+40
+00:02:45.590 --> 00:02:49.370
+tegelikult on, on,
+ongi komplekstakistus, mis näitab
+
+41
+00:02:49.370 --> 00:02:52.060
+selle nii-öelda
+selle veetoru takistust veel,
+
+42
+00:02:52.160 --> 00:02:56.210
+et ühtepidi, et kui jäme see toru on
+ja kui kiirelt see nüüd see mull
+
+43
+00:02:56.210 --> 00:02:57.700
+hakkab seal sees nagu liikuma
+nii-öelda,
+
+44
+00:02:57.800 --> 00:03:00.520
+et et see iseloomustab seda
+nii-öelda keskkonda,
+
+45
+00:03:00.620 --> 00:03:02.960
+millesse me nagu elektrit laseme.
+
+46
+00:03:03.060 --> 00:03:06.050
+Selle analoog on vesi noh,
+antud seal veekeskkonnas torus.
+
+47
+00:03:06.150 --> 00:03:08.180
+Et kui kiirelt see elekter nud sealt
+läbi levib,
+
+48
+00:03:08.280 --> 00:03:11.000
+et milline on nende kudede
+siis takistuslik komponent,
+
+49
+00:03:11.100 --> 00:03:13.789
+milline mahtuvuslik komponent
+ja sellised nii-öelda nagu suurused,
+
+50
+00:03:13.889 --> 00:03:16.520
+et et ta tegelikult ei ole väga
+keeruline,
+
+51
+00:03:16.620 --> 00:03:20.950
+ta keeruline on seda nii-öelda mõõta
+iteerida seda impedantsi.
+
+52
+00:03:21.520 --> 00:03:25.090
+Aga muus asjas on ta lihtsalt
+selline tavaline füüsikaline
+
+53
+00:03:25.090 --> 00:03:26.550
+keskkonnakirjeldus.
+
+54
+00:03:26.650 --> 00:03:29.100
+Kui mõõta impedantsi laias
+sagedusalas,
+
+55
+00:03:29.200 --> 00:03:32.250
+saab spektroskoopias palju välja
+lugeda. Haige
+
+56
+00:03:32.350 --> 00:03:35.580
+või vigastatud organi impedants
+erineb oluliselt terve omast,
+
+57
+00:03:35.680 --> 00:03:38.730
+näiteks vähirakkude impedants
+tervete rakkude omast.
+
+58
+00:03:38.830 --> 00:03:42.370
+See fakt ongi impedantsidiagnostika
+aluseks. Kuna
+
+59
+00:03:42.370 --> 00:03:45.840
+ka inimese keha meie rakud kannavad
+elektrilist signaali annab
+
+60
+00:03:45.940 --> 00:03:49.510
+impedantsi mõõtmine võimaluse
+jälgida inimlik seisundit.
+
+61
+00:03:51.070 --> 00:03:55.810
+No meie meie pakkumine on,
+esmajoones on on südame
+
+62
+00:03:56.080 --> 00:03:58.680
+stimulatsioon,
+elektriline stimulatsioon,
+
+63
+00:03:58.780 --> 00:04:04.530
+kui meie südame oma looduslik
+stimulatsioonisüsteem enam
+
+64
+00:04:04.530 --> 00:04:06.830
+nii hästi ei tööta,
+kui tarvis oleks.
+
+65
+00:04:06.930 --> 00:04:09.890
+Maailmas elab südamerütmuriga umbes
+10 miljonit inimest,
+
+66
+00:04:09.990 --> 00:04:13.400
+ka Eestis on neid päris palju.
+Siin siirdatakse aastas umbes
+
+67
+00:04:13.500 --> 00:04:15.920
+tuhatkond südamestimulaatorit.
+Üks haigla,
+
+68
+00:04:16.020 --> 00:04:19.620
+kus neid operatsioone tehakse,
+on Põhja-Eesti regionaalhaigla.
+
+69
+00:04:30.380 --> 00:04:32.350
+Tähendab,
+ega ma ei oska rohkem kirjeldada kui
+
+70
+00:04:32.450 --> 00:04:34.750
+lihtsalt mul oli hästi halb olla.
+
+71
+00:04:34.850 --> 00:04:37.989
+Ja see oli hästi halb olla,
+ka käisin ma siis kõik arstid läbi
+
+72
+00:04:38.089 --> 00:04:42.000
+ja uurisin, mis mul siis viga on,
+et mul on tõesti halb olla.
+
+73
+00:04:42.100 --> 00:04:44.940
+Ja nii siis sobin, kaks päeva,
+kolm päeva olin siin haiglas,
+
+74
+00:04:45.040 --> 00:04:48.060
+tehti uuringud ära, siis oli selge,
+et.
+
+75
+00:04:48.160 --> 00:04:50.850
+Et süda on aeglane,
+siis juba hakkas niiviisi,
+
+76
+00:04:50.950 --> 00:04:53.880
+et ma lihtsalt kukkusin ära
+ja bussis ja.
+
+77
+00:04:53.980 --> 00:04:56.910
+Ja lihtsalt tänaval hakkas ikka
+nii halb, et lihtsalt istu maha,
+
+78
+00:04:57.010 --> 00:05:01.510
+kui on kuskil nist või kukud pikali
+ja siis langetatigi, täpselt siis,
+
+79
+00:05:01.510 --> 00:05:03.989
+kui ma jõudsin jälle
+selle doktor Vinsli juurde,
+
+80
+00:05:04.089 --> 00:05:06.540
+siis tema ütles, et noh,
+enam ei aita, midagi,
+
+81
+00:05:06.640 --> 00:05:09.450
+tuleb panna südamestimulaator.
+No ikka mõtlesin,
+
+82
+00:05:09.550 --> 00:05:12.140
+ega kohe ei öelnud jah.
+
+83
+00:05:12.240 --> 00:05:16.110
+Südamestimulaatori paigaldamine on
+siis väikesemõõtmeline kirurgia.
+
+84
+00:05:17.279 --> 00:05:20.779
+Et see lõige
+või see koht Kuhu stimulaator
+
+85
+00:05:20.779 --> 00:05:23.170
+paigaldatakse ja
+kus see alustatakse, on, toimub siin
+
+86
+00:05:23.270 --> 00:05:26.960
+siis enamasti vasakul ranglu alusest
+piirkonnast,
+
+87
+00:05:27.140 --> 00:05:29.679
+peaks umbes siin kolme-nelja
+sentimeetrit lõige pärast
+
+88
+00:05:29.779 --> 00:05:32.800
+tuimestussüsti avastatakse
+
+89
+00:05:32.900 --> 00:05:35.170
+üks veiniarudest.
+
+90
+00:05:35.270 --> 00:05:38.410
+Kõik arterid algavad südamest
+ja kõik veinid lõpuks suubuvad
+
+91
+00:05:38.510 --> 00:05:41.990
+südamesse siis ühe
+selle veiniaru siit avastame ja
+
+92
+00:05:41.990 --> 00:05:45.400
+selle veiniaru kaudu viiakse
+südamesse üks-kaks maksimaalselt
+
+93
+00:05:45.500 --> 00:05:48.040
+kuni kolm elektroodi elektroodid
+satuvad
+
+94
+00:05:48.140 --> 00:05:52.140
+siis siin rangla alusest veenist
+ülemisse õõnesveeni siitkaudu
+
+95
+00:05:52.140 --> 00:05:55.429
+siis edasi, kas siis paremasse kotta
+või paremasse vatsakesse elektri
+
+96
+00:05:55.529 --> 00:05:59.000
+teine ots siis ühendatakse
+südamestimulaatoriga
+
+97
+00:05:59.100 --> 00:06:02.160
+ja see südamestimulaator hakkab
+siis andma niisuguseid
+
+98
+00:06:02.260 --> 00:06:05.760
+Enamasti umbes kahevollised kahe
+poolevollised impulsse, mis jõuavad
+
+99
+00:06:05.860 --> 00:06:10.930
+siis selle elektroodi kaudu südameni
+ja, ja süda sellele elektriimpulsile
+
+100
+00:06:11.050 --> 00:06:14.440
+vastab siis kokkutõmbamist.
+Impulsi sagedus on siis.
+
+101
+00:06:17.400 --> 00:06:19.700
+Muudetav, et.
+
+102
+00:06:19.800 --> 00:06:22.190
+Stimulaatorid on enamasti, mis me
+siis kasutame,
+
+103
+00:06:22.290 --> 00:06:26.670
+on kõik nimetatud sagedus muutlikud,
+ehk nad saavad aru, kas inimene on.
+
+104
+00:06:28.080 --> 00:06:31.470
+Füüsiliselt aktiivne või,
+või on ta puhkeolekus ja,
+
+105
+00:06:31.560 --> 00:06:34.630
+ja enamasti me programmeerine
+niimoodi, et, et tähendab
+
+106
+00:06:34.730 --> 00:06:39.080
+siis päevasel ajal istudes on
+südamesagedus kuskil 60 65 lööki
+
+107
+00:06:39.080 --> 00:06:42.950
+minutis. Kui inimene hakkab tegema,
+siis stimulaator proovib sellest aru
+
+108
+00:06:42.950 --> 00:06:46.520
+saada ja ja vastavalt
+siis vajadusele südamesagedus
+
+109
+00:06:46.520 --> 00:06:50.900
+kiirendada programmeerimiseks ei pea
+stimulaatorit või haava lahti võtma
+
+110
+00:06:50.900 --> 00:06:53.500
+või välja võtma seda,
+et seda saab teha 10 aasta jooksul
+
+111
+00:06:53.600 --> 00:06:56.725
+pidevalt ümber programmeerida,
+kontrollida.
+
+112
+00:07:01.510 --> 00:07:03.900
+See, mis oli,
+siis see on kõik nagu möödas,
+
+113
+00:07:04.000 --> 00:07:05.820
+nii et mina
+ja absoluutselt ei tunneta see
+
+114
+00:07:05.920 --> 00:07:08.820
+stimulaator mul olemas on.
+Kui see haav kinni kasvas,
+
+115
+00:07:08.920 --> 00:07:10.300
+siis oli nagu kõik.
+
+116
+00:07:10.400 --> 00:07:13.900
+Kirurgi juures me nägime,
+kuidas kirurg kasutab.
+
+117
+00:07:15.250 --> 00:07:20.020
+Südamestimulaatoreid oma patsientide
+tervise parandamiseks
+
+118
+00:07:20.800 --> 00:07:28.600
+ja aga siinjuures meie huviks on see
+asi, mis on stimulaatori sees,
+
+119
+00:07:28.600 --> 00:07:32.930
+siin on hulk elektroonikat,
+siin asub sees paar arvutit,
+
+120
+00:07:32.990 --> 00:07:36.140
+hulk sensoreid,
+hulk juhtimisvahendeid
+
+121
+00:07:36.710 --> 00:07:41.330
+ja eriti meid huvitab muidugi,
+kuidas juhtida südamerütmi
+
+122
+00:07:42.260 --> 00:07:45.620
+ja, ja koostada vastavad
+juhtimisalgoritmid ja
+
+123
+00:07:45.980 --> 00:07:49.580
+ja salvestada need
+juhtimisalgoritmid siia südame
+
+124
+00:07:49.760 --> 00:07:52.720
+stimulaatori arvutisse.
+
+125
+00:07:52.820 --> 00:07:55.540
+Ja siinjuures on
+
+126
+00:07:55.640 --> 00:08:01.100
+tõepoolest väga tähtis komponent,
+on sensoorika, kuidas ära tunda,
+
+127
+00:08:01.340 --> 00:08:05.780
+mille järgi me juhime
+siis miks on vajadus üldse juhtimist
+
+128
+00:08:06.520 --> 00:08:10.780
+või midagi rütmi muuta.
+Selleks me peame teadma,
+
+129
+00:08:11.020 --> 00:08:17.050
+mis toimub inimeses. Ja vat just
+selle tsensoorika aspektist me
+
+130
+00:08:17.050 --> 00:08:19.530
+kasutame siin elektriline
+bioimpedantsi,
+
+131
+00:08:19.630 --> 00:08:24.970
+sena bioloogilise kudede elektriline
+takistus ja imeme siis
+
+132
+00:08:24.970 --> 00:08:29.700
+selle takistuse mõõtmise
+informatsioonist välja vajalikud
+
+133
+00:08:29.970 --> 00:08:31.540
+parameetrid, mille alusel.
+
+134
+00:08:31.640 --> 00:08:34.520
+Juhtida südamerütmi.
+
+135
+00:08:34.620 --> 00:08:36.410
+Kõigepealt,
+milleks on üldse vaja rütmi
+
+136
+00:08:36.510 --> 00:08:39.260
+reguleerida,
+rütmi on vaja reguleerida vastavalt
+
+137
+00:08:39.360 --> 00:08:43.650
+vastavalt inimese füüsilisele
+töökoormusele. Kui inimene magab,
+
+138
+00:08:43.650 --> 00:08:47.120
+siis rütm on madal.
+Kui inimene teeb tugevasti tööd,
+
+139
+00:08:47.120 --> 00:08:51.280
+siis verevarustus peab olema palju
+suurem ja ütleme kõrgem.
+
+140
+00:08:51.380 --> 00:08:54.010
+Ja nüüd kuidas seda kõike teha,
+aru saada,
+
+141
+00:08:54.110 --> 00:08:57.220
+mis on inimese füüsilise töökoormus.
+
+142
+00:08:57.320 --> 00:09:00.010
+Füüsilise töökoormus,
+kuidas seda mõõta?
+
+143
+00:09:00.110 --> 00:09:03.550
+Selleks on mehaanilised mõõturid,
+näiteks mõõdame,
+
+144
+00:09:03.760 --> 00:09:07.450
+on võimalik mehaaniliselt ära mõõta,
+kui palju inimene liigub.
+
+145
+00:09:07.550 --> 00:09:11.540
+Siis on kiirendusanduri järgi,
+et kui palju see keha rappub,
+
+146
+00:09:11.809 --> 00:09:15.280
+aga need on väga kaudsed
+mõõtmisviisid.
+
+147
+00:09:15.380 --> 00:09:20.510
+Näiteks rappumise andur töötab väga,
+annab väga suure signaali,
+
+148
+00:09:20.510 --> 00:09:22.240
+kui me tuleme,
+jookseme trepist alla,
+
+149
+00:09:22.340 --> 00:09:24.970
+me rappuma hirmsasti.
+Aga kui me trepist üles läheb,
+
+150
+00:09:25.070 --> 00:09:27.640
+siis me ei rappu ja
+siis nagu polekski füüsilist tööd,
+
+151
+00:09:27.740 --> 00:09:31.340
+aga me pingutame.
+Järelikult need mehaanilised andurid
+
+152
+00:09:31.340 --> 00:09:34.270
+ei saa anda päris adekvaatset
+informatsiooni, nad aitavad,
+
+153
+00:09:34.370 --> 00:09:36.730
+aga ei saa anda.
+Ja meie võtsime kasutusele
+
+154
+00:09:36.830 --> 00:09:41.870
+elektriline bioimpedantsi.
+Meie mõõdame kopsude elektrilist
+
+155
+00:09:41.870 --> 00:09:43.360
+impedantsi.
+
+156
+00:09:43.460 --> 00:09:47.000
+Ja kopsude töö
+ja füüsiline koormus on üsna hästi
+
+157
+00:09:47.000 --> 00:09:48.329
+seotud.
+
+158
+00:09:48.429 --> 00:09:51.030
+Kui me töötame,
+siis me hakkame sügavamalt hingama,
+
+159
+00:09:51.130 --> 00:09:55.150
+kiiremini hingama
+ja korrelatsioon füüsilise koormuse
+
+160
+00:09:55.150 --> 00:09:59.740
+ja kopsude töö vahel on väga hea.
+Ja mõõtes ära nüüd kopsude
+
+161
+00:09:59.740 --> 00:10:02.070
+impedants, kopsude impedants muutub
+ja
+
+162
+00:10:02.170 --> 00:10:04.590
+selle muutuse järgi me saame hinnata
+füüsilist tööd
+
+163
+00:10:04.690 --> 00:10:07.110
+ja reguleerida südamerütmi.
+
+164
+00:10:07.210 --> 00:10:11.510
+Aga nüüd meil on teine mure.
+Veel kohe tuleb.
+
+165
+00:10:11.610 --> 00:10:13.970
+Süda on nõrk.
+
+166
+00:10:14.070 --> 00:10:16.820
+Ja me tahame teha tugevasti
+füüsilist tööd,
+
+167
+00:10:16.920 --> 00:10:20.070
+kas see süda kannatab,
+see nõrk haige süda kannatab?
+
+168
+00:10:20.170 --> 00:10:22.590
+Selle füüsilise töö välja,
+
+169
+00:10:22.690 --> 00:10:27.040
+me peame teada saama, kas,
+kuidas on südame energeetilise
+
+170
+00:10:27.040 --> 00:10:32.230
+varustatus, kas ta jaksab teha tööd.
+Ja selleks me mõõdame südamelihase
+
+171
+00:10:32.230 --> 00:10:36.840
+impedants ja võtame ka ühtlasi
+selle informatsiooni üles. Ja
+
+172
+00:10:36.840 --> 00:10:40.980
+siis vaatame,
+et alati energeetiline balanss oleks
+
+173
+00:10:41.070 --> 00:10:42.090
+tagatud.
+
+174
+00:10:42.190 --> 00:10:47.230
+See, mida süda saab energiat oma
+pärgartrite kaudu
+
+175
+00:10:47.320 --> 00:10:51.200
+ja palju ta kulutab et süda ei oleks
+üle koormatud.
+
+176
+00:10:51.410 --> 00:10:53.740
+Vaat hobuste juures räägitakse väga
+sageli,
+
+177
+00:10:53.840 --> 00:10:57.320
+et hobune jooksis südame lõhki.
+Vaat see on seesama lugu.
+
+178
+00:10:58.520 --> 00:11:02.660
+Ja, ja me peame
+siis väga hoolikalt jälgima,
+
+179
+00:11:03.170 --> 00:11:07.610
+et meie südame lihas ei oleks
+ülekoormus ja siis piirama rütm
+
+180
+00:11:08.179 --> 00:11:11.630
+ja kogu aeg töötama niisuguses
+dünaamilises tasakaalus.
+
+181
+00:11:12.530 --> 00:11:14.620
+Eks ole,
+et inimese vajadusi rahuldada,
+
+182
+00:11:14.720 --> 00:11:19.070
+aga samal ajal hoida tagasi need
+soovid mida keha tahab
+
+183
+00:11:19.910 --> 00:11:23.210
+oma tööks hoida tagasi,
+et südamelihas säiliks,
+
+184
+00:11:23.210 --> 00:11:26.809
+et ei tekiks seal iseemiat
+ja infarkti.
+
+185
+00:11:27.950 --> 00:11:31.390
+Ja me oleme sellise algoritmi nüüd
+siis valmis saanud, et
+
+186
+00:11:31.490 --> 00:11:35.030
+mis neid kõik ilusasti dünaamilises
+balansis paigal hoiab
+
+187
+00:11:35.690 --> 00:11:39.420
+ja patenteerinud seda siis.
+
+188
+00:11:39.520 --> 00:11:44.260
+Kahe kahe patendiga maailmas
+ja nüüd Saint Jude Medical
+
+189
+00:11:44.320 --> 00:11:48.250
+patenteeris ja nüüd me oleme siis
+ka Eesti oma patendini jõudnud.
+
+190
+00:11:48.950 --> 00:11:52.420
+Mart Mini rütmur on eriline,
+see stimulaator ei tao lihtsalt ühte
+
+191
+00:11:52.520 --> 00:11:55.120
+kindlat rütmi,
+vaid oskab aru saada inimese
+
+192
+00:11:55.220 --> 00:12:00.020
+organismi erinevatest seisunditest.
+Kas inimene parasjagu puhkab, magab,
+
+193
+00:12:00.140 --> 00:12:03.850
+teeb sporti
+või on näiteks väga ärritus.
+
+194
+00:12:03.950 --> 00:12:07.500
+Ja idee on ju see, et,
+et ta töötaks sama hästi kui inimese
+
+195
+00:12:07.800 --> 00:12:12.690
+enda oma rütmi reguleerimise
+süsteem. Et patsient ei tunnekski,
+
+196
+00:12:12.720 --> 00:12:17.190
+ei teaks, et tal oleks see pisikene
+elektroonne vidin.
+
+197
+00:12:18.510 --> 00:12:22.860
+Ja aga sinna arengu,
+nüüd võib küsida, et kas areng on,
+
+198
+00:12:22.860 --> 00:12:27.690
+kas on valmis? Ei ole valmis
+ja kui küsida, millal saab valmis,
+
+199
+00:12:27.690 --> 00:12:31.650
+siis ei saagi valmis,
+ilmselt see pikk sina
+
+200
+00:12:31.650 --> 00:12:34.860
+ja jätkub veel 50 aastat võib-olla
+rohkemgi.
+
+201
+00:12:35.670 --> 00:12:38.360
+Areng on,
+ma võrdlesin seda ala vahetevahel,
+
+202
+00:12:38.460 --> 00:12:41.930
+kui küsitakse,
+võrdlen kosmosetehnoloogiaga.
+
+203
+00:12:42.030 --> 00:12:48.660
+Esimene sputnik venelaste poolt
+saadeti 57. aastal ja noh,
+
+204
+00:12:48.660 --> 00:12:52.070
+võib öelda,
+et see on kosmose ajastu algus aga
+
+205
+00:12:52.370 --> 00:12:56.750
+kosmosetehnoloogia ju areneb suurte
+sammudega ikka ja ikka edasi.
+
+206
+00:12:57.290 --> 00:13:00.100
+Nii on, ma arvan ka siin, et, et ma,
+ma ei näe seda lõppu
+
+207
+00:13:00.200 --> 00:13:02.320
+ja valmisolekut, nii palju on veel.
+
+208
+00:13:02.420 --> 00:13:05.110
+Tallinna tehnikaülikooli.
+
+209
+00:13:05.210 --> 00:13:08.560
+Töögrupp professor Mart Min
+juhendamisel.
+
+210
+00:13:08.660 --> 00:13:12.200
+Teeb siis koostööd SanktSud,
+Medikal, teadus
+
+211
+00:13:12.200 --> 00:13:15.010
+ja uuringukeskusega Rootsis.
+
+212
+00:13:15.110 --> 00:13:18.620
+Et välja töötada järjest paremaid
+algoritme.
+
+213
+00:13:19.490 --> 00:13:21.350
+Üks neist ka.
+
+214
+00:13:21.450 --> 00:13:23.870
+Bioimpedantsipõhine
+
+215
+00:13:23.970 --> 00:13:27.170
+rakendus siis uutele seadmetele.
+
+216
+00:13:27.270 --> 00:13:30.990
+Et patsientide diagnoosimine oleks
+veelgi paremal tasemel.
+
+217
+00:13:31.590 --> 00:13:34.280
+Et varsti, umbes paari aasta pärast,
+võib-olla, kui te
+
+218
+00:13:34.380 --> 00:13:35.750
+selle kataloogi avati,
+võib seal olla
+
+219
+00:13:35.850 --> 00:13:37.760
+ka natuke Eesti nohu sees.
+
+220
+00:13:37.860 --> 00:13:40.220
+Jah, tahame küll selles väga kindlad
+olla,
+
+221
+00:13:40.320 --> 00:13:42.709
+see on tavaliselt väga pikaajaline
+töö ja sinna juurde käib
+
+222
+00:13:42.809 --> 00:13:46.550
+ka palju dokumentatsiooni
+ja palju kooskõlastusi erinevate
+
+223
+00:13:46.650 --> 00:13:50.160
+erinevate riikide ja,
+ja erinevate nõuete
+
+224
+00:13:50.160 --> 00:13:53.490
+ja standarditega.
+Et kui need on kõik tehtud, siis,
+
+225
+00:13:53.490 --> 00:13:56.430
+siis jõuavad need funktsioonid
+ka patsientideni.
+
+226
+00:13:56.530 --> 00:13:59.640
+Ja antud juhul on tegemist
+siis isoleeritud kudede laboriga,
+
+227
+00:13:59.740 --> 00:14:02.400
+kus me saame tõepoolest teha
+
+228
+00:14:02.500 --> 00:14:05.430
+Isoleeritud kudedega kõiksugu
+katsed, eeskätt meid huvitab muidugi
+
+229
+00:14:05.530 --> 00:14:08.800
+bioimpedantsi mõõtmine, aga noh,
+samas ka kõik niisugused,
+
+230
+00:14:08.900 --> 00:14:13.300
+mis on seotud nüüd verevoolamisega
+ja siin kõik nii-öelda
+
+231
+00:14:13.400 --> 00:14:15.850
+Bioloogias, mida iganes,
+katsetusi me võime siin korraldada,
+
+232
+00:14:15.950 --> 00:14:18.400
+et aga,
+aga meie põhieesmärk on ikkagi teha
+
+233
+00:14:18.500 --> 00:14:22.040
+seda kõike nüüd meditsiini
+hüvanguks, aga juba nii-öelda
+
+234
+00:14:22.040 --> 00:14:24.250
+siis koostöös tehnikutega,
+nii et me saaksime teha
+
+235
+00:14:24.350 --> 00:14:27.950
+ka valmis aparaate, seadmeid
+ja tehnoloogiaid välja töötada.
+
+236
+00:14:29.240 --> 00:14:30.580
+Meil on kaks nagu tegelikult siin
+põhi,
+
+237
+00:14:30.680 --> 00:14:35.660
+nagu sellist nii-elda juhtteemat üks
+teema tõepoolest on südame siis.
+
+238
+00:14:36.990 --> 00:14:40.530
+Nii-öelda basemakerite
+juhtalgoritmide täiustamine,
+
+239
+00:14:40.920 --> 00:14:43.840
+noh see ühesõnaga,
+tegelikult on see üks osa ühest väga
+
+240
+00:14:43.940 --> 00:14:47.870
+suurt suurest projektist,
+mis maailmas on et teha kõiki
+
+241
+00:14:47.870 --> 00:14:50.050
+seadmeid,
+mis inimeste juures kasutataks
+
+242
+00:14:50.150 --> 00:14:53.120
+nii-öelda võimalikult tarkadeks.
+Sest, ja
+
+243
+00:14:53.220 --> 00:14:58.190
+ega see tarkus alati ei ole,
+selles mõttes ei väljendu ka siis
+
+244
+00:14:58.290 --> 00:15:01.010
+Nagu puhta tarkusena,
+et iga tarkus tuleb läbi nii-öelda
+
+245
+00:15:01.110 --> 00:15:03.470
+ebaõnnestumiseni, nagu on selline,
+et ka siin on,
+
+246
+00:15:03.570 --> 00:15:06.830
+et tegelikult need niinimetatud,
+mida meiegi arendama,
+
+247
+00:15:06.930 --> 00:15:10.230
+ehk adaptiivsed
+ehk targad südamerütmurid,
+
+248
+00:15:10.330 --> 00:15:12.870
+nad peavad oma ikka oma tarkusena
+ka ära tõestama kuidagi
+
+249
+00:15:12.970 --> 00:15:15.600
+ja kuidas seda teisiti veel
+tõestada, mitte labori tingimustes,
+
+250
+00:15:15.700 --> 00:15:18.510
+et me peame hakkama ikkagi pihta
+suhteliselt
+
+251
+00:15:18.610 --> 00:15:21.990
+madalalt tasemelt seda asja nagu
+uurima ja siis me saame nagu väita,
+
+252
+00:15:22.090 --> 00:15:24.090
+et nad midagi on targad.
+Sest lihtsalt noh,
+
+253
+00:15:24.190 --> 00:15:27.260
+see tarkuse tühi teadmine,
+et ma arvan, et nad targad on,
+
+254
+00:15:27.360 --> 00:15:30.590
+teinekord üldse ei pruugi
+nii tark olla.
+
+255
+00:15:30.690 --> 00:15:32.180
+Ja
+selle jaoks meil siin antud laboris
+
+256
+00:15:32.280 --> 00:15:33.770
+ongi sisustatud
+
+257
+00:15:33.870 --> 00:15:37.490
+tehnoloogiliselt nagu kõik selleks,
+et me saame kasutada
+
+258
+00:15:37.590 --> 00:15:40.920
+isoleeritud südameid,
+me saame tapamajast,
+
+259
+00:15:40.920 --> 00:15:44.400
+saame südamepreparaadi
+ja me saame ta siin käima panna
+
+260
+00:15:44.400 --> 00:15:46.760
+täitsa rahulikult.
+Ja me sealjuures saame
+
+261
+00:15:46.860 --> 00:15:49.010
+siis mõõta seda südant igat moodi,
+kas
+
+262
+00:15:49.110 --> 00:15:52.610
+siis mõõdame temal seda impedantsi
+nii südame seest väljas südame
+
+263
+00:15:52.710 --> 00:15:55.310
+pinnal,
+kui saame mõõta vere voolamise
+
+264
+00:15:55.410 --> 00:15:57.940
+südames. No ühesõnaga, kõik,
+mida meile võiks ka pähe tulla,
+
+265
+00:15:58.040 --> 00:16:01.660
+neid kõiki neid parameetreid koos
+mõõta ja sellest teha niisuguseid
+
+266
+00:16:01.760 --> 00:16:05.320
+siis nagu nüüd siin näha on olnud,
+et teha niisuguse südamemudeleid
+
+267
+00:16:05.420 --> 00:16:08.860
+juhtimisalgoritme ja neid asju nagu
+siis koos nagu panna ühtseks
+
+268
+00:16:08.960 --> 00:16:10.570
+tervikuks.
+
+269
+00:16:10.670 --> 00:16:12.160
+Üks seade,
+mis on meil nagu selles mõttes,
+
+270
+00:16:12.260 --> 00:16:16.070
+on niisugune väga nagu tõsiselt
+teemas on, on kudede.
+
+271
+00:16:19.820 --> 00:16:25.660
+Kudede elulevuse hindamise niisugune
+seade ta mõõdab küll kudede
+
+272
+00:16:26.020 --> 00:16:30.340
+impedantsi, see tähendab,
+ta näitab kudede eluvõimelisust,
+
+273
+00:16:30.520 --> 00:16:34.420
+et et
+ja kasutatakse seda seadet lihast,
+
+274
+00:16:35.080 --> 00:16:39.190
+siirdatud lihaste eluleuse
+hindamisel, mina teda nüüd kasutada
+
+275
+00:16:39.200 --> 00:16:43.070
+ka neeru neeruelus hindamisel,
+et selliseid,
+
+276
+00:16:43.130 --> 00:16:45.840
+selliseid seadmeid me oleme nüüd
+nagu teinud siin mõned valmis.
+
+277
+00:16:45.940 --> 00:16:49.840
+Esimene seade,
+mis südame-veresoonkonda diagnoosib
+
+278
+00:16:50.650 --> 00:16:54.070
+seda on siis nüüd müüdud juba Soome
+
+279
+00:16:54.170 --> 00:16:57.760
+üsna mitu eksemplari
+ja seda teist aparaati.
+
+280
+00:16:57.860 --> 00:17:01.570
+Ta on dis monitor.
+
+281
+00:17:01.670 --> 00:17:03.370
+Kudede.
+
+282
+00:17:03.470 --> 00:17:08.750
+Monitooring ja kudede vaatlus,
+eks seda aparaati ühte varianti
+
+283
+00:17:08.750 --> 00:17:10.130
+oleme müünud.
+
+284
+00:17:10.230 --> 00:17:13.519
+Ameerika suurfirmale aasta sajand.
+
+285
+00:17:13.619 --> 00:17:17.880
+Pulsilaine leviku aeg mõõdetakse
+siis alates aordikaarest kuni
+
+286
+00:17:18.690 --> 00:17:21.960
+jalga
+ja arvutatakse meetrit sekundis.
+
+287
+00:17:22.060 --> 00:17:25.380
+Ja need on siin mõlema jala.
+
+288
+00:17:25.480 --> 00:17:30.220
+Pulsilaine levikukiirused on siin
+näha, siin nad katuvad väga hästi.
+
+289
+00:17:30.369 --> 00:17:35.200
+Järelikult mõlemad jalad on heas
+korras, siis anname vanuse.
+
+290
+00:17:35.950 --> 00:17:38.070
+Pikkuse kaalu
+
+291
+00:17:38.170 --> 00:17:41.859
+siin on nüüd tulemus.
+Viimased kaks on huvitavad,
+
+292
+00:17:41.859 --> 00:17:45.300
+siin on mõõdetud pulsilaine leviku
+kiirust, vasakusse jalga,
+
+293
+00:17:45.400 --> 00:17:49.320
+paremasse jalga.
+Mõlemad on väga lähedased 5,5 5,6
+
+294
+00:17:49.320 --> 00:17:53.180
+meetrit. Ja.
+
+295
+00:17:53.280 --> 00:17:54.800
+Uuringud
+
+296
+00:17:54.900 --> 00:17:57.170
+on siia sisse viidud
+
+297
+00:17:57.270 --> 00:18:00.320
+vanuse
+ja pulsilaine levikukiiruse vahel
+
+298
+00:18:00.420 --> 00:18:04.710
+ja see annab talle
+siis veresoonkonna bioloogilise
+
+299
+00:18:04.859 --> 00:18:08.150
+vanuses alla 26 aasta,
+mis on väga hea tulemus.
+
+300
+00:18:08.250 --> 00:18:10.700
+Ta on ise 30 aastane.
+
+301
+00:18:10.800 --> 00:18:11.750
+Nüüd siis on tehtud.
+
+302
+00:18:11.850 --> 00:18:16.380
+Väga tõsiseid katseid, et,
+et viia labor sellisesse
+
+303
+00:18:17.520 --> 00:18:21.720
+Õhukesse pisikesse vormi tõepoolest
+umbes sama suur, ma ütleksin.
+
+304
+00:18:22.410 --> 00:18:25.580
+Ja kuidas see siis õnnestub,
+tuleb teha kõik siis mikro
+
+305
+00:18:25.680 --> 00:18:28.190
+ja nanotehnoloogias kahtlemata.
+
+306
+00:18:28.290 --> 00:18:32.240
+Siia sisse tehakse siis kanalid.
+
+307
+00:18:32.340 --> 00:18:36.330
+Kus mida mööda liiguvad rakud,
+bakterid, viirused
+
+308
+00:18:36.570 --> 00:18:41.170
+ja kõik need pisikesed pisikesed
+meile, vahetevahel pahategijad veel
+
+309
+00:18:41.170 --> 00:18:44.320
+heategijad.
+Need pisikesed bioloogilised
+
+310
+00:18:44.320 --> 00:18:45.970
+organismid
+
+311
+00:18:46.070 --> 00:18:49.280
+Ja me peame nad
+siis analüüsime ära verelipled
+
+312
+00:18:49.280 --> 00:18:53.119
+näiteks rakud kui vere analüüs,
+punased ja valged verelipled,
+
+313
+00:18:53.420 --> 00:18:55.570
+vaatame, kui palju neid on,
+mis tasakaalustada,
+
+314
+00:18:55.670 --> 00:18:57.390
+kas nad on korras.
+
+315
+00:18:57.490 --> 00:19:01.000
+Ja vot see kõik
+siis peaks toimuma nüüd sellise
+
+316
+00:19:01.390 --> 00:19:06.770
+sellise pisikese tükikese ipi
+või kiiplabori sees.
+
+317
+00:19:06.980 --> 00:19:12.200
+No minu käes on üks katseseade,
+mis sisaldab kiiplaborit.
+
+318
+00:19:12.650 --> 00:19:15.920
+Kiiplabor asub siin,
+see läikiv osa siin keskel
+
+319
+00:19:16.380 --> 00:19:22.680
+ja näiteks selline kiiplabor on
+võimeline tegema iseseisvalt ära
+
+320
+00:19:22.859 --> 00:19:24.530
+vereanalüüsi.
+
+321
+00:19:24.630 --> 00:19:26.540
+Protseduuri.
+
+322
+00:19:26.640 --> 00:19:29.940
+Jah, see meie valdkond on just,
+et viia siia sisse
+
+323
+00:19:29.940 --> 00:19:33.990
+siis elektriline bioimpedantsil
+põhinev analüüsimeetod.
+
+324
+00:19:34.800 --> 00:19:38.850
+Siin on nendes kanalitesse,
+me paneme sisse siis mikro
+
+325
+00:19:39.090 --> 00:19:41.990
+ja nano suuruses elektroodid.
+
+326
+00:19:42.090 --> 00:19:45.810
+Laseme läbi elektroodid,
+elektrivoolu vaheldub voolu
+
+327
+00:19:45.840 --> 00:19:49.260
+ja laias diapasoonis me teeme
+impedantsspektroskoopia
+
+328
+00:19:49.260 --> 00:19:53.560
+spektroskoopia, tähendab,
+et väga lai sagedusdiapasoon on.
+
+329
+00:19:53.660 --> 00:19:59.510
+Ja siis vaatame, mismoodi,
+kuidas tekib, vastuseks tekib pinge,
+
+330
+00:19:59.540 --> 00:20:03.470
+kui me elektrivoolu sinna sisse
+juhime, siis takistuse peal tekib
+
+331
+00:20:03.470 --> 00:20:06.340
+elektripinge saame
+selle pingesignaali kätte
+
+332
+00:20:06.440 --> 00:20:10.070
+ja analüüsime. Viime ta
+siis arvutisse arvuti, suurem,
+
+333
+00:20:10.070 --> 00:20:13.140
+arvuti juba analüüsib
+ja seal on sees
+
+334
+00:20:13.140 --> 00:20:17.160
+siis arvutis on igasugused mudelid,
+näidised võrdleme mudelite
+
+335
+00:20:17.160 --> 00:20:19.310
+näidistega ja niimoodi
+
+336
+00:20:19.410 --> 00:20:24.810
+selle võrdluse tulemusena
+siis tuvastame mingite teatud
+
+337
+00:20:24.810 --> 00:20:27.410
+rakkude, viiruste,
+bakterite olemasolu
+
+338
+00:20:27.510 --> 00:20:30.730
+või mitte olemasolu.
+Maailma meditsiini jaoks tähendab
+
+339
+00:20:30.830 --> 00:20:34.490
+see,
+et labor tuleb patsiendi juurde.
+
+340
+00:20:34.820 --> 00:20:37.660
+Mitte et patsient läheb laborisse.
+
+341
+00:20:37.760 --> 00:20:41.930
+Labor, see tähendab,
+et analüüsid kiirenevad analüüsid
+
+342
+00:20:41.930 --> 00:20:47.220
+võivad olla pidevad. Vaadake,
+kui laboris käib inimene üle mõne
+
+343
+00:20:47.220 --> 00:20:50.170
+päeva, teeb analüüsi, aga selline.
+
+344
+00:20:51.010 --> 00:20:54.600
+Inimese patsiendi juurde tulev labor
+võib teha seda peaaegu pidevalt,
+
+345
+00:20:54.700 --> 00:20:59.290
+võib-olla iga tunni tagant
+ja anda analüüsi kiiplabori projekti
+
+346
+00:20:59.770 --> 00:21:02.900
+projekti oleme osalenud Saksamaal.
+
+347
+00:21:03.000 --> 00:21:06.000
+Kötingeni lähedal asuvas instituudis
+
+348
+00:21:06.900 --> 00:21:10.260
+ja me töötame seal,
+mina olen seal rahvusvahelise
+
+349
+00:21:10.260 --> 00:21:14.460
+uurimisgrupi juht olnud
+ja oleme töötanud seal neli aastat
+
+350
+00:21:14.460 --> 00:21:17.420
+juba. Ja tõepoolest,
+me oleme nüüd juba jõudnud
+
+351
+00:21:17.520 --> 00:21:20.390
+nii kaugele,
+et ilmselt me patenteerimime just
+
+352
+00:21:20.490 --> 00:21:24.660
+nendel kuudel oma oma lahendused
+ka rahvusvaheliselt ära.
+
+353
+00:21:25.640 --> 00:21:32.359
+Aga see töö muidugi areneb praegu
+ainult Saksamaal, aga mitte enam.
+
+354
+00:21:32.840 --> 00:21:38.869
+Juba me koostame siin kiiplabori
+arendamise oma laboratooriumi.
+
+355
+00:21:39.260 --> 00:21:43.730
+Siin töötab meil Atanasius
+ja Kreeka nimega mees.
+
+356
+00:21:45.010 --> 00:21:50.350
+Siis me ilmselt tuleb siia veel
+inimesi tööle ja postdokke
+
+357
+00:21:50.350 --> 00:21:55.480
+ja doktor doktor ante
+ja pealedoktorante järeldoktorante
+
+358
+00:21:55.690 --> 00:21:58.380
+ja niimoodi me praegu organiseerime
+noort seltskonda,
+
+359
+00:21:58.480 --> 00:22:01.530
+kes hakkab seda kiiplaborite teemat
+arendama ka Eestis,
+
+360
+00:22:01.630 --> 00:22:04.890
+Tallinna Tehnikaülikoolis
+ja ilmselt koostööst.
+
+361
+00:22:08.170 --> 00:22:10.280
+Euromünte oleme ilmselt kõik
+uurinud.
+
+362
+00:22:10.380 --> 00:22:14.460
+Erinevate riikide rahade erinevaid
+kujundusi vahel püütakse sellesse
+
+363
+00:22:14.460 --> 00:22:17.090
+kirevasse komplekti sokutada
+ka valeraha,
+
+364
+00:22:17.190 --> 00:22:21.210
+kuidas seda tõelisest eristada.
+Euroopa pettuse vastane amet
+
+365
+00:22:21.210 --> 00:22:23.280
+korraldas
+selle vajaliku seadme leidmiseks
+
+366
+00:22:23.380 --> 00:22:25.950
+konkursi ja
+selle võitis Mart Mini töörühm
+
+367
+00:22:26.050 --> 00:22:29.675
+Tallinna tehnikaülikoolist.
+Ka see aparaat põhineb impedantsil.
+
+368
+00:22:36.050 --> 00:22:39.500
+Tõepoolest,
+me saame mündi elektriline
+
+369
+00:22:39.500 --> 00:22:44.210
+impedantsi mõõtmise kaudu tuvastada,
+kas see müüt, kas see münt on?
+
+370
+00:22:45.290 --> 00:22:51.010
+Vastab normidele, kas ta on õige
+või vale. Ja selleks me mõõdame tema
+
+371
+00:22:51.010 --> 00:22:54.340
+impedantsi,
+praegusel juhtumil kolmel sagedusel.
+
+372
+00:22:54.940 --> 00:22:58.019
+Me ei mõõda väga laias
+või me mõõdame laias sagedus
+
+373
+00:22:58.119 --> 00:22:59.620
+diapasoonis,
+aga mitte kõigil sageduse.
+
+374
+00:22:59.720 --> 00:23:02.890
+Vastus vaid kolmel valitud sageduse.
+
+375
+00:23:02.990 --> 00:23:05.380
+Me saime ühe kummalise.
+
+376
+00:23:05.480 --> 00:23:07.450
+Kummalise pildi
+
+377
+00:23:07.550 --> 00:23:08.950
+ja
+
+378
+00:23:09.050 --> 00:23:12.500
+seda võib öelda, et see on
+selle mündi
+
+379
+00:23:14.060 --> 00:23:18.020
+Sõrmejälg vaatame,
+paneme siia mõne teise mündi peale
+
+380
+00:23:18.830 --> 00:23:21.170
+ja vaatame, mis tast siis saab.
+
+381
+00:23:21.270 --> 00:23:24.990
+Noh, väga sarnane münt,
+aga väga sarnane koosneb
+
+382
+00:23:24.990 --> 00:23:27.470
+ka kahest osast ja nii edasi,
+vaatame, kuidas ma ei tea,
+
+383
+00:23:27.570 --> 00:23:30.019
+kuidas siin võtsin juhuslikult.
+
+384
+00:23:30.119 --> 00:23:33.259
+Missuguse pildi me temast saame?
+
+385
+00:23:33.359 --> 00:23:38.740
+Ja näete, me saame temast sellise,
+nüüd me saime selle valge pildi ja,
+
+386
+00:23:38.800 --> 00:23:43.510
+ja väga selgelt on näha, et,
+et ta erineb sellest punasest,
+
+387
+00:23:43.510 --> 00:23:46.110
+mis oli etalon. Ja nüüd,
+kui me teeme lihtsalt,
+
+388
+00:23:46.210 --> 00:23:49.560
+eks ole arvutiga mustri analüüsi,
+siis me võime väga selgelt öelda,
+
+389
+00:23:49.660 --> 00:23:52.360
+et ei, see ei ole üheeurone.
+
+390
+00:23:59.940 --> 00:24:01.990
+See seade hakkab teile üsna pea üle.
+
+391
+00:24:02.090 --> 00:24:05.080
+Kogu Euroopa kuulsust tooma.
+
+392
+00:24:05.180 --> 00:24:09.500
+Ma loodan,
+et tõepoolest see aparaat tuleb
+
+393
+00:24:09.500 --> 00:24:14.660
+kasutusele, mitte just see vaid
+selle baasil tehtud aparaat tuleb
+
+394
+00:24:14.660 --> 00:24:18.230
+kasutusele kõikides Euroopa Liidu
+riikides.
+
+395
+00:24:19.010 --> 00:24:24.230
+Igas riigis on vaja kontrollida
+münte, kuna igas riigis on
+
+396
+00:24:24.230 --> 00:24:27.810
+ka mündid veidikene erinevad
+ja neid tuleb eraldi üle
+
+397
+00:24:27.810 --> 00:24:30.110
+kontrollida.
+
+398
+00:24:34.220 --> 00:24:38.540
+Tähendab mündikodadesse tulevad
+materjalid, testitakse läbi,
+
+399
+00:24:38.540 --> 00:24:44.090
+et kas nad tõesti vastavad täpselt
+sellele vastavale koostisele
+
+400
+00:24:44.869 --> 00:24:47.569
+mis on ette nähtud normides.
+
+401
+00:24:50.260 --> 00:24:53.380
+Testimise jaoks me kasutame jällegi.
+
+402
+00:24:55.330 --> 00:24:58.690
+Elektriline impedantsi abil abi me
+mõõdame ära
+
+403
+00:24:59.530 --> 00:25:04.600
+nende metallplaatide elektrilise
+eritakistuse ja
+
+404
+00:25:04.600 --> 00:25:08.109
+selle järgi otsustame metalli
+sobivuse üle.
+
+405
+00:25:15.590 --> 00:25:19.970
+Aga põhiline turg, kus ta läheb, on,
+siis me teeme
+
+406
+00:25:19.970 --> 00:25:25.240
+ka niinimetatud mündimasinaid
+kus saab müntide eest osta
+
+407
+00:25:25.359 --> 00:25:31.150
+tarbekaupa ja saab parkida.
+Ja selliseid automaatseid,
+
+408
+00:25:31.450 --> 00:25:33.875
+ostuoperatsioone.
+
+409
+00:25:35.369 --> 00:25:39.240
+Praegu on Mart Mini töörühma käsil
+veel ühe uue impedantsi põhimõttel
+
+410
+00:25:39.240 --> 00:25:44.190
+töötava seadme kiiplabori loomine.
+Niisugune kiip oleks suur samm edasi
+
+411
+00:25:44.220 --> 00:25:47.180
+haiguste kiirel diagnoosimisel.
+Küsimusele,
+
+412
+00:25:47.280 --> 00:25:50.540
+kas teaduses peab olema selge
+rakendus ka tavainimese jaoks,
+
+413
+00:25:50.640 --> 00:25:54.859
+vastab Mart Min kindlalt jah,
+tema nimel on kinnitatud enam kui 40
+
+414
+00:25:54.859 --> 00:25:59.070
+patenti viimase 10 aasta jooksul 10
+neist impedantsi rakendust.
+
+415
+00:26:02.830 --> 00:26:07.359
+Eesti tehnoloogia on teel maailma,
+see on selge,
+
+416
+00:26:07.359 --> 00:26:11.740
+aga me kohtame päris tõsiseid
+raskusi, et seda, seda rütmi
+
+417
+00:26:12.040 --> 00:26:17.590
+ka siin on rütm, et seda seda hoida.
+Kuidas leida professionaalne kõiki
+
+418
+00:26:17.590 --> 00:26:20.610
+neid kokku väga paljudelt
+erialadelt, siin on insenerid,
+
+419
+00:26:20.710 --> 00:26:25.450
+arstid, bioloogid ja kes teab veel,
+kes kõik materjaliteadlased.
+
+420
+00:26:26.220 --> 00:26:28.910
+Kuidas leida see seltskond,
+et ta ühiselt koos töötab
+
+421
+00:26:29.010 --> 00:26:34.140
+ja üks asi on okei, nad on koos,
+me töötame koos. Aga siis on vaja
+
+422
+00:26:34.140 --> 00:26:35.810
+ka toota.
+
+423
+00:26:35.910 --> 00:26:38.910
+Ja see tootmise mured on üsna
+tõsised.
+
+424
+00:26:43.410 --> 00:26:47.160
+Tallinna tehnikaülikooli professor
+Mart Min sattus komplekstakistust
+
+425
+00:26:47.160 --> 00:26:50.110
+või impedantsi uurima õnneliku juhu
+se tõttu 12 aastat.
+
+426
+00:26:50.210 --> 00:26:53.769
+Tagasi tänu kolleegile, kes teadis,
+et südamerütmuri projekti juurde
+
+427
+00:26:53.869 --> 00:26:57.590
+vajatakse elektroonikut.
+Nüüd on ta oma töögrupiga jälgi
+
+428
+00:26:57.590 --> 00:27:00.730
+jätmas paljudes eluvaldkondades,
+alates südamest kuni patareide
+
+429
+00:27:00.830 --> 00:27:02.620
+terviseni, veresoonte vanusest.
+
+430
+00:27:02.720 --> 00:27:05.710
+Kuni müntide ehtsuseni
+ning uute lahenduste leidmine
+
+431
+00:27:05.810 --> 00:27:06.200
+jätkub.
