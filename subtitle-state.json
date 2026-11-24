@@ -1,14 +1,14 @@
 {
   "last": [
     "series",
-    "duoplay:8325:ep:5"
+    "duoplay:8329:ep:289"
   ],
-  "stream_head": "efc4f8ed92e40b1078a9c8ea9c45039867942c0c",
+  "stream_head": "9077caddaf4d72d744353ba9b23fbaa68ac8600f",
   "priority_version": 2,
   "urgent": [],
   "missing": 6043,
   "resolved": 0,
   "empty": 300,
   "errors": 0,
-  "ts": 1795550501
+  "ts": 1795561283
 }
