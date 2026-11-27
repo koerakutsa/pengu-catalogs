@@ -1,14 +1,14 @@
 {
   "last": [
     "series",
-    "duoplay:9447:ep:39"
+    "duoplay:9641:ep:1"
   ],
-  "stream_head": "edebb211b66a40a25b2fcd67cb7126375dbc688c",
+  "stream_head": "a4dae2edbdbe32d661998afc91287d4e30d08411",
   "priority_version": 2,
   "urgent": [],
-  "missing": 6042,
-  "resolved": 1,
-  "empty": 299,
+  "missing": 6041,
+  "resolved": 0,
+  "empty": 300,
   "errors": 0,
-  "ts": 1795805314
+  "ts": 1795816555
 }
